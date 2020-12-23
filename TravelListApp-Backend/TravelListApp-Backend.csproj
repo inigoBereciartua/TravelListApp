@@ -1,9 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>TravelListApp_Backend</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\DAO\I.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Data\Repositories\NewFile.txt" />
+    <None Remove="Data\Repositories\Trav" />
+    <None Remove="Models\DAO\NewFile.txt" />
+    <None Remove="Models\NewFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Mappers\" />
+    <Folder Include="DTO%27s\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
+  </ItemGroup>
 
 
 </Project>

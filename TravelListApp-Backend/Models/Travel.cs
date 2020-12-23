@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TravelListApp_Backend.Models.DAO
+namespace TravelListApp_Backend.Models
 {
-    interface ITravelListRepository
+    public class Travel
     {
     }
 }
