@@ -7,5 +7,38 @@ namespace TravelListApp_Backend.Models
 {
     public class Task
     {
+        #region Fields
+
+        private String _description;
+        private bool _checked;
+
+        #endregion Fields
+
+        #region Constructor
+        public Task(String description)
+        {
+            Description = description;
+            Checked = false;
+        }
+        #endregion Constructor
+
+        #region Properties
+        public String Description { 
+            get { return _description; } 
+            private set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Description can't be empty");
+                }
+                else
+                {
+                    _description = value;
+                }
+            }
+        }
+        public bool Checked { get { return _checked; } set { _checked = value; } }
+        #endregion Properties
+
     }
 }
