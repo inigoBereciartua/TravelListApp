@@ -11,6 +11,7 @@ namespace TravelListApp_Backend.Models
         private String _name;
         private HashSet<Task> _tasks;
         private List<Activity> _iternary;
+        private List<Place> _places;
         #endregion Fields
 
         #region Properties
@@ -41,6 +42,13 @@ namespace TravelListApp_Backend.Models
             get { return _iternary; }
             private set { _iternary = value; }
         }
+
+        public List<Place> Places
+        {
+            get { return _places; }
+            private set { _places = value; }
+        }
+
         #endregion Properties
 
 
@@ -50,7 +58,11 @@ namespace TravelListApp_Backend.Models
             Name = name;
             Tasks = tasks;
             Iternary = iternary;
+            Places = Places;
         }
+        #endregion Constructor
+
+        #region Methodes
 
         public void addTask(Task item)
         {
@@ -72,6 +84,16 @@ namespace TravelListApp_Backend.Models
             Iternary.Add(item);
         }
 
-        #endregion Constructor
+        public void addPlace(Place item)
+        {
+            Places.Add(item);
+        }
+
+        public void removePlace(Place item)
+        {
+            Places.Remove(item);
+        }
+
+        #endregion
     }
 }
