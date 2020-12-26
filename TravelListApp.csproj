@@ -126,6 +126,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFolder1\NavView.xaml.cs">
+      <DependentUpon>NavView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\CategoryRepository.cs" />
     <Compile Include="Persistence\ItemRepository.cs" />
     <Compile Include="Persistence\ItineraryRepository.cs" />
@@ -161,6 +164,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewFolder1\NavView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
