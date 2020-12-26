@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <Grid>
+
         <NavigationView>
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Travel App"/>
@@ -18,8 +18,8 @@
                 <NavigationViewItem Content="Tasks" Icon="Edit"/>
                 <NavigationViewItem Content="Calendar" Icon="Calendar"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" 
-                 NavigationFailed="ContentFrame_OnNavigationFailed"/>
+            <Frame x:Name="ContentFrame" />
         </NavigationView>
+    
     </Grid>
 </Page>

@@ -129,6 +129,21 @@
     <Compile Include="NewFolder1\NavView.xaml.cs">
       <DependentUpon>NavView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFolder1\Views\Calendar.xaml.cs">
+      <DependentUpon>Calendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\Categories.xaml.cs">
+      <DependentUpon>Categories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\Items.xaml.cs">
+      <DependentUpon>Items.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\Tasks.xaml.cs">
+      <DependentUpon>Tasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\Travels.xaml.cs">
+      <DependentUpon>Travels.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\CategoryRepository.cs" />
     <Compile Include="Persistence\ItemRepository.cs" />
     <Compile Include="Persistence\ItineraryRepository.cs" />
@@ -166,6 +181,26 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NewFolder1\NavView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\Calendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\Categories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\Items.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\Tasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\Travels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
