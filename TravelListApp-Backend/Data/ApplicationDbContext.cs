@@ -11,7 +11,7 @@ namespace TravelListApp_Backend.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         #region Properties
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Persons { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Activity> Itinerarys { get; set; }
