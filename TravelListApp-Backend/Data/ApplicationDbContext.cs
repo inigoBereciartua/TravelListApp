@@ -14,7 +14,7 @@ namespace TravelListApp_Backend.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<Itinerary> Itinerarys { get; set; }
+        public DbSet<Activity> Itinerarys { get; set; }
         public DbSet<Place> Places { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Travel> Travels { get; set; }

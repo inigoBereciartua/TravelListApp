@@ -49,7 +49,7 @@ namespace TravelListApp_Backend.Models
         {
             Name = name;
             Tasks = tasks;
-            Iternary =  iternary
+            Iternary = iternary;
         }
 
         public void addTask(Task item)
