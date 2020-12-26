@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.Models
 {
-    public class Itinerary
+    public class Activity
     {
     }
 }
