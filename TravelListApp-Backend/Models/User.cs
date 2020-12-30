@@ -12,6 +12,8 @@ namespace TravelListApp_Backend.Models
         private String _lastName;
         private String _email;
         private HashSet<Travel> _travels;
+        private List<Category> _category;
+
         #endregion Fields
 
         #region Properties
@@ -68,6 +70,14 @@ namespace TravelListApp_Backend.Models
             get { return _travels; }
             private set { _travels = value; }
         }
+
+
+        public List<Category> Category
+        {
+            get { return this._category; }
+            private set { this._category = value; }
+        }
+
         #endregion Properties
 
 
@@ -84,12 +94,21 @@ namespace TravelListApp_Backend.Models
             Travels.Add(item);
         }
 
+        #endregion Constructor
         public void removeTravel(Travel item)
         {
             Travels.Remove(item);
         }
 
-        #endregion Constructor
+        public void addCategory(Category item)
+        {
+            Category.Add(item);
+        }
+
+        public void removeCategory(Category item)
+        {
+            Category.Remove(item);
+        }
 
     }
 }
