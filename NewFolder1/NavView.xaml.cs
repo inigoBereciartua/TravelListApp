@@ -1,6 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using TravelListApp.NewFolder1.Views;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -11,34 +15,42 @@ namespace TravelListApp.NewFolder1
     /// </summary>
     public sealed partial class NavView : Page
     {
-
-        public NavView() => this.InitializeComponent();
-        private NavigationViewItem _lastItem;
-
-        private void NavigationView_OnItemInvoked(
-            NavigationView sender,
-            NavigationViewItemInvokedEventArgs args)
+        public NavView()
         {
-            var item = args.InvokedItemContainer as NavigationViewItem;
-            if (item == null || item == _lastItem)
-                return;
-            var clickedView = item.Tag?.ToString();
-            if (!NavigateToView(clickedView)) return;
-            _lastItem = item;
+            this.InitializeComponent();            
+            ContentFrame.Navigate(typeof(Travels));
+            
         }
-        private bool NavigateToView(string clickedView)
+
+        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            var view = Assembly.GetExecutingAssembly()
-                .GetType($"NavigationView.Views.{clickedView}");
-
-            if (string.IsNullOrWhiteSpace(clickedView) || view == null)
+            if (args.IsSettingsSelected)
             {
-                return false;
+
             }
+            else
+            {
+                var item = args.SelectedItem as NavigationViewItem;
+                switch (item.Tag)
+                {
+                    case "Travels":
+                        ContentFrame.Navigate(typeof(Travels));
+                        break;
+                    case "Items":
+                        ContentFrame.Navigate(typeof(Items));
+                        break;
+                    case "Categories":
+                        ContentFrame.Navigate(typeof(Categories));
+                        break;
+                    case "Tasks":
+                        ContentFrame.Navigate(typeof(Tasks));
+                        break;
+                    case "Calendar":
+                        ContentFrame.Navigate(typeof(Calendar));
+                        break;
 
-            ContentFrame.Navigate(view, null, new EntranceNavigationTransitionInfo());
-            return true;
-
-        }      
+                }
+            }
+        }    
     }
 }

@@ -9,16 +9,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
 
-        <NavigationView>
+        <NavigationView x:Name="NavView" SelectionChanged="NavView_SelectionChanged" >
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Travel App"/>
-                <NavigationViewItem Content="Travels" Icon="World"/>
-                <NavigationViewItem Content="Items" Icon="Library"/>
-                <NavigationViewItem Content="Categories" Icon="Tag"/>
-                <NavigationViewItem Content="Tasks" Icon="Edit"/>
-                <NavigationViewItem Content="Calendar" Icon="Calendar"/>
+                <NavigationViewItem Content="Travels" Icon="World" Tag="Travels"/>
+                <NavigationViewItem Content="Items" Icon="Library" Tag="Items"/>
+                <NavigationViewItem Content="Categories" Icon="Tag" Tag="Categories"/>
+                <NavigationViewItem Content="Tasks" Icon="Edit" Tag="Tasks"/>
+                <NavigationViewItem Content="Calendar" Icon="Calendar" Tag="Calendar"/>
             </NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame" />
+            <Frame x:Name="ContentFrame"/>
         </NavigationView>
     
     </Grid>

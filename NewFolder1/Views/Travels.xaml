@@ -9,6 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel>
+            <TextBlock Text="HEEEEY" FontSize="32"/>
+        </StackPanel>
     </Grid>
 </Page>
