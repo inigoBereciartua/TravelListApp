@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Reflection;
 using TravelListApp.NewFolder1.Views;
 using Windows.UI.Xaml;
@@ -18,22 +19,15 @@ namespace TravelListApp.NewFolder1
         public NavView()
         {
             this.InitializeComponent();            
-            ContentFrame.Navigate(typeof(Travels));
             
         }
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            if (args.IsSettingsSelected)
-            {
 
-            }
-            else
-            {
-                var item = args.SelectedItem as NavigationViewItem;
-                switch (item.Tag)
+            switch (args.InvokedItem)
                 {
-                    case "Travels":
+                    case "Travels":                       
                         ContentFrame.Navigate(typeof(Travels));
                         break;
                     case "Items":
@@ -46,11 +40,12 @@ namespace TravelListApp.NewFolder1
                         ContentFrame.Navigate(typeof(Tasks));
                         break;
                     case "Calendar":
+                        Debug.WriteLine("sdfghjgfds");
                         ContentFrame.Navigate(typeof(Calendar));
                         break;
 
                 }
-            }
-        }    
+            
+        }        
     }
 }

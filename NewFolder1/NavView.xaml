@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
 
-        <NavigationView x:Name="NavView" SelectionChanged="NavView_SelectionChanged" >
+        <NavigationView x:Name="NavigationView" ItemInvoked="NavigationView_ItemInvoked" >
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Travel App"/>
                 <NavigationViewItem Content="Travels" Icon="World" Tag="Travels"/>
