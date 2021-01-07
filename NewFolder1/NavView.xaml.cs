@@ -18,8 +18,8 @@ namespace TravelListApp.NewFolder1
     {
         public NavView()
         {
-            this.InitializeComponent();            
-            
+            this.InitializeComponent();
+            ContentFrame.Navigate(typeof(Travels));
         }
 
         private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
