@@ -7,10 +7,10 @@ namespace TravelListApp_Backend.Models.DAO
 {
     interface ICategoryRepository
     {
-        void addItem<Category>(Category item);
-        void removeItem<Category>(int Id);
-        List<Category> getAllItems<Category>();
-        void updateItem<Category>(Category item);
+        void addItem(Category item);
+        void removeItem(Category item);
+        List<Category> getAllItems();
+        void updateItem(Category item);
         void SaveChanges();
     }
 }

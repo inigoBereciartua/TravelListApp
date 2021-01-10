@@ -11,31 +11,37 @@ namespace TravelListApp_Backend.Data.Repositories
     public class CategoryRepository : ICategoryRepository
     {
         private readonly ApplicationDbContext _context;
-        private readonly DbSet<User> _products;
+        private readonly DbSet<Category> _category;
 
-        public void addItem<Category>(Category item)
+        public CategoryRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
+            this._category = this._context.Categorys;
         }
 
-        public List<Category> getAllItems<Category>()
+        public void addItem(Category item)
         {
-            throw new NotImplementedException();
+            this._category.Add(item);
         }
 
-        public void removeItem<Category>(int Id)
+        public List<Category> getAllItems()
         {
-            throw new NotImplementedException();
+           return this._category.ToList();
+        }
+
+        public void removeItem(Category item)
+        {
+            this._category.Remove(item);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._context.SaveChanges();
         }
 
-        public void updateItem<Category>(Category item)
+        public void updateItem(Category item)
         {
-            throw new NotImplementedException();
+            this._category.Update(item);
         }
     }
 }
