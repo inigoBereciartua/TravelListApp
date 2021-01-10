@@ -122,6 +122,7 @@
     <Compile Include="Contoller\Modelcontroller.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ItemWithAmount.cs" />
     <Compile Include="Model\Itinerary.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -134,6 +135,9 @@
     </Compile>
     <Compile Include="NewFolder1\Views\Categories.xaml.cs">
       <DependentUpon>Categories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\CategoryDetails.xaml.cs">
+      <DependentUpon>CategoryDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewFolder1\Views\Items.xaml.cs">
       <DependentUpon>Items.xaml</DependentUpon>
@@ -189,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewFolder1\Views\Categories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\CategoryDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

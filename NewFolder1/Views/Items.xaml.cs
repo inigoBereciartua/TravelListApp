@@ -29,7 +29,8 @@ namespace TravelListApp.NewFolder1.Views
         public Items()
         {
             this.InitializeComponent();
-            foreach(var item in ItemsManager.GetItems())
+            //TODO: Call to backend to get items
+            foreach (var item in ItemsManager.GetItems())
             {
                 itemsList.Add(item);
             }
@@ -63,7 +64,7 @@ namespace TravelListApp.NewFolder1.Views
             }
             else
             {
-                itemsList.Add(new Item { name = NewItemName.Text });
+                itemsList.Add(new Item { Name = NewItemName.Text });
                 //TODO: Call backend to create Item
             }
         }
@@ -72,7 +73,7 @@ namespace TravelListApp.NewFolder1.Views
         {
             foreach(var item in itemsList)
             {
-                if (item.name == text)
+                if (item.Name == text)
                 {
                     return true;
                 }
