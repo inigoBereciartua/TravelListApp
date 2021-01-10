@@ -13,6 +13,12 @@ namespace TravelListApp_Backend.Data.Repositories
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Travel> _travel;
 
+
+        public TravelRepository(ApplicationDbContext context)
+        {
+            this._context = context;
+            this._travel = context.Travels;
+        }
         public void addItem(Travel travel)
         {
             this._travel.Add(travel);

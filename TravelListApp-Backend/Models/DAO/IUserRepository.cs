@@ -6,10 +6,10 @@ namespace TravelListApp_Backend.Models.DAO
 {
     interface IUserRepository
     {
-        void addItem<User>(User item);
-        void removeItem<User>(int Id);
-        List<User> getAllItems<User>();
-        void updateItem<User>( User item);
+        void addItem(User user);
+        void removeItem(User user);
+        List<User> getAllItems();
+        void updateItem( User user);
 
         void SaveChanges();
     }

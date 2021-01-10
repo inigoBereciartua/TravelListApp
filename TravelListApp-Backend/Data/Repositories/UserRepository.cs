@@ -14,29 +14,37 @@ namespace TravelListApp_Backend.Data.Repositories
         private readonly ApplicationDbContext _context;
         private readonly DbSet<User> _users;
 
-        public void addItem<User>(User item)
+
+        public UserRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
+            this._users = this._context.People;
         }
 
-        public List<User> getAllItems<User>()
+        public void addItem(User user)
         {
-            throw new NotImplementedException();
+            this._users.Add(user);
         }
 
-        public void removeItem<User>(int Id)
+        public List<User> getAllItems()
         {
-            throw new NotImplementedException();
+
+            return this._context.People.ToList();
+        }
+
+        public void removeItem(User user)
+        {
+            this._users.Remove(user);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._context.SaveChanges();
         }
 
-        public void updateItem<User>(User item)
+        public void updateItem(User user)
         {
-            throw new NotImplementedException();
+            this._users.Update(user);
         }
     }
 }
