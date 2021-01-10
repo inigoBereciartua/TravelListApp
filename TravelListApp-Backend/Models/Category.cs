@@ -24,6 +24,8 @@ namespace TravelListApp_Backend.Models
             set { _items = value; }
         }
 
+        public object CategoryID { get; internal set; }
+
         #endregion Properties
 
         #region Construct

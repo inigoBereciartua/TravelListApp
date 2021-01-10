@@ -26,6 +26,12 @@ namespace TravelListApp_Backend.Models
             set { _owner = value; }
         }
 
+        private Category _categories;
+        public Category Categories {
+            get { return _categories; }
+            set { _categories = value; }
+        }
+
 
         #endregion Properties
 
