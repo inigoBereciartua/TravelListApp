@@ -1,12 +1,18 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TravelListApp_Backend.Models;
 using TravelListApp_Backend.Models.DAO;
 
 namespace TravelListApp_Backend.Data.Repositories
 {
     public class TaskRepository : ITaskRepository
     {
+
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Task> _tasks;
+
         public void addItem<Task>(Task item)
         {
             throw new NotImplementedException();

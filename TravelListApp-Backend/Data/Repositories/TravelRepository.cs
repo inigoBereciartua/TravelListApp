@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,6 +10,9 @@ namespace TravelListApp_Backend.Data.Repositories
 {
     public class TravelRepository : ITravelRepository
     {
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Travel> _travel;
+
         public void addItem<Travel>(Travel item)
         {
             throw new NotImplementedException();
