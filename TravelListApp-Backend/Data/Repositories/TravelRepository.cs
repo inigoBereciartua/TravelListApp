@@ -13,29 +13,29 @@ namespace TravelListApp_Backend.Data.Repositories
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Travel> _travel;
 
-        public void addItem<Travel>(Travel item)
+        public void addItem(Travel travel)
         {
-            throw new NotImplementedException();
+            this._travel.Add(travel);
         }
 
-        public List<Travel> getAllItems<Travel>()
+        public List<Travel> getAllItems()
         {
-            throw new NotImplementedException();
+           return  this._travel.ToList();
         }
 
-        public void removeItem<Travel>(int Id)
+        public void removeItem(Travel travel)
         {
-            throw new NotImplementedException();
+            this._travel.Remove(travel);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._context.SaveChanges();
         }
 
-        public void updateItem<Travel>(Travel item)
+        public void updateItem(Travel travel)
         {
-            throw new NotImplementedException();
+            this._travel.Update(travel);
         }
     }
 }
