@@ -28,7 +28,6 @@ namespace TravelListApp_Backend.Data
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new ItemConfiguration());
-            builder.ApplyConfiguration(new ItineraryConfiguration());
             builder.ApplyConfiguration(new PlaceConfiguration());
             builder.ApplyConfiguration(new TaskConfiguration());
             builder.ApplyConfiguration(new TravelsConfiguration());
