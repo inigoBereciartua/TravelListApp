@@ -28,6 +28,7 @@ namespace TravelListApp.NewFolder1.Views
         public Categories()
         {
             this.InitializeComponent();
+            //TODO: Call to backend to get categories
             foreach (var category in CategoriesManager.GetCategories())
             {
                 categoriesList.Add(category);
@@ -48,7 +49,7 @@ namespace TravelListApp.NewFolder1.Views
             }
             else
             {
-                categoriesList.Add(new Category { name = NewCategoryName.Text });
+                categoriesList.Add(new Category { Name = NewCategoryName.Text });
                 //TODO: Call backend to create Category
             }
         }
@@ -57,7 +58,7 @@ namespace TravelListApp.NewFolder1.Views
         {
             foreach(var category in categoriesList)
             {
-                if(category.name == text)
+                if(category.Name == text)
                 {
                     return true;
                 }
@@ -74,6 +75,12 @@ namespace TravelListApp.NewFolder1.Views
                 categoriesList.Remove((Category)category);
                 //TODO: Call backend to delete Item
             }
+        }
+
+        private void CategoriesGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var category = (Category)e.ClickedItem;
+            this.Frame.Navigate(typeof(CategoryDetails),category);
         }
     }
 }

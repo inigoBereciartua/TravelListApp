@@ -17,13 +17,13 @@
                 <Button x:Name="CreateCategory" Content="Create Category" Margin="20, 10, 0, 10" Click="CreateCategory_Click"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
-                <GridView x:Name="CategoriesGridView" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Margin="20,20,20, 20">
+                <GridView x:Name="CategoriesGridView" IsItemClickEnabled="True" ItemClick="CategoriesGridView_ItemClick" x:DefaultBindMode="OneWay" Margin="20,20,20, 20">
                 <GridView.ItemTemplate >
                     <DataTemplate x:DataType="data:Category">
                         <StackPanel>
-                            <TextBlock Name="CategoryName" FontSize="20" Text="{x:Bind name}" TextAlignment="Center"/>
+                            <TextBlock Name="CategoryName" FontSize="20" Text="{x:Bind Name}" TextAlignment="Center"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Name="NumOfItems" FontSize="10" Text="{x:Bind items.Count}" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="NumOfItems" FontSize="10" Text="{x:Bind Items.Count}" Margin="10,0,0,0"></TextBlock>
                                 <TextBlock FontSize="10" Text=" Items" Margin="0,0,0,0"></TextBlock>
                             </StackPanel>
                             <AppBarButton Visibility="Visible" Icon="Delete" Click="AppBarButton_Click_Async" Height="50"/>

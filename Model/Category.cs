@@ -8,12 +8,12 @@ namespace TravelListApp.Model
 {
     public class Category
     {
-        public string name { get; set; }
-        public Dictionary<Item, int> items { get; set; }
+        public string Name { get; set; }
+        public Dictionary<Item, int> Items { get; set; }
 
         public Category()
         {
-            this.items = new Dictionary<Item, int>();
+            this.Items = new Dictionary<Item, int>();
         }        
     }
 
@@ -22,12 +22,12 @@ namespace TravelListApp.Model
         public static List<Category> GetCategories()
         {
             var categories = new List<Category>();
-            categories.Add(new Category { name = "Ibi1" , items = new Dictionary<Item, int>()});
-            categories.Add(new Category { name = "Ibi2" , items = new Dictionary<Item, int>()});
-            categories.Add(new Category { name = "Ibi3" , items = new Dictionary<Item, int>()});
-            categories.Add(new Category { name = "Ibi4" , items = new Dictionary<Item, int>()});
-            categories.Add(new Category { name = "Ibi5" , items = new Dictionary<Item, int>()});
-            categories.Add(new Category { name = "Ibi6" , items = new Dictionary<Item, int>()});
+            categories.Add(new Category { Name = "Ibi1" , Items = new Dictionary<Item, int>()});
+            categories.Add(new Category { Name = "Ibi2" , Items = new Dictionary<Item, int>()});
+            categories.Add(new Category { Name = "Ibi3" , Items = new Dictionary<Item, int>()});
+            categories.Add(new Category { Name = "Ibi4" , Items = new Dictionary<Item, int>()});
+            categories.Add(new Category { Name = "Ibi5" , Items = new Dictionary<Item, int>()});
+            categories.Add(new Category { Name = "Ibi6" , Items = new Dictionary<Item, int>()});
             
 
             return categories;

@@ -8,7 +8,7 @@ namespace TravelListApp.Model
 {
     public class Item
     {
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 
     public class ItemsManager
@@ -16,12 +16,12 @@ namespace TravelListApp.Model
         public static List<Item> GetItems()
         {
             var items = new List<Item>();
-            items.Add(new Item { name = "Ibi" });
-            items.Add(new Item { name = "Ibi2" });
-            items.Add(new Item { name = "Ibi3" });
-            items.Add(new Item { name = "Ibi4" });
-            items.Add(new Item { name = "Ibi5" });
-            items.Add(new Item { name = "Ibi6" });
+            items.Add(new Item { Name = "Ibi" });
+            items.Add(new Item { Name = "Ibi2" });
+            items.Add(new Item { Name = "Ibi3" });
+            items.Add(new Item { Name = "Ibi4" });
+            items.Add(new Item { Name = "Ibi5" });
+            items.Add(new Item { Name = "Ibi6" });
 
             return items;
        
