@@ -7,10 +7,10 @@ namespace TravelListApp_Backend.Models.DAO
 {
     interface ITaskRepository
     {
-        void addItem<Task>(Task item);
-        void removeItem<Task>(int Id);
-        List<Task> getAllItems<Task>();
-        void updateItem<Task>(Task item);
+        void addItem(Task item);
+        void removeItem(Task item);
+        List<Task> getAllItems();
+        void updateItem(Task item);
         void SaveChanges();
     }
 }
