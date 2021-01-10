@@ -6,10 +6,10 @@ namespace TravelListApp_Backend.Models.DAO
 {
     interface IPlaceRepository
     {
-        void addItem<Place>(Place item);
-        void removeItem<Place>(int Id);
-        List<Place> getAllItems<Place>();
-        void updateItem<Place>(Place item);
+        void addItem(Place item);
+        void removeItem(Place item);
+        List<Place> getAllItems();
+        void updateItem(Place item);
         void SaveChanges();
     }
 }

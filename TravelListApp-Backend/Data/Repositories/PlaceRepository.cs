@@ -13,29 +13,35 @@ namespace TravelListApp_Backend.Data.Repositories
         private readonly ApplicationDbContext _context;
         private readonly DbSet<Place> _places;
 
-        public void addItem<Place>(Place item)
+        public PlaceRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
+            this._places = context.Places;
         }
 
-        public List<Place> getAllItems<Place>()
+        public void addItem(Place item)
         {
-            throw new NotImplementedException();
+            this._places.Add(item);
         }
 
-        public void removeItem<Place>(int Id)
+        public List<Place> getAllItems()
         {
-            throw new NotImplementedException();
+           return this._places.ToList();
+        }
+
+        public void removeItem(Place item)
+        {
+            this._places.Remove(item);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._context.SaveChanges();
         }
 
-        public void updateItem<Place>(Place item)
+        public void updateItem(Place item)
         {
-            throw new NotImplementedException();
+            this._places.Remove(item);
         }
     }
 }
