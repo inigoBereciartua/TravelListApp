@@ -9,6 +9,7 @@ namespace TravelListApp_Backend.Models
     {
         #region Properties
         private string _name;
+        public int Id { get; set; }
 
         public string Name
         {
@@ -24,8 +25,6 @@ namespace TravelListApp_Backend.Models
             set { _items = value; }
         }
 
-        public object CategoryID { get; internal set; }
-
         #endregion Properties
 
         #region Construct
@@ -34,7 +33,7 @@ namespace TravelListApp_Backend.Models
             Items = new List<Item>();
         }
 
-        Category(string name, List<Item> items)
+        public Category(string name, List<Item> items)
         {
             Name = name;
             Items = items;

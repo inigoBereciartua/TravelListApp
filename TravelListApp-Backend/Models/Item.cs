@@ -10,13 +10,14 @@ namespace TravelListApp_Backend.Models
 
         #region Properties
         private string _name;
-            
+
+        public int Id { get; set; }
+
         public string Name
         {
             get { return _name; }
             private set { _name = value; }
         }
-
 
         private User _owner;
 
@@ -36,10 +37,15 @@ namespace TravelListApp_Backend.Models
         #endregion Properties
 
         #region Constructor
-        public Item(string name)
+        public Item(string name,User owner)
         {
             this.Name = name;
+            this.Owner = owner;
         }
+
+        public Item()
+        {}
+
         #endregion Constructor
 
     }

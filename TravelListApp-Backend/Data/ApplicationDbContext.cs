@@ -18,6 +18,7 @@ namespace TravelListApp_Backend.Data
         public DbSet<Place> Places { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Travel> Travels { get; set; }
+        public DbSet<Activity> Activities { get; set; }
         #endregion Properties
 
         #region Methodes
@@ -31,7 +32,10 @@ namespace TravelListApp_Backend.Data
             builder.ApplyConfiguration(new PlaceConfiguration());
             builder.ApplyConfiguration(new TaskConfiguration());
             builder.ApplyConfiguration(new TravelsConfiguration());
+            builder.ApplyConfiguration(new ActivityConfiguration());
         }
         #endregion Methodes
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options){}
     }
 }

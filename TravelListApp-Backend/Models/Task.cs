@@ -20,9 +20,18 @@ namespace TravelListApp_Backend.Models
             Description = description;
             Checked = false;
         }
+
+
+        public Task()
+        {
+
+        }
         #endregion Constructor
 
         #region Properties
+
+        public int Id { get; set; }
+
         public String Description { 
             get { return _description; } 
             private set
@@ -38,6 +47,7 @@ namespace TravelListApp_Backend.Models
             }
         }
         public bool Checked { get { return _checked; } set { _checked = value; } }
+
         #endregion Properties
 
     }

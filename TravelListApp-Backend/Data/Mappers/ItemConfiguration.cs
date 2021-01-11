@@ -8,7 +8,10 @@ namespace TravelListApp_Backend.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Item> builder)
         {
-            throw new System.NotImplementedException();
+            builder.ToTable("Item");
+            builder.Property(e => e.Name);
+            builder.HasOne(e => e.Owner);
+            builder.HasOne(e => e.Categories).WithMany(e => e.Items);
         }
     }
 }

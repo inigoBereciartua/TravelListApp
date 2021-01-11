@@ -18,9 +18,17 @@ namespace TravelListApp_Backend.Models
             Name = name;
             Visited = false;
         }
+
+        public Place()
+        {
+
+        }
         #endregion Constructor
 
         #region Properties
+
+        public int Id { get; set; }
+
         public String Name
         {
             get { return _name; }
@@ -32,7 +40,9 @@ namespace TravelListApp_Backend.Models
             get { return _visited; }
             set { _visited = value; }
         }
+
         #endregion Properties
+
 
     }
 }

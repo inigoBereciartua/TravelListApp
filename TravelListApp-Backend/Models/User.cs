@@ -60,7 +60,7 @@ namespace TravelListApp_Backend.Models
                 }
                 else
                 {
-                    _name = value;
+                    _email = value;
                 }
             }
         }
@@ -77,9 +77,11 @@ namespace TravelListApp_Backend.Models
             get { return this._category; }
             private set { this._category = value; }
         }
+        
+
+        public int Id { get;  set; }
 
         #endregion Properties
-
 
         #region Constructor
         public User(string name, string lastname,string email)
@@ -87,14 +89,24 @@ namespace TravelListApp_Backend.Models
             Name = name;
             Lastname = lastname;
             Email = email;
+            Travels = new HashSet<Travel>();
+            Category = new List<Category>();
         }
+
+        public User()
+        {
+            Travels = new HashSet<Travel>();
+            Category = new List<Category>();
+        }
+
+        #endregion Constructor
 
         public void addTravel(Travel item)
         {
             Travels.Add(item);
         }
 
-        #endregion Constructor
+        
         public void removeTravel(Travel item)
         {
             Travels.Remove(item);
@@ -109,6 +121,5 @@ namespace TravelListApp_Backend.Models
         {
             Category.Remove(item);
         }
-
     }
 }

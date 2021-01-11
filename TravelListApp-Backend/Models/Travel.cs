@@ -31,6 +31,8 @@ namespace TravelListApp_Backend.Models
             }
         }
 
+        public int Id { get; set; }
+
         public HashSet<Task> Tasks
         {
             get { return _tasks; }
@@ -53,13 +55,21 @@ namespace TravelListApp_Backend.Models
 
 
         #region Constructor
-        public Travel(string name, HashSet<Task> tasks, List<Activity>  iternary)
+        public Travel(string name, HashSet<Task> tasks, List<Activity>  iternary, List<Place> places)
         {
             Name = name;
             Tasks = tasks;
             Iternary = iternary;
-            Places = Places;
+            Places = places;
         }
+
+        public Travel()
+        {
+            Tasks = new HashSet<Task>();
+            Iternary = new List<Activity>();
+            Places = new List<Place>();
+        }
+
         #endregion Constructor
 
         #region Methodes

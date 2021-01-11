@@ -11,6 +11,8 @@ namespace TravelListApp_Backend.Models
         private bool finished;
 
 
+        public int Id { get; set; }
+
         public string Name
         {
             get { return this._description; }
@@ -43,6 +45,5 @@ namespace TravelListApp_Backend.Models
             get { return _dateTime; }
             set { _dateTime = value; }
         }
-
     }
 }

@@ -9,7 +9,6 @@ namespace TravelListApp_Backend.Data.Mappers
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.ToTable("Category");
-            builder.HasKey(e => e.CategoryID);
             builder.Property(e => e.Name).IsRequired().HasMaxLength(100);
             builder.HasMany(e => e.Items)
                 .WithOne(e => e.Categories)
