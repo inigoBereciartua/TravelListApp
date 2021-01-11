@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.Models.DAO
 {
-    interface IItemRepository
+   public interface IItemRepository
     {
+        Item getItem(int id);
         void addItem(Item item);
         void removeItem(Item item);
         List<Item> getAllItems();

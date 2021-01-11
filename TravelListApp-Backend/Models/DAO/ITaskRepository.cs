@@ -5,7 +5,7 @@ using TravelListApp_Backend.Models;
 
 namespace TravelListApp_Backend.Models.DAO
 {
-    interface ITaskRepository
+  public interface ITaskRepository
     {
         void addItem(Task item);
         void removeItem(Task item);

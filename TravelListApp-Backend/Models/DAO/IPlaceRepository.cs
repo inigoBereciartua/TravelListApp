@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TravelListApp_Backend.Models.DAO
 {
-    interface IPlaceRepository
+  public  interface IPlaceRepository
     {
         void addItem(Place item);
         void removeItem(Place item);

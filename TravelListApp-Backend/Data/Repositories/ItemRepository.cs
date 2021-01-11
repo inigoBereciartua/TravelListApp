@@ -30,6 +30,11 @@ namespace TravelListApp_Backend.Data.Repositories
             return this._items.ToList();
         }
 
+        public Item getItem(int id)
+        {
+           return this._items.FirstOrDefault(e => e.Id == id);
+        }
+
         public void removeItem(Item item)
         {
             this._items.Remove(item);

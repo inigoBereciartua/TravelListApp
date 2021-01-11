@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.Controllers
 {
+    [Route("api/[controller]")]
     public class TaskController : Controller
     {
         public IActionResult Index()

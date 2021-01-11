@@ -29,6 +29,11 @@ namespace TravelListApp_Backend.Data.Repositories
            return this._category.ToList();
         }
 
+        public Category getItem(int id)
+        {
+            return this._category.FirstOrDefault(e => e.Id == id);
+        }
+
         public void removeItem(Category item)
         {
             this._category.Remove(item);
@@ -43,5 +48,7 @@ namespace TravelListApp_Backend.Data.Repositories
         {
             this._category.Update(item);
         }
+
+        
     }
 }
