@@ -7,7 +7,7 @@ using TravelListApp.Model;
 
 namespace TravelListApp.Persistence
 {
-    class TravelListRepository : Repository<TravelList>
+    class TravelListRepository : Repository<Travel>
     {
         public void addItem<TravelList>(TravelList item)
         {

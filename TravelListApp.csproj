@@ -122,7 +122,7 @@
     <Compile Include="Contoller\Modelcontroller.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Item.cs" />
-    <Compile Include="Model\ItemWithAmount.cs" />
+    <Compile Include="Model\ItemForTravel.cs" />
     <Compile Include="Model\Itinerary.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -145,6 +145,9 @@
     <Compile Include="NewFolder1\Views\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFolder1\Views\TravelDetails.xaml.cs">
+      <DependentUpon>TravelDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewFolder1\Views\Travels.xaml.cs">
       <DependentUpon>Travels.xaml</DependentUpon>
     </Compile>
@@ -157,7 +160,7 @@
     <Compile Include="Persistence\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Task.cs" />
-    <Compile Include="Model\TravelList.cs" />
+    <Compile Include="Model\Travel.cs" />
     <Compile Include="Model\User.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewFolder1\Views\Tasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\TravelDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

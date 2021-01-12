@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TravelListApp.Model
 {
-    class TravelList
+    public class ItemForTravel
     {
+        public Item Item { get; set; }
+        public int AmountOfItem { get; set; }
+        public bool check { get; set; }
     }
 }
