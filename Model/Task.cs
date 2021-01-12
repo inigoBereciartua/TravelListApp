@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TravelListApp.Model
 {
-    class Task
+    public class Task
     {
+        public string Name { get; set; }
     }
 }
