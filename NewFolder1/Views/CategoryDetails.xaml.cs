@@ -25,11 +25,10 @@ namespace TravelListApp.NewFolder1.Views
     public sealed partial class CategoryDetails : Page
     {
         public Category category;
-        public ObservableCollection<Item> itemsNotInCategory { get; set; } = new ObservableCollection<Item>();
+        public ObservableCollection<Item> ItemsNotInCategory { get; set; } = new ObservableCollection<Item>();
 
-        public ObservableCollection<ItemWithAmount> ItemWithAmountsList { get; set; } = new ObservableCollection<ItemWithAmount>();
-
-        public Item SelectedItem = new Item();
+        public ObservableCollection<Item> ItemsOfCategory { get; set; } = new ObservableCollection<Item>();
+        
         public CategoryDetails()
         {
             this.InitializeComponent();
@@ -41,19 +40,16 @@ namespace TravelListApp.NewFolder1.Views
             var itemList = ItemsManager.GetItems();
             this.category = (Category)e.Parameter;
             foreach (var item in category.Items)
-            {
-                ItemWithAmount itemAndAmount = new ItemWithAmount();
-                itemAndAmount.Item = item.Key;
-                itemAndAmount.AmountOfItem = item.Value;
-                itemList.Remove(item.Key);
+            {                
+                itemList.Remove(item);
 
-                this.ItemWithAmountsList.Add(itemAndAmount);
+                this.ItemsOfCategory.Add(item);
             }
-            ItemsList.ItemsSource = this.ItemWithAmountsList;
+            ItemsList.ItemsSource = this.ItemsOfCategory;
 
             foreach(var item in itemList)
             {
-                itemsNotInCategory.Add(item);
+                ItemsNotInCategory.Add(item);
             }
             base.OnNavigatedTo(e);
         }
@@ -69,9 +65,9 @@ namespace TravelListApp.NewFolder1.Views
             ContentDialogResult result = await deleteItemDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                ItemWithAmount removedItem = (ItemWithAmount)item;
-                ItemWithAmountsList.Remove(removedItem);
-                itemsNotInCategory.Add(removedItem.Item);
+                Item removedItem = (Item)item;
+                ItemsOfCategory.Remove(removedItem);
+                ItemsNotInCategory.Add(removedItem);
                 //TODO: Call backend to delete Item
             }
         }
@@ -79,23 +75,15 @@ namespace TravelListApp.NewFolder1.Views
         private void AddItem_Click(object sender, RoutedEventArgs e)
         {
             ErrorText.Text = "";
-            int amount;
             if(ItemsNotInCategoryComboBox.SelectedIndex < 0)
             {
                 ErrorText.Text = "No item selected";
-            }else if(!int.TryParse(Amount.Text, out amount))
-            {
-                ErrorText.Text = "Amount must be a number";
-            }else if (amount == 0)
-            {
-                ErrorText.Text = "Amount must be greater than 0";
             }
             else
             {
-                Item selectedItem = (Item)ItemsNotInCategoryComboBox.SelectedItem;
-                ItemWithAmount newItemWithAmount = new ItemWithAmount() { Item = selectedItem, AmountOfItem = amount };
-                itemsNotInCategory.Remove(selectedItem);
-                ItemWithAmountsList.Add(newItemWithAmount);
+                Item selectedItem = (Item)ItemsNotInCategoryComboBox.SelectedItem;                
+                ItemsNotInCategory.Remove(selectedItem);
+                ItemsOfCategory.Add(selectedItem);
                 //TODO: Call backend to add item with amount to category
             }
         }

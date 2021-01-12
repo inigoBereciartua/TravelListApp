@@ -16,8 +16,7 @@
                 <TextBlock Text="{x:Bind category.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="ItemsNotInCategoryComboBox" ItemsSource="{x:Bind itemsNotInCategory}" DisplayMemberPath="Name"  Margin="30, 10, 0, 0" />
-                <TextBox x:Name="Amount" PlaceholderText="Amount" InputScope="Number" HorizontalAlignment="Left"  Width="70" Height="30" Margin="20, 10, 0, 10"/>
+                <ComboBox x:Name="ItemsNotInCategoryComboBox" ItemsSource="{x:Bind ItemsNotInCategory}" DisplayMemberPath="Name"  Margin="30, 10, 0, 0" />
                 <Button x:Name="AddItem" Content="Add Item" Margin="20, 10, 0, 10" Click="AddItem_Click"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
@@ -25,10 +24,9 @@
 
             <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" x:DefaultBindMode="OneWay">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:ItemWithAmount">
+                    <DataTemplate x:DataType="data:Item">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Item.Name}" Margin="0,0,30,0" ></TextBlock>
-                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind AmountOfItem}" Margin="0,0,30,0" ></TextBlock>
+                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
                             <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_Click_Async"/>
                         </StackPanel>
                     </DataTemplate>
