@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,29 +10,38 @@ namespace TravelListApp_Backend.Data.Repositories
 {
     public class TravelRepository : ITravelRepository
     {
-        public void addItem<Travel>(Travel item)
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Travel> _travel;
+
+
+        public TravelRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
+            this._travel = context.Travels;
+        }
+        public void addItem(Travel travel)
+        {
+            this._travel.Add(travel);
         }
 
-        public List<Travel> getAllItems<Travel>()
+        public ICollection<Travel> getAllItems()
         {
-            throw new NotImplementedException();
+           return  this._travel.ToList();
         }
 
-        public void removeItem<Travel>(int Id)
+        public void removeItem(Travel travel)
         {
-            throw new NotImplementedException();
+            this._travel.Remove(travel);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._context.SaveChanges();
         }
 
-        public void updateItem<Travel>(Travel item)
+        public void updateItem(Travel travel)
         {
-            throw new NotImplementedException();
+            this._travel.Update(travel);
         }
     }
 }

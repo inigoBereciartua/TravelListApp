@@ -8,16 +8,18 @@ using TravelListApp_Backend.Models;
 
 namespace TravelListApp_Backend.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         #region Properties
-        public DbSet<User> Users { get; set; }
+        public DbSet<Traveler> Travelers { get; set; }
+        public DbSet<TravelItem> TravelItems { get; set; }
         public DbSet<Category> Categorys { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<Itinerary> Itinerarys { get; set; }
-        public DbSet<Place> Places { get; set; }
+        public DbSet<Activity> Itinerarys { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Travel> Travels { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<TravelTask> TravelTasks { get; set; }
         #endregion Properties
 
         #region Methodes
@@ -25,14 +27,18 @@ namespace TravelListApp_Backend.Data
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new TravelItemConfiguration());
+            builder.ApplyConfiguration(new TravelerConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new ItemConfiguration());
-            builder.ApplyConfiguration(new ItineraryConfiguration());
-            builder.ApplyConfiguration(new PlaceConfiguration());
             builder.ApplyConfiguration(new TaskConfiguration());
             builder.ApplyConfiguration(new TravelsConfiguration());
+            builder.ApplyConfiguration(new ActivityConfiguration());
         }
         #endregion Methodes
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options){
+            
+        }
     }
 }

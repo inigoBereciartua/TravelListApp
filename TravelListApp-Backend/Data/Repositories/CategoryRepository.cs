@@ -1,36 +1,54 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravelListApp_Backend.Models;
 using TravelListApp_Backend.Models.DAO;
 
 namespace TravelListApp_Backend.Data.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public void addItem<Category>(Category item)
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<Category> _category;
+
+        public CategoryRepository(ApplicationDbContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
+            this._category = this._context.Categorys;
         }
 
-        public List<Category> getAllItems<Category>()
+        public void addItem(Category item)
         {
-            throw new NotImplementedException();
+            this._category.Add(item);
         }
 
-        public void removeItem<Category>(int Id)
+        public ICollection<Category> getAllItems()
         {
-            throw new NotImplementedException();
+           return this._category.ToList();
+        }
+
+        public Category getItem(int id)
+        {
+            return this._category.Include(e => e.Items).FirstOrDefault(e => e.Id == id);
+        }
+
+        public void removeItem(Category item)
+        {
+            this._category.Remove(item);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            this._context.SaveChanges();
         }
 
-        public void updateItem<Category>(Category item)
+        public void updateItem(Category item)
         {
-            throw new NotImplementedException();
+            this._category.Update(item);
         }
+
+        
     }
 }
