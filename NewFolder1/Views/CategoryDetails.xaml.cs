@@ -28,7 +28,10 @@ namespace TravelListApp.NewFolder1.Views
         public ObservableCollection<Item> ItemsNotInCategory { get; set; } = new ObservableCollection<Item>();
 
         public ObservableCollection<Item> ItemsOfCategory { get; set; } = new ObservableCollection<Item>();
+
+        public ObservableCollection<Task> TasksNotInCategory { get; set; } = new ObservableCollection<Task>();
         
+        public ObservableCollection<Task> TasksOfCategory { get; set; } = new ObservableCollection<Task>();
         public CategoryDetails()
         {
             this.InitializeComponent();
@@ -37,19 +40,33 @@ namespace TravelListApp.NewFolder1.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //TODO: Call to backend to get items
-            var itemList = ItemsManager.GetItems();
+            var itemsList = ItemsManager.GetItems();
             this.category = (Category)e.Parameter;
             foreach (var item in category.Items)
             {                
-                itemList.Remove(item);
+                itemsList.Remove(item);
 
                 this.ItemsOfCategory.Add(item);
             }
             ItemsList.ItemsSource = this.ItemsOfCategory;
 
-            foreach(var item in itemList)
+            foreach(var item in itemsList)
             {
                 ItemsNotInCategory.Add(item);
+            }
+
+            //TODO: Call to backend to get tasks
+            var tasksList = TaskManager.GetTasks();            
+            foreach(var task in category.Tasks)
+            {
+                tasksList.Remove((Task)task);
+                this.TasksOfCategory.Add((Task)task);
+            }
+            TasksList.ItemsSource = TasksOfCategory;
+
+            foreach(var task in tasksList)
+            {
+                TasksNotInCategory.Add(task);
             }
             base.OnNavigatedTo(e);
         }
@@ -58,8 +75,48 @@ namespace TravelListApp.NewFolder1.Views
         {
 
         }
+        
 
-        private async void AppBarButton_Click_Async(object sender, RoutedEventArgs e)
+        private void AddItem_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorTextItems.Text = "";
+            ErrorTextTasks.Text = "";
+            if (ItemsNotInCategoryComboBox.SelectedIndex < 0)
+            {
+                ErrorTextItems.Text = "No item selected";
+            }
+            else
+            {
+                Item selectedItem = (Item)ItemsNotInCategoryComboBox.SelectedItem;                
+                ItemsNotInCategory.Remove(selectedItem);
+                ItemsOfCategory.Add(selectedItem);
+                //TODO: Call backend to add item to category
+            }
+        }
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            ErrorTextItems.Text = "";
+            ErrorTextTasks.Text = "";
+            if (TasksNotInCategoryComboBox.SelectedIndex < 0)
+            {
+                ErrorTextTasks.Text = "No task selected";
+            }
+            else
+            {
+                Task selectedTask = (Task)TasksNotInCategoryComboBox.SelectedItem;
+                TasksNotInCategory.Remove(selectedTask);
+                TasksOfCategory.Add(selectedTask);
+                //TODO: Call backend to add task to category
+            }
+        }
+
+        private void TasksList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private async void DeleteItem_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as AppBarButton).DataContext;
             ContentDialogResult result = await deleteItemDialog.ShowAsync();
@@ -72,19 +129,16 @@ namespace TravelListApp.NewFolder1.Views
             }
         }
 
-        private void AddItem_Click(object sender, RoutedEventArgs e)
+        private async void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
-            ErrorText.Text = "";
-            if(ItemsNotInCategoryComboBox.SelectedIndex < 0)
+            var task = (sender as AppBarButton).DataContext;
+            ContentDialogResult result = await deleteItemDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
             {
-                ErrorText.Text = "No item selected";
-            }
-            else
-            {
-                Item selectedItem = (Item)ItemsNotInCategoryComboBox.SelectedItem;                
-                ItemsNotInCategory.Remove(selectedItem);
-                ItemsOfCategory.Add(selectedItem);
-                //TODO: Call backend to add item with amount to category
+                Task removedTask = (Task)task;
+                TasksOfCategory.Remove(removedTask);
+                TasksNotInCategory.Add(removedTask);
+                //TODO: Call backend to delete Item
             }
         }
     }
