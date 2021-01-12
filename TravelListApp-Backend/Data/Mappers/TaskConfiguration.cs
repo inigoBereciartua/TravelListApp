@@ -11,6 +11,7 @@ namespace TravelListApp_Backend.Data.Mappers
             builder.ToTable("Task");
             builder.Property(e => e.Checked);
             builder.Property(e => e.Description);
+            builder.HasMany(e => e.Categories).WithMany(e => e.Task);
         }
     }
 }

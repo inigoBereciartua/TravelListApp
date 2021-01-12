@@ -24,14 +24,14 @@ namespace TravelListApp_Backend.Data.Repositories
             this._category.Add(item);
         }
 
-        public List<Category> getAllItems()
+        public ICollection<Category> getAllItems()
         {
            return this._category.ToList();
         }
 
         public Category getItem(int id)
         {
-            return this._category.FirstOrDefault(e => e.Id == id);
+            return this._category.Include(e => e.Items).FirstOrDefault(e => e.Id == id);
         }
 
         public void removeItem(Category item)

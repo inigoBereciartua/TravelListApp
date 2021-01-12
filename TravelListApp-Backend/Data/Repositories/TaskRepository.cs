@@ -24,7 +24,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._tasks.Add(item);
         }
 
-        public List<Task> getAllItems()
+        public ICollection<Task> getAllItems()
         {
            return this._tasks.ToList();
         }

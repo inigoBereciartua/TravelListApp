@@ -11,12 +11,13 @@ namespace TravelListApp_Backend.Data
     {
         #region Fields
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         #endregion Fields
         #region Constructor
-        public DataInitializer(ApplicationDbContext applicationDbContext)
+        public DataInitializer(ApplicationDbContext applicationDbContext, UserManager<ApplicationUser> userManager)
         {
             this._context = applicationDbContext;
+            this._userManager = userManager;
         }
         #endregion Constructor
 
@@ -28,37 +29,39 @@ namespace TravelListApp_Backend.Data
             {
                 await CreateUsers();
 
-                
+                ApplicationUser user = this._context.Users.FirstOrDefault(e => e.UserName == "Binladen");
 
-                User user = new User("Osama", "Binladen", "osama@gmail.com");
-                
+                Traveler traveler = new Traveler(user);
 
-                Item pet = new Item("Pet",user);
-                Item shoes = new Item("Shoes",user);
-                Item teddybear = new Item("Teddybear",user);
+                Item pet = new Item("Pet",traveler);
+                Item shoes = new Item("Shoes", traveler);
+                Item teddybear = new Item("Teddybear", traveler);
 
-                Category testCategory1 = new Category("testCategory1", new List<Item> { pet, shoes });
-                Category testCategory2 = new Category("testCategory2", new List<Item> { teddybear });
+                Category testCategory1 = new Category("testCategory1") { Items = new List<Item> { pet, shoes } };
+                Category testCategory2 = new Category("testCategory2") { Items = new List<Item> { teddybear } };
 
-                //Category[] categories = new Category[] { testCategory1, testCategory2 };
-                //this._context.Categorys.AddRange(categories);
-
-                Place place1 = new Place("Afganistan");
-                Place place2 = new Place("Iraq"); 
 
                 Activity activity = new Activity("Go to where osama binladen died", DateTime.Now, DateTime.Now.AddDays(1.0));
-                Models.Task task1 = new Models.Task("Pack my bag");
+                Models.Task task1 = new Models.Task("Pack my bag");;
 
-                Activity[] activities = new Activity[] { activity };
-                //this._context.Activities.AddRange(activities);
+                Travel travel = new Travel("Summer travel to Afganistan");
+                travel.addActivity(activity);
+                travel.Categories.Add(testCategory1);
+                travel.Categories.Add(testCategory2);
 
-                Travel travel = new Travel("Summer travel to Afganistan", new HashSet<Models.Task> { task1 }, new List<Activity>() { activity },new List<Place> {place1,place2 });
+                TravelItem travelItem1 = new TravelItem(travel, pet, 2);
+                TravelItem travelItem2 = new TravelItem(travel, shoes, 3);
+                TravelItem travelItem3 = new TravelItem(travel, teddybear, 4);
 
-                user.addCategory(testCategory1);
-                user.addCategory(testCategory2);
-                user.addTravel(travel);
+                this._context.TravelTasks.Add(new TravelTask(travel, task1));
+                this._context.TravelItems.AddRange(new TravelItem[] {travelItem1, travelItem2, travelItem3 });
+               
 
-                this._context.People.Add(user);
+                traveler.addCategory(testCategory1);
+                traveler.addCategory(testCategory2);
+                traveler.addTravel(travel);
+                this._context.Travelers.Add(traveler);
+
                 this._context.SaveChanges();
 
             }
@@ -67,7 +70,8 @@ namespace TravelListApp_Backend.Data
 
         private async System.Threading.Tasks.Task CreateUsers()
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            ApplicationUser user = new ApplicationUser() { UserName = "Binladen", Email = "osama@gmail.com" };
+            await this._userManager.CreateAsync(user, "P@ssword1");
         }
 
         #endregion Methodes

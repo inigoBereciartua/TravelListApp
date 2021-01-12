@@ -25,18 +25,37 @@ namespace TravelListApp_Backend.Models
             set { _items = value; }
         }
 
+        private List<Task> _task;
+        public List<Task> Task
+        {
+            get { return _task; }
+            set { _task = value; }
+        }
+
+        private List<Travel> _travel;
+        public List<Travel> Travel
+        {
+            get { return this._travel; }
+            set { this._travel = value; }
+        }
+
+
         #endregion Properties
 
         #region Construct
         public Category()
         {
             Items = new List<Item>();
+            Task = new List<Task>();
+            Travel = new List<Travel>();
         }
 
-        public Category(string name, List<Item> items)
+        public Category(string name)
         {
             Name = name;
-            Items = items;
+            Items = new List<Item>();
+            Task = new List<Task>();
+            Travel = new List<Travel>();
         }
 
          public void removeItem(Item item)
@@ -49,6 +68,25 @@ namespace TravelListApp_Backend.Models
             Items.Add(item);
         }
 
+        public void removeTask(Task item)
+        {
+            Task.Remove(item);
+        }
+
+        public void addTask(Task item)
+        {
+            Task.Add(item);
+        }
+
+        public void removeTravel(Travel item)
+        {
+            Travel.Remove(item);
+        }
+
+        public void addTavel(Travel item)
+        {
+            Travel.Add(item);
+        }
 
         #endregion Construct
     }

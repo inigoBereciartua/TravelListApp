@@ -9,9 +9,12 @@ namespace TravelListApp_Backend.Controllers
     [Route("api/[controller]")]
     public class TravelController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //Get all the travels of the current user
+        //Create a travel for the current user
+        //Delete a travel for the current user
+        //Update a travel
+        //Update a task for a travel
+        //Add a task to a travel
+       
     }
 }

@@ -30,6 +30,13 @@ namespace TravelListApp_Backend.Models
 
         #region Properties
 
+        private List<Category> _categories;
+        public List<Category> Categories
+        {
+            get { return _categories; }
+            set { _categories = value; }
+        }
+
         public int Id { get; set; }
 
         public String Description { 

@@ -19,16 +19,16 @@ namespace TravelListApp_Backend.Models
             private set { _name = value; }
         }
 
-        private User _owner;
+        private Traveler _owner;
 
-        public User Owner
+        public Traveler Owner
         {
             get { return _owner; }
             set { _owner = value; }
         }
 
-        private Category _categories;
-        public Category Categories {
+        private List<Category> _categories;
+        public List<Category> Categories {
             get { return _categories; }
             set { _categories = value; }
         }
@@ -37,14 +37,16 @@ namespace TravelListApp_Backend.Models
         #endregion Properties
 
         #region Constructor
-        public Item(string name,User owner)
+        public Item(string name,Traveler owner)
         {
             this.Name = name;
             this.Owner = owner;
         }
 
         public Item()
-        {}
+        {
+            Categories = new List<Category>();
+        }
 
         #endregion Constructor
 

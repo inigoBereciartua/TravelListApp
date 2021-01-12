@@ -13,43 +13,21 @@ namespace TravelListApp_Backend.Controllers
     [ApiController]
     public class CategoryController : Controller
     {
-        private readonly IUserRepository _userRepository;
+        private readonly ITravelerRepository _userRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IItemRepository _itemRepository;
 
-        public CategoryController(ICategoryRepository categoryRepository, IUserRepository userRepository, IItemRepository itemRepository)
+        public CategoryController(ICategoryRepository categoryRepository, ITravelerRepository userRepository, IItemRepository itemRepository)
         {
             this._categoryRepository = categoryRepository;
             this._userRepository = userRepository;
             this._itemRepository = itemRepository;
         }
 
-
-        [HttpGet("{id}")]
-        public IActionResult Category(int id)
-        {
-            try
-            {
-                Category category = this._categoryRepository.getItem(id);
-                if (category != null)
-                {
-                    Ok(category);
-                }
-                else
-                {
-                    return NotFound(id);
-                }
-            }
-            catch (Exception)
-            {
-                return new JsonResult(new { status = "500", message = "Sorry we had an internal error pls try later." });
-            }
-
-            return NoContent();
-        }
-
+/*
+        //Create category for the connected user
         [HttpPost("{categoryName}")]
-        public IActionResult addCategory(string categoryName)
+        public IActionResult CreateCategory(string categoryName)
         {
             try
             {
@@ -67,12 +45,33 @@ namespace TravelListApp_Backend.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult removeCategory(int id)
+        //Get all the categories for the connected user
+        [HttpGet()]
+        public IActionResult GetCategories()
         {
             try
             {
-                Category category = this._categoryRepository.getItem(id);             
+                Category category = new Category(categoryName, new List<Item>());
+                this._categoryRepository.addItem(category);
+                this._categoryRepository.SaveChanges();
+                Ok(category);
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = 500;
+                return Json(new { status = "500", message = "Sorry there war an error on our servers please try later." });
+            }
+
+            return NoContent();
+        }
+
+        //Remove the category for the connected user
+        [HttpDelete("{id}")]
+        public IActionResult RemoveCategory(int id)
+        {
+            try
+            {
+                Category category = this._categoryRepository.getItem(id);
                 if (category != null)
                 {
                     this._categoryRepository.removeItem(category);
@@ -93,8 +92,9 @@ namespace TravelListApp_Backend.Controllers
             return NoContent();
         }
 
+        //Add the item for the category for the connected user
         [HttpPut("{id}/item/{itemId}")]
-        public IActionResult addItem(int id, int itemId)
+        public IActionResult AddItem(int id, int itemId)
         {
             try
             {
@@ -128,29 +128,81 @@ namespace TravelListApp_Backend.Controllers
             return NoContent();
         }
 
-        [HttpPut()]
-        public IActionResult updateCategory(CategoryDTO categoryDTO)
+        //Remove item from the category for the connected user
+        [HttpDelete("{id}/item/{itemId}")]
+        public IActionResult RemoveItem(int id, int itemId)
         {
             try
             {
-                Category category = this._categoryRepository.getItem(categoryDTO.id);
+                Category category = this._categoryRepository.getItem(id);
                 if (category != null)
                 {
-                    category.Name = categoryDTO.name;
-                    this._categoryRepository.SaveChanges();
-                    Ok(category);
+                    Item item = this._itemRepository.getItem(itemId);
+
+                    if (item != null)
+                    {
+                        category.addItem(item);
+                        this._categoryRepository.SaveChanges();
+                        Ok();
+                    }
+                    else
+                    {
+                        NotFound(itemId);
+                    }
                 }
                 else
                 {
-                    return NotFound(categoryDTO.id);
+                    NotFound(id);
                 }
             }
             catch (Exception)
             {
-                return new JsonResult(new { status = "500", message = "Sorry we had an internal error pls try later." });
+                Response.StatusCode = 500;
+                return Json(new { status = "500", message = "Sorry there war an error on our servers please try later." });
             }
 
             return NoContent();
         }
+
+        //Get the items for the category for the current user
+        [HttpGet("{id}/item")]
+        public List<ItemDTO> getCategoryItems(int id)
+        {
+            try
+            {
+                Category category = this._categoryRepository.getItem(id);
+                if (category != null)
+                {
+                    List<Item> items = this._categoryRepository.getItem(id).Items;
+
+                    if (items != null)
+                    {
+                        List<ItemDTO> dto = new List<ItemDTO>();
+                        foreach (var item in items)
+                        {
+                            dto.Add(new ItemDTO() { id = item.Id, name = item.Name });
+                        }
+                        Response.StatusCode = 200;
+                        return dto;
+                    }
+                    else
+                    {
+                        Response.StatusCode = 404;
+                        return null;
+                    }
+                }
+                else
+                {
+                    Response.StatusCode = 204;
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = 500;
+                return null;
+            }
+        }*/
+
     }
 }

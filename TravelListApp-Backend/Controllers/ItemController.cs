@@ -9,10 +9,11 @@ namespace TravelListApp_Backend.Controllers
     [Route("api/[controller]")]
     public class ItemController : Controller
     {
-        [HttpGet("items")]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //Get all the items for thee current user
+
+        //Create an item for the curent user
+
+        //Delete an item of the curent user 
+
     }
 }

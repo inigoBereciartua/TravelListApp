@@ -9,7 +9,7 @@ namespace TravelListApp_Backend.Models.DAO
     {
         void addItem(Task item);
         void removeItem(Task item);
-        List<Task> getAllItems();
+        ICollection<Task> getAllItems();
         void updateItem(Task item);
         void SaveChanges();
     }
