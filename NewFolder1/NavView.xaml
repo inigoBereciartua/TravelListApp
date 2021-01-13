@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
 
-        <NavigationView x:Name="NavigationView" ItemInvoked="NavigationView_ItemInvoked" >
+        <NavigationView x:Name="NavigationView" ItemInvoked="NavigationView_ItemInvoked" IsBackButtonVisible="Collapsed" >
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Travel App"/>
                 <NavigationViewItem Content="Travels" Icon="World" Tag="Travels"/>

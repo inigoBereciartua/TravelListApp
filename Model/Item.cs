@@ -9,6 +9,8 @@ namespace TravelListApp.Model
     public class Item
     {
         public string Name { get; set; }
+        public int AmountOfItem { get; set; }
+        public bool Check { get; set; }
     }
 
     public class ItemsManager

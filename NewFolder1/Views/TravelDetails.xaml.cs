@@ -24,7 +24,7 @@ namespace TravelListApp.NewFolder1.Views
     /// </summary>
     public sealed partial class TravelDetails : Page
     {
-        public ObservableCollection<ItemForTravel> ItemsCollection { get; set; } = new ObservableCollection<ItemForTravel>();
+        public ObservableCollection<Item> ItemsCollection { get; set; } = new ObservableCollection<Item>();
         public ObservableCollection<Category> CategoriesCollection { get; set; } = new ObservableCollection<Category>();
 
         public ObservableCollection<Task> TasksCollection { get; set; } = new ObservableCollection<Task>();
@@ -69,7 +69,7 @@ namespace TravelListApp.NewFolder1.Views
 
         private void AddItems_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(AddItemsToTravel), this.Travel);
         }
 
         private void AddCategories_Click(object sender, RoutedEventArgs e)
@@ -96,8 +96,8 @@ namespace TravelListApp.NewFolder1.Views
             ContentDialogResult result = await deleteItemDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                ItemsCollection.Remove((ItemForTravel)item);
-                Travel.Items.Remove((ItemForTravel)item);
+                ItemsCollection.Remove((Item)item);
+                Travel.Items.Remove((Item)item);
                 //TODO: Call to the backend to remove the item from a travel
             }
         }
@@ -108,6 +108,11 @@ namespace TravelListApp.NewFolder1.Views
         }
 
         private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddTasks_Click(object sender, RoutedEventArgs e)
         {
 
         }

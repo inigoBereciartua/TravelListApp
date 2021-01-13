@@ -11,7 +11,7 @@ namespace TravelListApp.Model
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<ItemForTravel> Items { get; set; } = new List<ItemForTravel>();
+        public List<Item> Items { get; set; } = new List<Item>();
         public List<Category> Categories { get; set; } = new List<Category>();
         public Itinerary Itinerary { get; set; }
         public List<Task> Tasks { get; set; } = new List<Task>();
@@ -31,11 +31,13 @@ namespace TravelListApp.Model
     {
         public static List<Travel> GetTravels()
         {
-            List<ItemForTravel> items = new List<ItemForTravel>();
-            foreach(var item in ItemsManager.GetItems())
-            {
-                items.Add(new ItemForTravel() { Item = item, AmountOfItem = 1, check = false });
-            }            
+            List<Item> items = new List<Item>();
+
+            items.ForEach(delegate(Item item){
+                item.AmountOfItem = 1;
+                item.Check = false;
+            });
+                        
             List<Travel> travelList = new List<Travel>();            
             travelList.Add(new Travel() { Name = "travel1" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
             travelList.Add(new Travel() { Name = "travel2" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
