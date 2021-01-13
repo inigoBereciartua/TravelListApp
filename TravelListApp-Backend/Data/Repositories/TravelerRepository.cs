@@ -34,7 +34,14 @@ namespace TravelListApp_Backend.Data.Repositories
 
         public Traveler getTraveler(ApplicationUser applicationUser)
         {
-            return this._context.Travelers.FirstOrDefault(e => e.ApplicationUser == applicationUser);
+            return this._context.Travelers
+                .Include(e => e.Categories)
+                .ThenInclude(e => e.Items)
+                .Include(e => e.Tasks)
+                .ThenInclude(e => e.Categories)
+                .Include(e => e.Travels)
+                .ThenInclude(e => e.Iternary)
+                .FirstOrDefault(e => e.ApplicationUser == applicationUser);
         }
 
         public void removeItem(Traveler user)

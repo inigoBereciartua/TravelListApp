@@ -151,7 +151,6 @@
     <Compile Include="Persistence\CategoryRepository.cs" />
     <Compile Include="Persistence\ItemRepository.cs" />
     <Compile Include="Persistence\ItineraryRepository.cs" />
-    <Compile Include="Persistence\Repository.cs" />
     <Compile Include="Persistence\TaskRepository.cs" />
     <Compile Include="Persistence\TravelListRepository.cs" />
     <Compile Include="Persistence\UserRepository.cs" />

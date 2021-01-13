@@ -8,7 +8,7 @@ namespace TravelListApp_Backend.Models
     public class Activity
     {
         private string _description;
-        private bool finished;
+        private bool _finished;
 
 
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace TravelListApp_Backend.Models
 
         public Activity()
         {
-            finished = false;
+            Finished = false;
         }
 
 
@@ -45,5 +45,7 @@ namespace TravelListApp_Backend.Models
             get { return _dateTime; }
             set { _dateTime = value; }
         }
+
+        public bool Finished { get => _finished; set => _finished = value; }
     }
 }

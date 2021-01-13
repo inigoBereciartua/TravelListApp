@@ -28,149 +28,117 @@ namespace TravelListApp_Backend.Controllers
             this._userManager = userManager;
         }
 
-/*
         //Create category for the connected user
         [HttpPost("{categoryName}")]
-        public IActionResult CreateCategory(string categoryName)
+        public async Task<IActionResult> CreateCategory(string categoryName)
         {
-            try
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
             {
-                Category category = new Category(categoryName, new List<Item>());
-                this._categoryRepository.addItem(category);
-                this._categoryRepository.SaveChanges();
-                Ok(category);
+                //Add categeory to current traveler
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = new Category(categoryName);
+                traveler.Categories.Add(category);
+                this._userRepository.SaveChanges();
+                return Ok();
             }
-            catch (Exception)
-            {
-                Response.StatusCode = 500;
-                return Json(new { status = "500", message = "Sorry there war an error on our servers please try later." });
-            }
-
-            return NoContent();
+            return Unauthorized();
         }
 
         //Get all the categories for the connected user
         [HttpGet()]
-        public IActionResult GetCategories()
+        public async Task<List<CategoryDTO>> GetCategories()
         {
-            try
-            {
-                Category category = new Category(categoryName, new List<Item>());
-                this._categoryRepository.addItem(category);
-                this._categoryRepository.SaveChanges();
-                Ok(category);
-            }
-            catch (Exception)
-            {
-                Response.StatusCode = 500;
-                return Json(new { status = "500", message = "Sorry there war an error on our servers please try later." });
-            }
 
-            return NoContent();
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
+            {
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                List<Category> categories = this._userRepository.getTraveler(useraccount).Categories;
+                List<CategoryDTO> dto = new List<CategoryDTO>();
+                foreach (var item in categories.ToArray())
+                {
+                    dto.Add(new CategoryDTO() { id = item.Id, name = item.Name });
+                }
+                Response.StatusCode = 200;
+                return dto;
+            }
+            Response.StatusCode = 401;
+            return null; ;
         }
 
         //Remove the category for the connected user
         [HttpDelete("{id}")]
-        public IActionResult RemoveCategory(int id)
+        public async Task<IActionResult> RemoveCategory(int id)
         {
-            try
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
             {
-                Category category = this._categoryRepository.getItem(id);
-                if (category != null)
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
+                if(category != null)
                 {
+                    traveler.Categories.Remove(category);
                     this._categoryRepository.removeItem(category);
-                    this._categoryRepository.SaveChanges();
-                    Ok();
+                    return Ok();
                 }
-                else
-                {
-                    NotFound(id);
-                }
+                return NotFound();
             }
-            catch (Exception)
-            {
-                Response.StatusCode = 500;
-                return Json(new { status="500",message="Sorry there war an error on our servers please try later." });
-            }
-
-            return NoContent();
+            return Unauthorized() ;
         }
 
         //Add the item for the category for the connected user
         [HttpPut("{id}/item/{itemId}")]
-        public IActionResult AddItem(int id, int itemId)
+        public async Task<IActionResult> AddItem(int id, int itemId)
         {
-
-
-
-            try
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
             {
-                Category category = this._categoryRepository.getItem(id);
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
                 if (category != null)
                 {
                     Item item = this._itemRepository.getItem(itemId);
-
                     if(item != null)
                     {
-                        category.addItem(item);
+                        category.Items.Add(item);
                         this._categoryRepository.SaveChanges();
-                       return  Ok();
-                    }
-                    else
-                    {
-                        return NotFound(itemId);
+                        return Ok();
                     }
                 }
-                else
-                {
-                    NotFound(id);
-                }
+                return NotFound();
             }
-            catch (Exception)
-            {
-                Response.StatusCode = 500;
-                return Json(new { status = "500", message = "Sorry there war an error on our servers please try later." });
-            }
-
-            return NoContent();
+            return Unauthorized();
         }
 
         //Remove item from the category for the connected user
         [HttpDelete("{id}/item/{itemId}")]
-        public IActionResult RemoveItem(int id, int itemId)
+        public async Task<IActionResult> RemoveItem(int id, int itemId)
         {
-            try
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
             {
-                Category category = this._categoryRepository.getItem(id);
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
                 if (category != null)
                 {
-                    Item item = this._itemRepository.getItem(itemId);
-
+                    Item item = category.Items.FirstOrDefault(e => e.Id == itemId);
                     if (item != null)
                     {
-                        category.addItem(item);
+                        category.Items.Remove(item);
                         this._categoryRepository.SaveChanges();
-                        Ok();
-                    }
-                    else
-                    {
-                        NotFound(itemId);
+                        return Ok();
                     }
                 }
-                else
-                {
-                    NotFound(id);
-                }
+                return NotFound();
             }
-            catch (Exception)
-            {
-                Response.StatusCode = 500;
-                return Json(new { status = "500", message = "Sorry there war an error on our servers please try later." });
-            }
-
-            return NoContent();
+            return Unauthorized();
         }
-*/
+
         //Get the items for the category for the current user
         [HttpGet("{id}/item")]
         public async Task<List<ItemDTO>> GetCategoryItems(int id)
