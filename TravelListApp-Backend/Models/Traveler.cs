@@ -11,6 +11,7 @@ namespace TravelListApp_Backend.Models
         private ApplicationUser _applicationUser;
         private HashSet<Travel> _travels;
         private List<Category> _category;
+        private HashSet<Task> _tasks;
 
         #endregion Fields
 
@@ -23,7 +24,7 @@ namespace TravelListApp_Backend.Models
         }
 
 
-        public List<Category> Category
+        public List<Category> Categories
         {
             get { return this._category; }
             private set { this._category = value; }
@@ -35,6 +36,12 @@ namespace TravelListApp_Backend.Models
             set { this._applicationUser = value; }
         }
 
+        public HashSet<Task> Tasks
+        {
+            get { return this._tasks; }
+            set { this._tasks = value; }
+        }
+
         #endregion Properties
 
         #region Constructor
@@ -42,36 +49,19 @@ namespace TravelListApp_Backend.Models
         {
             ApplicationUser = user;
             Travels = new HashSet<Travel>();
-            Category = new List<Category>();
+            Categories = new List<Category>();
+            Tasks = new HashSet<Task>();
         }
 
         public Traveler()
         {
             Travels = new HashSet<Travel>();
-            Category = new List<Category>();
+            Categories = new List<Category>();
+            Tasks = new HashSet<Task>();
         }
 
         #endregion Constructor
 
-        public void addTravel(Travel item)
-        {
-            Travels.Add(item);
-        }
 
-
-        public void removeTravel(Travel item)
-        {
-            Travels.Remove(item);
-        }
-
-        public void addCategory(Category item)
-        {
-            Category.Add(item);
-        }
-
-        public void removeCategory(Category item)
-        {
-            Category.Remove(item);
-        }
     }
 }

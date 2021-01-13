@@ -11,7 +11,7 @@ namespace TravelListApp_Backend.Data.Mappers
             builder.ToTable("Item");
             builder.Property(e => e.Name);
             builder.HasOne(e => e.Owner);
-            builder.HasMany(e => e.Categories).WithMany(e => e.Items);
+           // builder.HasMany(e => e.Categories).WithMany(e => e.Items);
         }
     }
 }

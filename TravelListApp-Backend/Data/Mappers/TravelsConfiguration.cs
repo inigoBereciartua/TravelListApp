@@ -10,8 +10,8 @@ namespace TravelListApp_Backend.Data.Mappers
         {
             builder.ToTable("Travel");
             builder.Property(e => e.Name);
-            builder.HasMany(e => e.Iternary);
-            builder.HasMany(e => e.Categories).WithMany(e => e.Travel);
+            builder.HasMany(e => e.Iternary).WithOne();
+            //builder.HasMany(e => e.Categories).WithMany(e => e.Travel);
         }
     }
 }

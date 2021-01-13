@@ -58,36 +58,6 @@ namespace TravelListApp_Backend.Models
             Travel = new List<Travel>();
         }
 
-         public void removeItem(Item item)
-        {
-            Items.Remove(item);
-        }
-
-        public void addItem(Item item)
-        {
-            Items.Add(item);
-        }
-
-        public void removeTask(Task item)
-        {
-            Task.Remove(item);
-        }
-
-        public void addTask(Task item)
-        {
-            Task.Add(item);
-        }
-
-        public void removeTravel(Travel item)
-        {
-            Travel.Remove(item);
-        }
-
-        public void addTavel(Travel item)
-        {
-            Travel.Add(item);
-        }
-
         #endregion Construct
     }
 }

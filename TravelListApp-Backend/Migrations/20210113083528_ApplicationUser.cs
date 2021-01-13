@@ -47,20 +47,6 @@ namespace TravelListApp_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Task",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Checked = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Task", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -226,6 +212,27 @@ namespace TravelListApp_Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Task",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Checked = table.Column<bool>(type: "bit", nullable: false),
+                    TravelerId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Task", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Task_Traveler_TravelerId",
+                        column: x => x.TravelerId,
+                        principalTable: "Traveler",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Travel",
                 columns: table => new
                 {
@@ -243,30 +250,6 @@ namespace TravelListApp_Backend.Migrations
                         principalTable: "Traveler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CategoryTask",
-                columns: table => new
-                {
-                    CategoriesId = table.Column<int>(type: "int", nullable: false),
-                    TaskId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoryTask", x => new { x.CategoriesId, x.TaskId });
-                    table.ForeignKey(
-                        name: "FK_CategoryTask_Category_CategoriesId",
-                        column: x => x.CategoriesId,
-                        principalTable: "Category",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CategoryTask_Task_TaskId",
-                        column: x => x.TaskId,
-                        principalTable: "Task",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -289,6 +272,30 @@ namespace TravelListApp_Backend.Migrations
                         name: "FK_CategoryItem_Item_ItemsId",
                         column: x => x.ItemsId,
                         principalTable: "Item",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CategoryTask",
+                columns: table => new
+                {
+                    CategoriesId = table.Column<int>(type: "int", nullable: false),
+                    TaskId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryTask", x => new { x.CategoriesId, x.TaskId });
+                    table.ForeignKey(
+                        name: "FK_CategoryTask_Category_CategoriesId",
+                        column: x => x.CategoriesId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CategoryTask_Task_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "Task",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -462,6 +469,11 @@ namespace TravelListApp_Backend.Migrations
                 name: "IX_Item_OwnerId",
                 table: "Item",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Task_TravelerId",
+                table: "Task",
+                column: "TravelerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Travel_TravelerId",

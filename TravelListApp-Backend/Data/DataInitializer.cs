@@ -45,7 +45,7 @@ namespace TravelListApp_Backend.Data
                 Models.Task task1 = new Models.Task("Pack my bag");;
 
                 Travel travel = new Travel("Summer travel to Afganistan");
-                travel.addActivity(activity);
+                travel.Iternary.Add(activity);
                 travel.Categories.Add(testCategory1);
                 travel.Categories.Add(testCategory2);
 
@@ -57,9 +57,9 @@ namespace TravelListApp_Backend.Data
                 this._context.TravelItems.AddRange(new TravelItem[] {travelItem1, travelItem2, travelItem3 });
                
 
-                traveler.addCategory(testCategory1);
-                traveler.addCategory(testCategory2);
-                traveler.addTravel(travel);
+                traveler.Categories.Add(testCategory1);
+                traveler.Categories.Add(testCategory2);
+                traveler.Travels.Add(travel);
                 this._context.Travelers.Add(traveler);
 
                 this._context.SaveChanges();
