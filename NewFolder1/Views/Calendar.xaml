@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock Text="Calendar" VerticalAlignment="Top" Height="65" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20" />
+            <TextBlock Text="Calendar" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
         </StackPanel>
     </Grid>
 </Page>

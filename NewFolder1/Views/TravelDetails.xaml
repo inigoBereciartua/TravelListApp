@@ -11,6 +11,7 @@
 
     <Grid>
         <StackPanel>
+            <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
             <TextBlock Text="{x:Bind Travel.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30"  HorizontalAlignment="Left"  Margin="20,0,0,10" />
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="20,0,0,10" >
@@ -29,7 +30,23 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+                
                 <StackPanel Grid.Column="0">
+                    <TextBlock Text="Categories" Margin="20,0,0,0"/>
+                    <ListView x:Name="CategoriesList" Margin="10, 0, 0, 0" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Height="350">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:Category">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,20,0" ></TextBlock>
+                                    <AppBarButton x:Name="DeleteCategory" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteCategory_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="AddCategories" Content="Add Items" HorizontalAlignment="Left" Click="AddCategories_Click" Margin="20, 10, 0, 0"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1">
                     <TextBlock Text="Items" Margin="20,0,0,0"/>
                     <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Height="350" >
                         <ListView.ItemTemplate>
@@ -45,22 +62,22 @@
                     </ListView>
                     <Button x:Name="AddItems" Content="Add Items" HorizontalAlignment="Left" Click="AddItems_Click" Margin="20, 10, 0, 0"/>
                 </StackPanel>
-
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="Categories" Margin="20,0,0,0"/>
-                    <ListView x:Name="CategoriesList" Margin="10, 0, 0, 0" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Height="350">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Category">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,20,0" ></TextBlock>
-                                    <AppBarButton x:Name="DeleteCategory" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteCategory_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Button x:Name="AddCategories" Content="Add Items" HorizontalAlignment="Left" Click="AddCategories_Click" Margin="20, 10, 0, 0"/>
-                </StackPanel>
             </Grid>
+            <StackPanel>
+                <TextBlock Text="Tasks" Margin="20,0,0,0"/>
+                <ListView x:Name="TasksList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Height="350" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:Task">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,10,0" />
+                                <AppBarButton Visibility="Visible" Icon="Accept" Label="Check"/>
+                                <AppBarButton x:Name="DeleteTask" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteTask_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button x:Name="AddItems" Content="Add Items" HorizontalAlignment="Left" Click="AddItems_Click" Margin="20, 10, 0, 0"/>
+            </StackPanel>
         </StackPanel>
         <ContentDialog x:Name="deleteItemDialog"
                        PrimaryButtonText="Delete"

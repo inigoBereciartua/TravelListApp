@@ -27,6 +27,7 @@ namespace TravelListApp.NewFolder1.Views
         public ObservableCollection<ItemForTravel> ItemsCollection { get; set; } = new ObservableCollection<ItemForTravel>();
         public ObservableCollection<Category> CategoriesCollection { get; set; } = new ObservableCollection<Category>();
 
+        public ObservableCollection<Task> TasksCollection { get; set; } = new ObservableCollection<Task>();
         Travel Travel;
         public TravelDetails()
         {
@@ -36,7 +37,7 @@ namespace TravelListApp.NewFolder1.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: Call to backend to get items    
+            //TODO: Call to backend to get items, to get categories and tasks
             this.Travel = (Travel)e.Parameter;
             foreach (var item in Travel.Items)
             {
@@ -48,6 +49,11 @@ namespace TravelListApp.NewFolder1.Views
                 CategoriesCollection.Add(category);
             }
             CategoriesList.ItemsSource = CategoriesCollection;
+            foreach (var task in Travel.Tasks)
+            {
+                TasksCollection.Add(task);
+            }
+            TasksList.ItemsSource = TasksCollection;
             base.OnNavigatedTo(e);
         }
 
@@ -94,6 +100,16 @@ namespace TravelListApp.NewFolder1.Views
                 Travel.Items.Remove((ItemForTravel)item);
                 //TODO: Call to the backend to remove the item from a travel
             }
+        }
+
+        private void BackArrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Travels));
+        }
+
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

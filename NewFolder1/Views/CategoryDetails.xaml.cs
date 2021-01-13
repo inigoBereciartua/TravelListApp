@@ -141,5 +141,10 @@ namespace TravelListApp.NewFolder1.Views
                 //TODO: Call backend to delete Item
             }
         }
+
+        private void BackArrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Categories));
+        }
     }
 }
