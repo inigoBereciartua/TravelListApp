@@ -129,6 +129,9 @@
     <Compile Include="NewFolder1\NavView.xaml.cs">
       <DependentUpon>NavView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFolder1\Views\AddCategoriesToTravel.xaml.cs">
+      <DependentUpon>AddCategoriesToTravel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewFolder1\Views\AddItemsToTravel.xaml.cs">
       <DependentUpon>AddItemsToTravel.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NewFolder1\NavView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\AddCategoriesToTravel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

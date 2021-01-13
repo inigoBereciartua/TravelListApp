@@ -22,39 +22,37 @@ namespace TravelListApp.NewFolder1.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddItemsToTravel : Page
+    public sealed partial class AddCategoriesToTravel : Page
     {
-        public Travel Travel;        
-
-        public ObservableCollection<Item> ItemsOfTravel { get; set; } = new ObservableCollection<Item>();
-        public AddItemsToTravel()
+        public Travel Travel;
+        public ObservableCollection<Category> CategoriesOfTravel { get; set; } = new ObservableCollection<Category>();
+        public AddCategoriesToTravel()
         {
             this.InitializeComponent();
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //TODO: Call to backend to get all the items
             this.Travel = (Travel)e.Parameter;
-            List<Item> itemsList = ItemsManager.GetItems();
-            itemsList.ForEach(delegate (Item item)
+            List<Category> categoryList = CategoriesManager.GetCategories();
+            categoryList.ForEach(delegate (Category category)
             {
-                if (!Travel.Items.Contains(item))
+                if (!Travel.Categories.Contains(category))
                 {
-                    ItemsOfTravel.Add(item);
+                    CategoriesOfTravel.Add(category);
                 }
             });
-            ItemsList.ItemsSource = ItemsOfTravel;
+            CategoryList.ItemsSource = CategoriesOfTravel;
             base.OnNavigatedTo(e);
         }
 
-        private void AddItems_Click(object sender, RoutedEventArgs e)
-        {            
-            foreach(Item item in ItemsList.SelectedItems.ToArray())
-            {                
-                ItemsOfTravel.Remove(item);
-                //TODO: Add call to the backend to add item to a travel
-            }            
+        private void AddCategories_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Category category in CategoryList.SelectedItems.ToArray())
+            {
+                CategoriesOfTravel.Remove(category);
+                //TODO: Add call to the backend to add category to a travel
+            }
         }
 
         private void BackArrowButton_Click(object sender, RoutedEventArgs e)

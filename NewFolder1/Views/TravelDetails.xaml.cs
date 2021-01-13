@@ -74,7 +74,7 @@ namespace TravelListApp.NewFolder1.Views
 
         private void AddCategories_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(AddCategoriesToTravel), this.Travel);
         }
 
         private async void DeleteCategory_Click(object sender, RoutedEventArgs e)
