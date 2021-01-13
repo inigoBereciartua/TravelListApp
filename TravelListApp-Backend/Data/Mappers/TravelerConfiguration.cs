@@ -9,8 +9,9 @@ namespace TravelListApp_Backend.Data.Mappers
         public void Configure(EntityTypeBuilder<Traveler> builder)
         {
             builder.ToTable("Traveler");
-            builder.HasMany(e => e.Travels);
-            builder.HasMany(e => e.Category);
+            builder.HasMany(e => e.Travels).WithOne();
+            builder.HasMany(e => e.Categories).WithOne();
+            builder.HasMany(e => e.Tasks).WithOne();
         }
     }
 }

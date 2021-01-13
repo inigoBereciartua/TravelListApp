@@ -28,15 +28,6 @@ namespace TravelListApp_Backend.Models
         }
 
         public TravelItem() { }
-        
-        public void Check()
-        {
-            Checked = true;
-        }
-
-        public void UnCheck()
-        {
-            Checked = false;
-        }
+       
     }
 }

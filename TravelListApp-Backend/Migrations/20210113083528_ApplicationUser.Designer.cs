@@ -10,7 +10,7 @@ using TravelListApp_Backend.Data;
 namespace TravelListApp_Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210112163409_ApplicationUser")]
+    [Migration("20210113083528_ApplicationUser")]
     partial class ApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -343,7 +343,12 @@ namespace TravelListApp_Backend.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TravelerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TravelerId");
 
                     b.ToTable("Task");
                 });
@@ -557,6 +562,13 @@ namespace TravelListApp_Backend.Migrations
                     b.Navigation("Owner");
                 });
 
+            modelBuilder.Entity("TravelListApp_Backend.Models.Task", b =>
+                {
+                    b.HasOne("TravelListApp_Backend.Models.Traveler", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("TravelerId");
+                });
+
             modelBuilder.Entity("TravelListApp_Backend.Models.Travel", b =>
                 {
                     b.HasOne("TravelListApp_Backend.Models.Traveler", null)
@@ -611,6 +623,8 @@ namespace TravelListApp_Backend.Migrations
             modelBuilder.Entity("TravelListApp_Backend.Models.Traveler", b =>
                 {
                     b.Navigation("Category");
+
+                    b.Navigation("Tasks");
 
                     b.Navigation("Travels");
                 });

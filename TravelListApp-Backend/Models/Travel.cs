@@ -62,19 +62,5 @@ namespace TravelListApp_Backend.Models
         }
 
         #endregion Constructor
-
-        #region Methodes
-
-        public void addActivity(Activity item)
-        {
-            Iternary.Add(item);
-        }
-
-        public void addRemove(Activity item)
-        {
-            Iternary.Add(item);
-        }
-
-        #endregion
     }
 }
