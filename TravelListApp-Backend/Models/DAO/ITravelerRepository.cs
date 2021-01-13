@@ -9,6 +9,8 @@ namespace TravelListApp_Backend.Models.DAO
         void addItem(Traveler traveler);
         void removeItem(Traveler traveler);
         ICollection<Traveler> getAllItems();
+
+        Traveler getTraveler(ApplicationUser applicationUser);
         void updateItem(Traveler user);
 
         void SaveChanges();

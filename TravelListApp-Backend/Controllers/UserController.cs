@@ -37,11 +37,11 @@ namespace TravelListApp_Backend.Controllers
 
                     if (result.Succeeded)
                     {
-                        Ok();
+                        return Ok();
                     }
                     else
                     {
-                        Unauthorized();
+                       return  Unauthorized();
                     }
                 }
             }
@@ -68,7 +68,7 @@ namespace TravelListApp_Backend.Controllers
                         this._travelerRepository.addItem(traveler);
                         this._travelerRepository.SaveChanges();
                         await this._signInManager.SignInAsync(user, isPersistent: false);
-                        Ok();
+                        return Ok();
                     }
                 }
             }

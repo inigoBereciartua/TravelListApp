@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TravelListApp_Backend.Models;
 using TravelListApp_Backend.Models.DAO;
 using TravelListApp_Backend.DTO_s;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace TravelListApp_Backend.Controllers
 {
@@ -16,12 +18,14 @@ namespace TravelListApp_Backend.Controllers
         private readonly ITravelerRepository _userRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IItemRepository _itemRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CategoryController(ICategoryRepository categoryRepository, ITravelerRepository userRepository, IItemRepository itemRepository)
+        public CategoryController(ICategoryRepository categoryRepository, ITravelerRepository userRepository, IItemRepository itemRepository, UserManager<ApplicationUser> userManager)
         {
             this._categoryRepository = categoryRepository;
             this._userRepository = userRepository;
             this._itemRepository = itemRepository;
+            this._userManager = userManager;
         }
 
 /*
@@ -96,6 +100,9 @@ namespace TravelListApp_Backend.Controllers
         [HttpPut("{id}/item/{itemId}")]
         public IActionResult AddItem(int id, int itemId)
         {
+
+
+
             try
             {
                 Category category = this._categoryRepository.getItem(id);
@@ -107,11 +114,11 @@ namespace TravelListApp_Backend.Controllers
                     {
                         category.addItem(item);
                         this._categoryRepository.SaveChanges();
-                        Ok();
+                       return  Ok();
                     }
                     else
                     {
-                        NotFound(itemId);
+                        return NotFound(itemId);
                     }
                 }
                 else
@@ -163,46 +170,40 @@ namespace TravelListApp_Backend.Controllers
 
             return NoContent();
         }
-
+*/
         //Get the items for the category for the current user
         [HttpGet("{id}/item")]
-        public List<ItemDTO> getCategoryItems(int id)
+        public async Task<List<ItemDTO>> GetCategoryItems(int id)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                Category category = this._categoryRepository.getItem(id);
-                if (category != null)
-                {
-                    List<Item> items = this._categoryRepository.getItem(id).Items;
+                //Get user account 
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Category category = this._categoryRepository.getItem(id);        
+              
+                    //Check if this user has the specified category     
+                    if (category != null && this._userRepository.getTraveler(useraccount).Categories.Contains(category))
+                    {
+                        List<Item> items = this._categoryRepository.getItem(id).Items;
 
-                    if (items != null)
-                    {
-                        List<ItemDTO> dto = new List<ItemDTO>();
-                        foreach (var item in items)
+                        if (items != null)
                         {
-                            dto.Add(new ItemDTO() { id = item.Id, name = item.Name });
+                            List<ItemDTO> dto = new List<ItemDTO>();
+                            foreach (var item in items)
+                            {
+                                dto.Add(new ItemDTO() { id = item.Id, name = item.Name });
+                            }
+                            Response.StatusCode = 200;
+                            return dto;
                         }
-                        Response.StatusCode = 200;
-                        return dto;
-                    }
-                    else
-                    {
-                        Response.StatusCode = 404;
-                        return null;
-                    }
-                }
-                else
-                {
-                    Response.StatusCode = 204;
-                    return null;
-                }
-            }
-            catch (Exception)
-            {
-                Response.StatusCode = 500;
+                   }
+                Response.StatusCode = 204;
                 return null;
             }
-        }*/
+            
+            Response.StatusCode = 401;
+            return null;
+        }
 
     }
 }

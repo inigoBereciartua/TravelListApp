@@ -8,7 +8,7 @@ using TravelListApp_Backend.Models.DAO;
 
 namespace TravelListApp_Backend.Data.Repositories
 {
-    public class TravelItemRepository : ITravelItem
+    public class TravelItemRepository : ITravelItemRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<TravelItem> _travelItems;

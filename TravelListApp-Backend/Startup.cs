@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -33,17 +34,17 @@ namespace TravelListApp_Backend
             services.AddDbContext<ApplicationDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddAuthorization(options => options.DefaultPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build());
             services.AddControllers();
             services.AddSwaggerDocument();
-
             services.AddScoped<ITravelerRepository, TravelerRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ITravelRepository,TravelRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
-            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<ITravelItemRepository, TravelItemRepository>();
+            services.AddScoped<ITravelTaskRepository, TravelTaskRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();
             services.AddScoped<DataInitializer>();
         }
@@ -59,9 +60,8 @@ namespace TravelListApp_Backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCookiePolicy();
             app.UseAuthorization();
-
             app.UseAuthentication();
             app.UseSwaggerUi3();
             app.UseOpenApi();
