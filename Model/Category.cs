@@ -9,11 +9,14 @@ namespace TravelListApp.Model
     public class Category
     {
         public string Name { get; set; }
-        public List<Item>Items { get; set; }
+        public List<Item> Items { get; set; }
+
+        public List<Task> Tasks { get; set; }
 
         public Category()
         {
             this.Items = new List<Item>();
+            this.Tasks = new List<Task>();
         }        
     }
 

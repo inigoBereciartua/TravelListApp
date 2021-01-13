@@ -8,7 +8,13 @@ namespace TravelListApp_Backend.Data.Mappers
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            throw new System.NotImplementedException();
+            builder.ToTable("Category");
+            builder.Property(e => e.Name).IsRequired().HasMaxLength(100);
+            builder.HasMany(e => e.Items)
+                .WithMany(e => e.Categories);
+            builder.HasMany(e => e.Task)
+                .WithMany(e => e.Categories);
+            builder.HasMany(e => e.Travel).WithMany(e => e.Categories);
         }
     }
 }

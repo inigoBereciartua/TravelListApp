@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Models\DAO\I.cs" />
   </ItemGroup>
 
@@ -17,8 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO%27s\" />
-    <Folder Include="Migrations\" />
+    <Compile Include="Migrations\20210112163409_ApplicationUser.cs" />
+    <Compile Include="Migrations\20210112163409_ApplicationUser.Designer.cs" />
+    <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>
