@@ -10,6 +10,8 @@ namespace TravelListApp_Backend.Data
         {
             builder.Property(e => e.Checked);
             builder.Property(e => e.Count);
+            builder.HasOne(e => e.Item).WithMany().OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(e => e.Travel).WithMany().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

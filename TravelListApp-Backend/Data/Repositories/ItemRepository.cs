@@ -20,22 +20,32 @@ namespace TravelListApp_Backend.Data.Repositories
             this._items = context.Items;
         }
 
-        public void addItem(Item item)
+        public void AddItem(Item item)
         {
             this._items.Add(item);
         }
 
-        public ICollection<Item> getAllItems()
+        public ICollection<Item> GetAllItems()
         {
             return this._items.ToList();
         }
 
-        public Item getItem(int id)
+        public Item GetItem(int id)
         {
            return this._items.FirstOrDefault(e => e.Id == id);
         }
 
-        public void removeItem(Item item)
+        public ICollection<Item> getItemsOnTravelerId(int travelerId)
+        {
+            return this._items.Where(e => e.Owner.Id == travelerId).ToList();
+        }
+
+        public ICollection<Item> GetItemsOnUserId(int userId)
+        {
+            return this._items.Where(e => e.Owner.Id == userId).ToList();
+        }
+
+        public void RemoveItem(Item item)
         {
             this._items.Remove(item);
         }
@@ -45,7 +55,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._context.SaveChanges();
         }
 
-        public void updateItem(Item item)
+        public void UpdateItem(Item item)
         {
             this._items.Update(item);
         }

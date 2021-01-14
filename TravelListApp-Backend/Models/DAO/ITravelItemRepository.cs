@@ -7,8 +7,9 @@ namespace TravelListApp_Backend.Models.DAO
 {
     public interface ITravelItemRepository
     {
-        void addItem(TravelItem travelItem);
+        void addTravelItem(TravelItem travelItem);
         void removeItem(TravelItem travelItem);
+        ICollection<TravelItem> getTravelItemOnTravelId(int id);
         ICollection<TravelItem> getAllItems();
         void updateItem(TravelItem travelItem);
         void SaveChanges();

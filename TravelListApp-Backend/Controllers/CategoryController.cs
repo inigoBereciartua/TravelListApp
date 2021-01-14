@@ -59,7 +59,7 @@ namespace TravelListApp_Backend.Controllers
                 List<CategoryDTO> dto = new List<CategoryDTO>();
                 foreach (var item in categories.ToArray())
                 {
-                    dto.Add(new CategoryDTO() { id = item.Id, name = item.Name });
+                    dto.Add(new CategoryDTO() { Id = item.Id, Name = item.Name });
                 }
                 Response.StatusCode = 200;
                 return dto;
@@ -101,7 +101,7 @@ namespace TravelListApp_Backend.Controllers
                 Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
                 if (category != null)
                 {
-                    Item item = this._itemRepository.getItem(itemId);
+                    Item item = this._itemRepository.GetItem(itemId);
                     if(item != null)
                     {
                         category.Items.Add(item);
@@ -159,7 +159,7 @@ namespace TravelListApp_Backend.Controllers
                             List<ItemDTO> dto = new List<ItemDTO>();
                             foreach (var item in items)
                             {
-                                dto.Add(new ItemDTO() { id = item.Id, name = item.Name });
+                                dto.Add(new ItemDTO() { Id = item.Id, Name = item.Name });
                             }
                             Response.StatusCode = 200;
                             return dto;

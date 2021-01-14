@@ -65,7 +65,7 @@ namespace TravelListApp_Backend.Controllers
                     if (result.Succeeded)
                     {
                         Traveler traveler = new Traveler(user);
-                        this._travelerRepository.addItem(traveler);
+                        this._travelerRepository.addTraveler(traveler);
                         this._travelerRepository.SaveChanges();
                         await this._signInManager.SignInAsync(user, isPersistent: false);
                         return Ok();
@@ -83,7 +83,12 @@ namespace TravelListApp_Backend.Controllers
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
-            return NoContent();
+
+            if (User.Identity.IsAuthenticated)
+            {
+               await this._signInManager.SignOutAsync();
+            }
+            return Unauthorized();
         }
 
     }

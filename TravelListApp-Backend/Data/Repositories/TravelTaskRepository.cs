@@ -19,17 +19,22 @@ namespace TravelListApp_Backend.Data.Repositories
             this._tavelTask = this._context.TravelTasks;
         }
 
-        public void addItem(TravelTask item)
+        public void addTravelTask(TravelTask item)
         {
             this._tavelTask.Add(item);
         }
 
-        public ICollection<TravelTask> getAllItems()
+        public ICollection<TravelTask> getAllTravelTask()
         {
             return this._tavelTask.ToList();
         }
 
-        public void removeItem(TravelTask item)
+        public ICollection<TravelTask> getTravelTaskOnTravelId(int travelId)
+        {
+            return this._tavelTask.Include(e => e.Travel).Include(e => e.Task).Where(e => e.Travel.Id == travelId).ToList();
+        }
+
+        public void removeTravelTask(TravelTask item)
         {
             this._tavelTask.Remove(item);
         }
@@ -39,7 +44,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._context.SaveChanges();
         }
 
-        public void updateItem(TravelTask item)
+        public void updateTravelTask(TravelTask item)
         {
             this._tavelTask.Update(item);
         }

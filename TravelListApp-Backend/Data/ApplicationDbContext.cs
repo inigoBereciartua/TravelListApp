@@ -27,6 +27,7 @@ namespace TravelListApp_Backend.Data
         {
             base.OnModelCreating(builder);
 
+            builder.ApplyConfiguration(new TravelTaskConfiguration());
             builder.ApplyConfiguration(new TravelItemConfiguration());
             builder.ApplyConfiguration(new TravelerConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());

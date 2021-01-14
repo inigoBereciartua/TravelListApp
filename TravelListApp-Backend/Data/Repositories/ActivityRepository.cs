@@ -40,7 +40,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._context.SaveChanges();
         }
 
-        public void updateItem(Activity item)
+        public void UpdateActivity(Activity item)
         {
             this._activity.Update(item);
         }

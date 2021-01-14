@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.Models.DAO
 {
-    interface ITravelTaskRepository
+   public interface ITravelTaskRepository
     {
-        void addItem(TravelTask item);
-        void removeItem(TravelTask item);
-        ICollection<TravelTask> getAllItems();
-        void updateItem(TravelTask item);
+        void addTravelTask(TravelTask item);
+        void removeTravelTask(TravelTask item);
+        ICollection<TravelTask> getAllTravelTask();
+        ICollection<TravelTask> getTravelTaskOnTravelId(int travelId);
+        void updateTravelTask(TravelTask item);
         void SaveChanges();
     }
 }

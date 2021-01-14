@@ -13,10 +13,10 @@ namespace TravelListApp_Backend.Models
 
         public int Id { get; set; }
 
-        public string Name
+        public string Description
         {
             get { return this._description; }
-            private set { this._description = value; }
+            set { this._description = value; }
         }
 
 
@@ -28,6 +28,7 @@ namespace TravelListApp_Backend.Models
 
         public Activity(string description, DateTime start, DateTime end)
         {
+            Description = description;
             Start = start;
             End = end;
         }

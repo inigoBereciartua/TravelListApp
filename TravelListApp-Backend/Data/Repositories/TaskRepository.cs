@@ -19,17 +19,22 @@ namespace TravelListApp_Backend.Data.Repositories
             this._tasks = context.Tasks;
         }
 
-        public void addItem(Task item)
+        public void AddTask(Task item)
         {
             this._tasks.Add(item);
         }
 
-        public ICollection<Task> getAllItems()
+        public ICollection<Task> GetAllTask()
         {
            return this._tasks.ToList();
         }
 
-        public void removeItem(Task item)
+        public Task GetTask(int id)
+        {
+            return this._tasks.FirstOrDefault(e => e.Id == id);
+        }
+
+        public void RemoveTask(Task item)
         {
             this._tasks.Remove(item);
         }
@@ -39,7 +44,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._context.SaveChanges();
         }
 
-        public void updateItem(Task item)
+        public void UpdateTask(Task item)
         {
             this._tasks.Update(item);
         }

@@ -21,7 +21,7 @@ namespace TravelListApp_Backend.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Name can't be empty");
+                    throw new ArgumentException("Description can't be empty");
                 }
                 else
                 {
@@ -35,13 +35,13 @@ namespace TravelListApp_Backend.Models
         public List<Activity> Iternary
         {
             get { return _iternary; }
-            private set { _iternary = value; }
+             set { _iternary = value; }
         }
 
         public List<Category> Categories
         {
             get { return this._categories; }
-            private set { this._categories = value; }
+            set { this._categories = value; }
         }
 
 

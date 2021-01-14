@@ -19,7 +19,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._travelItems = this._context.TravelItems;
         }
 
-        public void addItem(TravelItem item)
+        public void addTravelItem(TravelItem item)
         {
             this._travelItems.Add(item);
         }
@@ -27,6 +27,11 @@ namespace TravelListApp_Backend.Data.Repositories
         public ICollection<TravelItem> getAllItems()
         {
             return this._travelItems.ToList();
+        }
+
+        public ICollection<TravelItem> getTravelItemOnTravelId(int id)
+        {
+            return this._travelItems.Include(e => e.Travel).Include(e => e.Item).Where(e => e.Travel.Id == id).ToList();
         }
 
         public void removeItem(TravelItem item)

@@ -1,13 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using NJsonSchema.Annotations;
+﻿using NJsonSchema.Annotations;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.DTO_s
 {
-    public class CategoryDTO
+    public class TravelDTO
     {
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid integer number")]
         public int Id { get; set; }
         [Required]
         [NotNull]

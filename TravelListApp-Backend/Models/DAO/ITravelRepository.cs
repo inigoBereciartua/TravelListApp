@@ -9,7 +9,7 @@ namespace TravelListApp_Backend.Models.DAO
         void addItem(Travel travel);
         void removeItem(Travel travel);
         ICollection<Travel> getAllItems();
-        void updateItem(Travel travel);
+        void UpdateTravel(Travel travel);
         void SaveChanges();
     }
 }

@@ -21,7 +21,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._traveler = this._context.Travelers;
         }
 
-        public void addItem(Traveler user)
+        public void addTraveler(Traveler user)
         {
             this._traveler.Add(user);
         }
@@ -44,7 +44,7 @@ namespace TravelListApp_Backend.Data.Repositories
                 .FirstOrDefault(e => e.ApplicationUser == applicationUser);
         }
 
-        public void removeItem(Traveler user)
+        public void removeTraveler(Traveler user)
         {
             this._traveler.Remove(user);
         }
@@ -54,7 +54,7 @@ namespace TravelListApp_Backend.Data.Repositories
             this._context.SaveChanges();
         }
 
-        public void updateItem(Traveler user)
+        public void updateTraveler(Traveler user)
         {
             this._traveler.Update(user);
         }
