@@ -11,6 +11,7 @@
 
     <Grid>
         <StackPanel>
+            <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Category:" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
                 <TextBlock Text="{x:Bind category.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" />

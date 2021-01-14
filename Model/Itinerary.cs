@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TravelListApp.Model
 {
-    class Itinerary
+    public class Itinerary
     {
     }
 }

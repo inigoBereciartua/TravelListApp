@@ -122,13 +122,24 @@
     <Compile Include="Contoller\Modelcontroller.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Item.cs" />
-    <Compile Include="Model\ItemWithAmount.cs" />
     <Compile Include="Model\Itinerary.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFolder1\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewFolder1\NavView.xaml.cs">
       <DependentUpon>NavView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Register.xaml.cs">
+      <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\AddCategoriesToTravel.xaml.cs">
+      <DependentUpon>AddCategoriesToTravel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFolder1\Views\AddItemsToTravel.xaml.cs">
+      <DependentUpon>AddItemsToTravel.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewFolder1\Views\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
@@ -145,6 +156,9 @@
     <Compile Include="NewFolder1\Views\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFolder1\Views\TravelDetails.xaml.cs">
+      <DependentUpon>TravelDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewFolder1\Views\Travels.xaml.cs">
       <DependentUpon>Travels.xaml</DependentUpon>
     </Compile>
@@ -156,7 +170,7 @@
     <Compile Include="Persistence\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Task.cs" />
-    <Compile Include="Model\TravelList.cs" />
+    <Compile Include="Model\Travel.cs" />
     <Compile Include="Model\User.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +197,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="NewFolder1\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewFolder1\NavView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\AddCategoriesToTravel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\AddItemsToTravel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewFolder1\Views\Tasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFolder1\Views\TravelDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
