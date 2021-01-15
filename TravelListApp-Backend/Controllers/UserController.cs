@@ -59,8 +59,8 @@ namespace TravelListApp_Backend.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ApplicationUser user = new ApplicationUser() { Email = dto.email, UserName = dto.username };
-                    var result = await this._userManager.CreateAsync(user, dto.password);
+                    ApplicationUser user = new ApplicationUser() { Email = dto.Email, UserName = dto.Username };
+                    var result = await this._userManager.CreateAsync(user, dto.Password);
 
                     if (result.Succeeded)
                     {
@@ -72,9 +72,10 @@ namespace TravelListApp_Backend.Controllers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return NoContent();
+                ModelState.AddModelError("Password", "Password must have an Aplhanumeric value");
+                return BadRequest();
             }
             return NoContent();
         }

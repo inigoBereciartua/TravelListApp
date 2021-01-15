@@ -119,47 +119,59 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Contoller\Modelcontroller.cs" />
+    <Compile Include="Command\RegisterCommand.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Itinerary.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Login.xaml.cs">
+    <Compile Include="ViewModel\AddCategoriesToTravelViewModel.cs" />
+    <Compile Include="ViewModel\AddItemsToTravelViewModel.cs" />
+    <Compile Include="ViewModel\CalendarViewModel.cs" />
+    <Compile Include="ViewModel\CategoriesViewModel.cs" />
+    <Compile Include="ViewModel\CategoryDetailsViewModel.cs" />
+    <Compile Include="ViewModel\ItemsViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\NavViewViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\TasksViewModel.cs" />
+    <Compile Include="ViewModel\TravelDetailsViewModel.cs" />
+    <Compile Include="ViewModel\TravelsViewModel.cs" />
+    <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\NavView.xaml.cs">
+    <Compile Include="Views\NavView.xaml.cs">
       <DependentUpon>NavView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Register.xaml.cs">
+    <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\AddCategoriesToTravel.xaml.cs">
+    <Compile Include="Views\AddCategoriesToTravel.xaml.cs">
       <DependentUpon>AddCategoriesToTravel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\AddItemsToTravel.xaml.cs">
+    <Compile Include="Views\AddItemsToTravel.xaml.cs">
       <DependentUpon>AddItemsToTravel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\Calendar.xaml.cs">
+    <Compile Include="Views\Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\Categories.xaml.cs">
+    <Compile Include="Views\Categories.xaml.cs">
       <DependentUpon>Categories.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\CategoryDetails.xaml.cs">
+    <Compile Include="Views\CategoryDetails.xaml.cs">
       <DependentUpon>CategoryDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\Items.xaml.cs">
+    <Compile Include="Views\Items.xaml.cs">
       <DependentUpon>Items.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\Tasks.xaml.cs">
+    <Compile Include="Views\Tasks.xaml.cs">
       <DependentUpon>Tasks.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\TravelDetails.xaml.cs">
+    <Compile Include="Views\TravelDetails.xaml.cs">
       <DependentUpon>TravelDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewFolder1\Views\Travels.xaml.cs">
+    <Compile Include="Views\Travels.xaml.cs">
       <DependentUpon>Travels.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,51 +203,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="NewFolder1\Login.xaml">
+    <Page Include="Views\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\NavView.xaml">
+    <Page Include="Views\NavView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Register.xaml">
+    <Page Include="Views\Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\AddCategoriesToTravel.xaml">
+    <Page Include="Views\AddCategoriesToTravel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\AddItemsToTravel.xaml">
+    <Page Include="Views\AddItemsToTravel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\Calendar.xaml">
+    <Page Include="Views\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\Categories.xaml">
+    <Page Include="Views\Categories.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\CategoryDetails.xaml">
+    <Page Include="Views\CategoryDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\Items.xaml">
+    <Page Include="Views\Items.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\Tasks.xaml">
+    <Page Include="Views\Tasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\TravelDetails.xaml">
+    <Page Include="Views\TravelDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewFolder1\Views\Travels.xaml">
+    <Page Include="Views\Travels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,10 +256,65 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Both|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Both\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Both|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Both\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Both|ARM64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM64\Both\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Both|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Both\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

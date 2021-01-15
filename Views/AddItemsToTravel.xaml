@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="TravelListApp.Views.AddItemsToTravel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TravelListApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TravelListApp.Model"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel>
+            <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
+            <TextBlock Text="{x:Bind Travel.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30"  HorizontalAlignment="Left"  Margin="20,0,0,10" />
+            <TextBlock Text="Select the items you want to add to the travel:" FontSize="15"  HorizontalAlignment="Left"  Margin="20,0,0,10"/>
+            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" SelectionMode="Multiple">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="data:Item">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button x:Name="AddItems" Content="Add Items" HorizontalAlignment="Left" Click="AddItems_Click" Margin="20, 10, 0, 0"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>TravelListApp_Backend</RootNamespace>
+    <Configurations>Debug;Release;Both</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
