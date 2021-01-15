@@ -33,7 +33,7 @@ namespace TravelListApp_Backend.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var result = await this._signInManager.PasswordSignInAsync(dto.username, dto.password, false, false);
+                    var result = await this._signInManager.PasswordSignInAsync(dto.Username, dto.Password, false, false);
 
                     if (result.Succeeded)
                     {

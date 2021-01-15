@@ -22,32 +22,16 @@ namespace TravelListApp.Views
     /// </summary>
     public sealed partial class Login : Page
     {
+        public Frame frame;        
         public Login()
         {
             this.InitializeComponent();
+            frame = this.Frame;            
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (UsernameTextbox.Text == "")
-            {
-                ErrorText.Text = "Username field can't be empty";
-            }else if (PasswordBox.Password == "")
-            {
-                ErrorText.Text = "Password field can't be empty";
-            }
-            else
-            {
-                //TODO: Call backend to try to login
-                if (true)
-                {
-                    this.Frame.Navigate(typeof(NavView));
-                }
-                else
-                {
-                    ErrorText.Text = "Username or password are incorrect";
-                }
-            }
+        {            
+            this.Frame.Navigate(typeof(NavView));
         }
     }
 }

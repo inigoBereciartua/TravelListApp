@@ -8,5 +8,6 @@ namespace TravelListApp.Model
 {
     public class Itinerary
     {
+        public int id { get; set; }
     }
 }

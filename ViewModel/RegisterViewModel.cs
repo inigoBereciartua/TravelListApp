@@ -14,12 +14,12 @@ using TravelListApp.Model;
 namespace TravelListApp.ViewModel
 {
    public class RegisterViewModel: INotifyPropertyChanged
-    {
-        
+    {        
         public  RegisterCommand RegisterCommand { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string RepeatPassword { get; set; }
         private string _succesmessage;
         public string SuccesMessage 
         { 
@@ -32,12 +32,24 @@ namespace TravelListApp.ViewModel
                 }
             }
         }
-        public string ErrorMessage { get; set; }
+        private string _errormessage;
+        public string ErrorMessage {
+            get { return _errormessage; }
+            set
+            {
+                if (value != _errormessage)
+                {
+                    _errormessage = value;
+                    NotifyPropertyChanged("ErrorMessage");
+                }
+            }
+        }
         public RegisterViewModel()
         {
-            Email = "FuckOff@gmail.com";
-            Username = "FuckOff";
-            Password = "FuckOff@123";
+            Email = "";
+            Username = "";
+            Password = "";
+            RepeatPassword = "";
             ErrorMessage = "";
             SuccesMessage = "";
             RegisterCommand = new RegisterCommand(this);
@@ -53,39 +65,44 @@ namespace TravelListApp.ViewModel
         }
         internal async void Register()
         {
-            var values = new Dictionary<string, string>
+            ErrorMessage = "";
+            SuccesMessage = "";
+            if (Username == "" || Email == "" || Password == "" || RepeatPassword == "")
             {
-                { "Username", Username },
-                { "Password", Password },
-                { "Email", Email },
-            };
-
-            CookieContainer cookies = new CookieContainer();
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.CookieContainer = cookies;
-            var content = new FormUrlEncodedContent(values);
-            HttpClient client = new HttpClient(handler);
-            var result = await client.PostAsync("http://localhost:65177/api/User/register", content);
-            if(result.StatusCode == System.Net.HttpStatusCode.OK)
+                ErrorMessage = "Please complete all the fields";
+            }else if (!Password.Equals(RepeatPassword))
             {
-                Windows.Storage.ApplicationData.Current.LocalSettings.Values["Cookie"] = JsonConvert.SerializeObject(cookies.GetCookies(new Uri("http://localhost:65177")).Cast<Cookie>().ToList().FirstOrDefault(e => e.Name == ".AspNetCore.Identity.Application"));
-                /*Cookie cookie = JsonConvert.DeserializeObject<Cookie>(Windows.Storage.ApplicationData.Current.LocalSettings.Values["Cookie"].ToString());
-                   CookieContainer cookies = new CookieContainer();
-                 * cookies.Add(cookie);
-                HttpClientHandler handler = new HttpClientHandler();
-                handler.CookieContainer = cookies;
-                var content = new FormUrlEncodedContent(values);
-                HttpClient client = new HttpClient(handler);*/
-
-                SuccesMessage = "You sucessfuly registered in !";
-            }
-            else if(result.StatusCode == System.Net.HttpStatusCode.InternalServerError)
-            {
-                ErrorMessage = "Sorry our server is not working !";
+                ErrorMessage = "Passwords don't match";
             }
             else
             {
-                ErrorMessage = "404";
+                var values = new Dictionary<string, string>
+                {
+                    { "Username", Username },
+                    { "Password", Password },
+                    { "Email", Email },
+                };
+
+                CookieContainer cookies = new CookieContainer();
+                HttpClientHandler handler = new HttpClientHandler();
+                handler.CookieContainer = cookies;
+                var content = new FormUrlEncodedContent(values);
+                HttpClient client = new HttpClient(handler);
+                var result = await client.PostAsync("http://localhost:65177/api/User/register", content);
+                if(result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    Cookie cookie = cookies.GetCookies(new Uri("http://localhost:65177")).Cast<Cookie>().ToList().FirstOrDefault(e => e.Name == ".AspNetCore.Identity.Application");
+                    Client.Instantiate(client);
+                    SuccesMessage = "You sucessfuly registered in !";
+                }
+                else if(result.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+                {
+                    ErrorMessage = "Sorry our server is not working !";
+                }
+                else
+                {
+                    ErrorMessage = "404";
+                }
             }
         }
     }

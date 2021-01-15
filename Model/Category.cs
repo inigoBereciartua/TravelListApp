@@ -8,6 +8,7 @@ namespace TravelListApp.Model
 {
     public class Category
     {
+        public int id { get; set; }
         public string Name { get; set; }
         public List<Item> Items { get; set; }
 

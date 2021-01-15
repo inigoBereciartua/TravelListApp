@@ -24,38 +24,6 @@ namespace TravelListApp.Views {
         public Register()
         {
             this.InitializeComponent();
-        }
-
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (UsernameTextbox.Text == "")
-            {
-                ErrorText.Text = "Username field can't be empty";
-            }
-            else if (PasswordBox.Password == "")
-            {
-                ErrorText.Text = "Password field can't be empty";
-            }
-            else if (RepeatPasswordBox.Password == "")
-            {
-                ErrorText.Text = "Confirm Password field can't be empty";
-            }else if(PasswordBox.Password != PasswordBox.Password)
-            {
-                ErrorText.Text = "Password and Confirm Password don't match";
-            }
-            else
-            {
-                //TODO: Call to backend to register
-                if (true)
-                {
-                    SuccessText.Text = "You have registered successfully";
-                }
-                else
-                {
-                    ErrorText.Text = "An error occurred during the registration";
-                }
-            }
-
-        }
+        }        
     }
 }
