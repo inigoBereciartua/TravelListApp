@@ -119,9 +119,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command\CreateCategoryCommand.cs" />
     <Compile Include="Command\CreateItemCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\RegisterCommand.cs" />
+    <Compile Include="Command\RemoveCategoryCommand.cs" />
     <Compile Include="Command\RemoveItemCommand.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Item.cs" />

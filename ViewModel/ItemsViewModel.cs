@@ -53,12 +53,10 @@ namespace TravelListApp.ViewModel
         }
 
         private async Task<ObservableCollection<Item>> GetItems()
-        {
-            //HttpClient client = JsonConvert.DeserializeObject<HttpClient>(Windows.Storage.ApplicationData.Current.LocalSettings.Values["Client"].ToString());
+        {        
             var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Item");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
-            return  new ObservableCollection<Item>( JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));            
-            
+            return  new ObservableCollection<Item>( JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));                        
         }
 
         internal async void CreateItem()
