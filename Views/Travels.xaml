@@ -6,21 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:TravelListApp.Model"
+    xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewmodel:TravelsViewModel x:Name="vm"/>
+    </Page.DataContext>
 
     <Grid>
         <StackPanel>
             <TextBlock Text="Travels" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="NewTravelName" PlaceholderText="New travel's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="32" Margin="30, 10, 0, 10"/>
-                    <TextBox x:Name="NewTravelsStartDate" PlaceholderText="Start date (dd/MM/yyyy)" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Margin="20,0,20,0"></TextBox>
-                    <TextBox x:Name="NewTravelsEndDate" PlaceholderText="End date (dd/MM/yyyy)" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32"></TextBox>
-                    <Button x:Name="CreateTravel" Content="Create Travel" Margin="20, 10, 0, 10" Click="CreateTravel_Click"/>
+                    <TextBox x:Name="NewTravelName" Text="{x:Bind vm.NewTravelName, Mode=TwoWay}" PlaceholderText="New travel's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="32" Margin="30, 10, 0, 10"/>
+                    <TextBox x:Name="NewTravelsStartDate" Text="{x:Bind vm.NewTravelsStartDate, Mode=TwoWay}" PlaceholderText="Start date (dd/MM/yyyy)" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Margin="20,0,20,0"></TextBox>
+                    <TextBox x:Name="NewTravelsEndDate" Text="{x:Bind vm.NewTravelsEndDate, Mode=TwoWay}" PlaceholderText="End date (dd/MM/yyyy)" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32"></TextBox>
+                    <Button x:Name="CreateTravel" Command="{x:Bind vm.CreateTravelCommand}" Content="Create Travel" Margin="20, 10, 0, 10" />
                 </StackPanel>
-                <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
-                <GridView x:Name="TravelsGridView" IsItemClickEnabled="True" ItemClick="TravelsGridView_ItemClick" x:DefaultBindMode="OneWay" Margin="20,20,20,20">
+                <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage, Mode=OneWay}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
+                <GridView x:Name="TravelsGridView" ItemsSource="{x:Bind vm.TravelList, Mode=OneWay}" IsItemClickEnabled="True" Margin="20,20,20,20">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="data:Travel">
                             <StackPanel Margin="20,20,20,20">

@@ -6,19 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:TravelListApp.Model"
+    xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.DataContext>
+        <viewmodel:TasksViewModel x:Name="vm"/>
+    </Page.DataContext>
+    
     <Grid>
         <StackPanel>
             <TextBlock Text="Tasks" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="NewTaskName" PlaceholderText="New task's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
-                <Button x:Name="CreateTask" Content="Create Task" Margin="20, 10, 0, 10" Click="CreateTask_Click"/>
+                <TextBox x:Name="NewTaskName" Text="{x:Bind vm.NewTaskName, Mode=TwoWay}" PlaceholderText="New task's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
+                <Button x:Name="CreateTask" Command="{x:Bind vm.CreateTaskCommand}" Content="Create Task" Margin="20, 10, 0, 10"/>
             </StackPanel>
-            <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
+            <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage, Mode=OneWay}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
-            <ListView x:Name="TasksList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay">
+            <ListView x:Name="TasksList" ItemsSource="{x:Bind vm.TasksList}" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Task">
                         <StackPanel Orientation="Horizontal">
