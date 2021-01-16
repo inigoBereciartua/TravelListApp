@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using TravelListApp.ViewModel;
 
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
@@ -48,8 +49,8 @@ namespace TravelListApp.Views
             ContentDialogResult result = await deleteItemDialog.ShowAsync();
             if(result == ContentDialogResult.Primary)
             {
-                itemsList.Remove((Item)item);
-                //TODO: Call backend to delete Item
+                var vm = (ItemsViewModel)this.DataContext;
+                vm.RemoveItem((Item)item);
             }
         }
         private void CreateItem_Click(object sender, RoutedEventArgs e)

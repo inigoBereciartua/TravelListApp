@@ -36,6 +36,7 @@ namespace TravelListApp.Model
         {
             return id ^ 7;
         }
+
     }
 
     public class CategoriesManager

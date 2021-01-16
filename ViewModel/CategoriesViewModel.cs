@@ -91,6 +91,7 @@ namespace TravelListApp.ViewModel
         internal void RemoveCategory(Category category)
         {
             CategoriesList.Remove(category);
+            //TODO: Call backend to delete Item
         }
 
 

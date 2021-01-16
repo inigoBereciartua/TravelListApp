@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TravelListApp.Model;
+using TravelListApp.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -72,8 +73,8 @@ namespace TravelListApp.Views
             ContentDialogResult result = await deleteCategoryDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                categoriesList.Remove((Category)category);
-                //TODO: Call backend to delete Item
+                var vm = (CategoriesViewModel)this.DataContext;
+                vm.RemoveCategory((Category)category);
             }
         }
 

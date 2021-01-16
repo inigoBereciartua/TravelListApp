@@ -90,6 +90,7 @@ namespace TravelListApp.ViewModel
             if(result.StatusCode == HttpStatusCode.OK)
             {
                 ItemsList.Remove(item);
+                //TODO Call Backend
             }
 
         }
@@ -108,6 +109,7 @@ namespace TravelListApp.ViewModel
 
         internal void RemoveItem(Item selectedItem)
         {
+            /*
             if(selectedItem != null)
             {
                 Cookie cookie = JsonConvert.DeserializeObject<Cookie>(Windows.Storage.ApplicationData.Current.LocalSettings.Values["Cookie"].ToString());
@@ -119,6 +121,9 @@ namespace TravelListApp.ViewModel
                 //var result = await client.DeleteAsync("http://localhost:65177/api/Item");
 
             }
+            */
+            ItemsList.Remove(selectedItem);
+            //TODO: Backend call to remove the item
         }
     }
 }

@@ -121,6 +121,8 @@
     </Compile>
     <Compile Include="Command\AddCategoriesToTravelCommand.cs" />
     <Compile Include="Command\AddItemsToTravelCommand.cs" />
+    <Compile Include="Command\AddItemToCategoryCommand.cs" />
+    <Compile Include="Command\AddTaskToCategoryCommand.cs" />
     <Compile Include="Command\CreateCategoryCommand.cs" />
     <Compile Include="Command\CreateItemCommand.cs" />
     <Compile Include="Command\CreateTaskCommand.cs" />
