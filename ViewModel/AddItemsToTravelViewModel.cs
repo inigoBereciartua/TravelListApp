@@ -15,7 +15,7 @@ namespace TravelListApp.ViewModel
     {
         // This might need to get the selected travel so that we can call it later to add the items
 
-        public AddItemCommand AddItemCommand;
+        public AddItemsToTravelCommand AddItemsToTravelCommand;
         public ObservableCollection<Item> ItemsList { get; set; }
         public string _errormessage;
         public string ErrorMessage
@@ -41,7 +41,7 @@ namespace TravelListApp.ViewModel
 
         public AddItemsToTravelViewModel()
         {
-            AddItemCommand = new AddItemCommand(this);
+            AddItemsToTravelCommand = new AddItemsToTravelCommand(this);
             ErrorMessage = "";
             ItemsList = System.Threading.Tasks.Task.Run(() => GetItems()).Result;
         }

@@ -14,7 +14,7 @@ namespace TravelListApp.ViewModel
     class AddCategoriesToTravelViewModel
     {
         // This might need to get the selected travel so that we can call it later to add the categories
-        public AddCategoriesCommand AddCategoriesCommand;
+        public AddCategoriesToTravelCommand AddCategoriesToTravelCommand;
         public ObservableCollection<Category> CategoryList { get; set; }
         public string _errormessage;
         public string ErrorMessage
@@ -40,7 +40,7 @@ namespace TravelListApp.ViewModel
 
         public AddCategoriesToTravelViewModel()
         {
-            AddCategoriesCommand = new AddCategoriesCommand(this);
+            AddCategoriesToTravelCommand = new AddCategoriesToTravelCommand(this);
             ErrorMessage = "";
             CategoryList = System.Threading.Tasks.Task.Run(() => GetCategorys()).Result;
         }
