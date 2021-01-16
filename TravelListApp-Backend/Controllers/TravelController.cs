@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -171,21 +171,21 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
         //Check a task for a travel
-        [HttpPut("{travelId}/Tasks/{taskId}/{completed}")]
-        public async Task<IActionResult> CheckTravelTask(int travelId, int taskId, bool completed)
+        [HttpPut("Task")]
+        public async Task<IActionResult> CheckTravelTask(CheckTaskDTO checkTask)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Models.Task task = traveler.Tasks.FirstOrDefault(e => e.Id == taskId);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
+                Models.Task task = traveler.Tasks.FirstOrDefault(e => e.Id == checkTask.TaskId);
+                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == checkTask.TravelId);
                 if (travel != null && task != null)
                 {
-                    TravelTask travelTask = this._travelTaskRepository.getTravelTaskOnTravelId(travelId).FirstOrDefault(e => e.Task.Id == taskId);
+                    TravelTask travelTask = this._travelTaskRepository.getTravelTaskOnTravelId(checkTask.TravelId).FirstOrDefault(e => e.Task.Id == checkTask.TaskId);
                     if(travelTask != null) {
-                        travelTask.Checked = completed;
+                        travelTask.Checked = checkTask.Completed;
                         this._travelTaskRepository.updateTravelTask(travelTask);
                         this._travelTaskRepository.SaveChanges();
                         return Ok();
@@ -197,19 +197,19 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
         //Add a item to a travel
-        [HttpPost("{travelId}/Item/{itemId}/{count}")]
-        public async Task<IActionResult> AddTravelItem(int travelId, int itemId,int count)
+        [HttpPost("Item")]
+        public async Task<IActionResult> AddTravelItem(TravelItemDTO travelItemDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Item item = this._itemRepository.GetItemsOnUserId(traveler.Id).FirstOrDefault(e => e.Id == itemId);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
+                Item item = this._itemRepository.GetItemsOnUserId(traveler.Id).FirstOrDefault(e => e.Id == travelItemDTO.ItemId);
+                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelItemDTO.TravelId);
                 if (travel != null && item != null)
                 {
-                    TravelItem travelItem = new TravelItem(travel, item, count);
+                    TravelItem travelItem = new TravelItem(travel, item, travelItemDTO.Count);
                     this._travelItemRepository.addTravelItem(travelItem);
                     this._travelItemRepository.SaveChanges();
                     return Ok();
@@ -219,21 +219,21 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
         //Check a item for a travel
-        [HttpPut("{travelId}/Item/{itemId}/{completed}")]
-        public async Task<IActionResult> CheckTravelItem(int travelId, int itemId, bool completed)
+        [HttpPut("Item")]
+        public async Task<IActionResult> CheckTravelItem(CheckItemDTO checkItem)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
+                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == checkItem.TravelId);
                 if (travel != null)
                 {
-                    TravelItem travelItem = this._travelItemRepository.getTravelItemOnTravelId(travelId).FirstOrDefault(e => e.Id == itemId);
+                    TravelItem travelItem = this._travelItemRepository.getTravelItemOnTravelId(checkItem.TravelId).FirstOrDefault(e => e.Id == checkItem.ItemId);
                     if(travelItem != null)
                     {
-                        travelItem.Checked = completed;
+                        travelItem.Checked = checkItem.Completed;
                         this._travelItemRepository.updateItem(travelItem);
                         this._travelItemRepository.SaveChanges();
                         return Ok();
@@ -359,7 +359,7 @@ namespace TravelListApp_Backend.Controllers
                     TravelTask travelTask = this._travelTaskRepository.getTravelTaskOnTravelId(travelId).FirstOrDefault(e => e.Task.Id == taskId);
                     if(travelTask != null)
                     {
-                        this._travelTaskRepository.addTravelTask(travelTask);
+                        this._travelTaskRepository.removeTravelTask(travelTask);
                         this._travelTaskRepository.SaveChanges();
                         return Ok();
                     }

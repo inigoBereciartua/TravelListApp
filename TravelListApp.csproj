@@ -132,6 +132,7 @@
     <Compile Include="Command\RegisterCommand.cs" />
     <Compile Include="Command\RemoveCategoryCommand.cs" />
     <Compile Include="Command\RemoveItemCommand.cs" />
+    <Compile Include="Command\RemoveItemFromTravelCommand.cs" />
     <Compile Include="Command\RemoveTaskCommand.cs" />
     <Compile Include="Command\RemoveTravelCommand.cs" />
     <Compile Include="Model\Category.cs" />

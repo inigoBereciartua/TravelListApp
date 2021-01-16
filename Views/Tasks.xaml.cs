@@ -45,7 +45,7 @@ namespace TravelListApp.Views
             }
             else
             {
-                TasksCollection.Add(new Task { Name = NewTaskName.Text });
+                TasksCollection.Add(new Task { Description = NewTaskName.Text });
                 //TODO: Call backend to create Item
             }
         }
@@ -54,7 +54,7 @@ namespace TravelListApp.Views
         {
             foreach(var task in TasksCollection)
             {
-                if(task.Name == text)
+                if(task.Description == text)
                 {
                     return true;
                 }

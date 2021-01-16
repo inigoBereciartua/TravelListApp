@@ -9,7 +9,7 @@
     xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.DataContext>
+    <Page.DataContext >
         <viewmodel:TravelDetailsViewModel x:Name="vm"/>
     </Page.DataContext>
     <ScrollViewer HorizontalScrollMode="Disabled">
@@ -60,7 +60,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,10,0" ></TextBlock>
                                             <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind AmountOfItem}" Margin="0,0,15,0" ></TextBlock>
-                                            <AppBarButton Visibility="Visible" Icon="Accept" Label="Check"/>
+                                            <AppBarButton Visibility="Visible" Icon="Accept" Label="Check" Click="CheckItem_Click"/>
                                             <AppBarButton x:Name="DeleteItem" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteItem_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
@@ -74,9 +74,9 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="data:Task">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,10,0" />
-                                            <AppBarButton Visibility="Visible" Icon="Accept" Label="Check"/>
-                                            <AppBarButton x:Name="DeleteTask" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteTask_Click"/>
+                                            <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Description}" Margin="0,0,10,0" />
+                                            <AppBarButton Visibility="Visible" Icon="Accept" Label="Check" Click="CheckTask_Click"/>
+                                            <AppBarButton x:Name="DeleteTask" Visibility="Visible" Icon="Delete" Label="Delete"  Click="DeleteTask_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
