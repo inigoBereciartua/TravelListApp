@@ -19,6 +19,7 @@ namespace TravelListApp.ViewModel
 
         public CreateCategoryCommand CreateCategoryCommand { get; set; }
         public RemoveCategoryCommand RemoveCategoryCommand { get; set; }
+        //public NavigateToCategoryCommand NavigateToCategoryCommand { get; set; }
         public ObservableCollection<Category> CategoriesList { get; set; }
         private string _errormessage;
         public string ErrorMessage
@@ -89,7 +90,7 @@ namespace TravelListApp.ViewModel
 
         internal void RemoveCategory(Category category)
         {
-            throw new NotImplementedException();
+            CategoriesList.Remove(category);
         }
 
 

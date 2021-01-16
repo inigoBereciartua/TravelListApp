@@ -126,6 +126,7 @@
     <Compile Include="Command\CreateTaskCommand.cs" />
     <Compile Include="Command\CreateTravelCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="Command\NavigateToCategoryCommand.cs" />
     <Compile Include="Command\RegisterCommand.cs" />
     <Compile Include="Command\RemoveCategoryCommand.cs" />
     <Compile Include="Command\RemoveItemCommand.cs" />

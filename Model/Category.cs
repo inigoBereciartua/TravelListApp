@@ -18,7 +18,24 @@ namespace TravelListApp.Model
         {
             this.Items = new List<Item>();
             this.Tasks = new List<Task>();
-        }        
+        }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null  
+            if (ReferenceEquals(obj, null))
+                return false;
+            // Check for same reference  
+            if (ReferenceEquals(this, obj))
+                return true;
+            var category = (Category)obj;
+            return this.id == category.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return id ^ 7;
+        }
     }
 
     public class CategoriesManager

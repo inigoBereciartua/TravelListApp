@@ -36,6 +36,7 @@
                                 <TextBlock FontSize="10" Text=" Tasks" Margin="0,0,0,0"></TextBlock>
                             </StackPanel>
                             <AppBarButton Visibility="Visible" Icon="Delete" Click="AppBarButton_Click_Async" Height="50"/>
+                            <!--<AppBarButton Visibility="Visible" Icon="Delete" Command="{x:Bind vm.NavigateToCategoryCommand}" Height="50"/>-->
                         </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>
