@@ -54,7 +54,7 @@ namespace TravelListApp.ViewModel
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    Model.Task newTask = new Model.Task() { Name = NewTaskName};
+                    Model.Task newTask = new Model.Task() { Description = NewTaskName};
                     TasksList.Add(newTask);
                     TasksList = System.Threading.Tasks.Task.Run(() => GetTasks()).Result;
                 }
@@ -81,7 +81,7 @@ namespace TravelListApp.ViewModel
         {
             foreach(Model.Task task in TasksList)
             {
-                if(task.Name == NewTaskName)
+                if(task.Description == NewTaskName)
                 {
                     return true;
                 }

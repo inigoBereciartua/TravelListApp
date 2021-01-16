@@ -26,7 +26,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Task">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
+                            <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Description}" Margin="0,0,30,0" ></TextBlock>
                             <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_Click"/>
                         </StackPanel>
                     </DataTemplate>
