@@ -6,9 +6,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using TravelListApp.Command;
 using TravelListApp.Model;
+using Task = TravelListApp.Model.Task;
 
 namespace TravelListApp.ViewModel
 {
@@ -16,6 +18,7 @@ namespace TravelListApp.ViewModel
     {
         public CreateTravelCommand CreateTravelCommand { get; set; }
         public RemoveTravelCommand RemoveTravelCommand { get; set; }
+        public RemoveTravelCommand NavigateToTravelDetailCommand { get; set; }
         public ObservableCollection<Travel> TravelList { get; set; }
         public string NewTravelName { get; set; }
         public string NewTravelsStartDate { get; set; }
@@ -38,6 +41,7 @@ namespace TravelListApp.ViewModel
         {
             CreateTravelCommand = new CreateTravelCommand(this);
             RemoveTravelCommand = new RemoveTravelCommand(this);
+            NavigateToTravelDetailCommand = new RemoveTravelCommand(this);
             ErrorMessage = "";
             NewTravelName = "";
             TravelList = System.Threading.Tasks.Task.Run(()=> GetTravels()).Result;
@@ -46,8 +50,22 @@ namespace TravelListApp.ViewModel
         private async Task<ObservableCollection<Travel>> GetTravels()
         {
             var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel");
-            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
-            return new ObservableCollection<Travel>(JsonConvert.DeserializeObject<List<Travel>>(await result.Content.ReadAsStringAsync()));
+
+            List<Travel> tmp = JsonConvert.DeserializeObject<List<Travel>>(await result.Content.ReadAsStringAsync());
+            foreach (var item in tmp)
+            {
+                result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel/" + item.id.ToString() + "/Categories");
+                List<Category> categories = JsonConvert.DeserializeObject<List<Category>>(await result.Content.ReadAsStringAsync());
+                result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel/" + item.id.ToString() + "/Items");
+                List<Item> items  = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+                result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel/" + item.id.ToString() + "/Tasks");
+                List<Task> tasks = JsonConvert.DeserializeObject<List<Task>>(await result.Content.ReadAsStringAsync());
+
+                item.Categories = categories;
+                item.Tasks = tasks;
+                item.Items = items;
+            }
+            return new ObservableCollection<Travel>(tmp);
         }
 
         internal void CreateTravel()
