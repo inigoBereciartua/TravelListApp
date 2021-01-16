@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -197,19 +197,19 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
         //Add a item to a travel
-        [HttpPost("{travelId}/Item/{itemId}/{count}")]
-        public async Task<IActionResult> AddTravelItem(int travelId, int itemId,int count)
+        [HttpPost("Item")]
+        public async Task<IActionResult> AddTravelItem(TravelItemDTO travelItemDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Item item = this._itemRepository.GetItemsOnUserId(traveler.Id).FirstOrDefault(e => e.Id == itemId);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
+                Item item = this._itemRepository.GetItemsOnUserId(traveler.Id).FirstOrDefault(e => e.Id == travelItemDTO.ItemId);
+                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelItemDTO.TravelId);
                 if (travel != null && item != null)
                 {
-                    TravelItem travelItem = new TravelItem(travel, item, count);
+                    TravelItem travelItem = new TravelItem(travel, item, travelItemDTO.Count);
                     this._travelItemRepository.addTravelItem(travelItem);
                     this._travelItemRepository.SaveChanges();
                     return Ok();
