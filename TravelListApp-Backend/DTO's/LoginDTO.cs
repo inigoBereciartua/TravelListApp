@@ -8,9 +8,9 @@ namespace TravelListApp_Backend.DTO_s
     {
         [Required]
         [NotNull]
-        public string username { get; set; }
+        public string Username { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public string password { get; set; }
+        public string Password { get; set; }
     }
 }

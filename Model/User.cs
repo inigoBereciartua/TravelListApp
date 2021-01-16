@@ -8,6 +8,7 @@ namespace TravelListApp.Model
 {
     class User
     {
+        public int id { get; set; }
         public string Email { get; internal set; }
         public string Username { get; internal set; }
         public string Password { get; internal set; }

@@ -119,7 +119,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command\AddCategoriesToTravelCommand.cs" />
+    <Compile Include="Command\AddItemsToTravelCommand.cs" />
+    <Compile Include="Command\CreateCategoryCommand.cs" />
+    <Compile Include="Command\CreateItemCommand.cs" />
+    <Compile Include="Command\CreateTaskCommand.cs" />
+    <Compile Include="Command\CreateTravelCommand.cs" />
+    <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\RegisterCommand.cs" />
+    <Compile Include="Command\RemoveCategoryCommand.cs" />
+    <Compile Include="Command\RemoveItemCommand.cs" />
+    <Compile Include="Command\RemoveTaskCommand.cs" />
+    <Compile Include="Command\RemoveTravelCommand.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\Itinerary.cs" />
@@ -128,6 +139,7 @@
     </Compile>
     <Compile Include="ViewModel\AddCategoriesToTravelViewModel.cs" />
     <Compile Include="ViewModel\AddItemsToTravelViewModel.cs" />
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\CalendarViewModel.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\CategoryDetailsViewModel.cs" />
@@ -255,6 +267,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLight">
+      <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>

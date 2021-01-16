@@ -29,64 +29,8 @@ namespace TravelListApp.Views
         public ObservableCollection<Travel> TravelsList { get; set; } = new ObservableCollection<Travel>();
         public Travels()
         {
-            this.InitializeComponent();
-            //TODO: Call to backend to get categories
-            foreach (var travel in TravelsManager.GetTravels())
-            {
-                TravelsList.Add(travel);
-            }
-            TravelsGridView.ItemsSource = TravelsList;
-        }
-
-        private void CreateTravel_Click(object sender, RoutedEventArgs e)
-        {
-            DateTime startDate;
-            DateTime endDate;
-
-            ErrorText.Text = "";
-            if (NewTravelName.Text == "")
-            {
-                ErrorText.Text = "Travel's name can't be empty";
-            }else if (NameOfCategoryIsInUse(NewTravelName.Text))
-            {
-                ErrorText.Text = "That travel name is already in use";
-            }
-            else if (!DateTime.TryParseExact(NewTravelsStartDate.Text, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
-            {
-                ErrorText.Text = "Start date format is not correct, it should be dd/MM/yyyy";
-            }
-            else if (!DateTime.TryParseExact(NewTravelsEndDate.Text, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
-            {
-                ErrorText.Text = "End date format is not correct, it should be a valid dd/MM/yyyy";
-            }
-            else if(startDate > endDate)
-            {
-                ErrorText.Text = "Start date can't be greater than end date";
-            }
-            else
-            {
-                Travel newTravel = new Travel() { Name = NewTravelName.Text, StartDate = startDate, EndDate = endDate };
-                TravelsList.Add(newTravel);
-                NewTravelName.Text = "";
-                NewTravelsStartDate.Text = "";
-                NewTravelsEndDate.Text = "";
-                //TODO: Call backend to create Travel
-            }
-
-
-        }
-
-        private bool NameOfCategoryIsInUse(string text)
-        {
-            foreach (var travel in TravelsList)
-            {
-                if (travel.Name == text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+            this.InitializeComponent();                        
+        }                
 
         private void TravelsGridView_ItemClick(object sender, ItemClickEventArgs e)
         {

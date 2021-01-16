@@ -6,24 +6,27 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:TravelListApp.Model"
+    xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.DataContext>
+        <viewmodel:ItemsViewModel x:Name="vm"/>
+    </Page.DataContext>
     <Grid>
         <StackPanel>
             <TextBlock Text="Items" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="NewItemName" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
-                <Button x:Name="CreateItem" Content="Create Item" Margin="20, 10, 0, 10" Click="CreateItem_Click"/>
+                <TextBox x:Name="NewItemName" Text="{x:Bind vm.NewItemName,Mode=TwoWay}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
+                <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10" Click="CreateItem_Click"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
             
-            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" x:DefaultBindMode="OneWay">
+            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemsSource="{x:Bind vm.ItemsList, Mode=OneWay}" x:DefaultBindMode="OneWay">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Item">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
-                            <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_ClickAsync"/>
+                            <AppBarButton Visibility="Visible" Icon="Delete" Command="{Binding DataContext.RemoveItemCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}" Label="Delete" />
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
