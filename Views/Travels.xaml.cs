@@ -37,16 +37,5 @@ namespace TravelListApp.Views
             var travel = (Travel)e.ClickedItem;
             this.Frame.Navigate(typeof(TravelDetails), travel);
         }
-
-        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            var travel = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteTravelDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                TravelsList.Remove((Travel)travel);
-                //TODO: Call backend to delete Travel
-            }
-        }
     }
 }
