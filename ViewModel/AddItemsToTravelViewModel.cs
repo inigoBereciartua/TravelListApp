@@ -15,7 +15,7 @@ namespace TravelListApp.ViewModel
     {
         // This might need to get the selected travel so that we can call it later to add the items
 
-        public AddItemsToTravelCommand AddItemsToTravelCommand;
+        public AddItemsToTravelCommand AddItemsToTravelCommand { get; set; }
         public ObservableCollection<Item> ItemsList { get; set; }
         public string _errormessage;
         public string ErrorMessage

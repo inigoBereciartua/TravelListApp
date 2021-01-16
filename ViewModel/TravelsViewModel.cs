@@ -14,12 +14,12 @@ namespace TravelListApp.ViewModel
 {
     class TravelsViewModel
     {
-        public CreateTravelCommand CreateTravelCommand;
-        public RemoveTravelCommand RemoveTravelCommand;
+        public CreateTravelCommand CreateTravelCommand { get; set; }
+        public RemoveTravelCommand RemoveTravelCommand { get; set; }
         public ObservableCollection<Travel> TravelList { get; set; }
-        public string NewTravelName;
-        public string NewTravelsStartDate;
-        public string NewTravelsEndDate;
+        public string NewTravelName { get; set; }
+        public string NewTravelsStartDate { get; set; }
+        public string NewTravelsEndDate { get; set; }
         private string _errormessage;
         public string ErrorMessage
         {

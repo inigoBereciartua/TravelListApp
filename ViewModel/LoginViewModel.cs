@@ -15,10 +15,10 @@ namespace TravelListApp.ViewModel
 {
     class LoginViewModel : INotifyPropertyChanged
     {
-        public string Username;
-        public string Password;
-        public LoginCommand LoginCommand;
-       
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public LoginCommand LoginCommand { get; set; }
+
         private string _errormessage;
         public string ErrorMessage {
             get { return _errormessage; }

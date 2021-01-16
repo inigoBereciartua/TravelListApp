@@ -15,10 +15,10 @@ namespace TravelListApp.ViewModel
 {
     class TasksViewModel
     {
-        public CreateTaskCommand CreateTaskCommand;
-        public RemoveTaskCommand RemoveTaskCommand;
+        public CreateTaskCommand CreateTaskCommand { get; set; }
+        public RemoveTaskCommand RemoveTaskCommand { get; set; }
         public ObservableCollection<Model.Task> TasksList { get; set; }
-        public string NewTaskName;
+        public string NewTaskName { get; set; }
         private string _errormessage;
         public string ErrorMessage
         {

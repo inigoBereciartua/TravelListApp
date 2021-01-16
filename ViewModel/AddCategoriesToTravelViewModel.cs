@@ -14,7 +14,7 @@ namespace TravelListApp.ViewModel
     class AddCategoriesToTravelViewModel
     {
         // This might need to get the selected travel so that we can call it later to add the categories
-        public AddCategoriesToTravelCommand AddCategoriesToTravelCommand;
+        public AddCategoriesToTravelCommand AddCategoriesToTravelCommand { get; set; }
         public ObservableCollection<Category> CategoryList { get; set; }
         public string _errormessage;
         public string ErrorMessage

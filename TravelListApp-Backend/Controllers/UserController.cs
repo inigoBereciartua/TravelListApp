@@ -72,7 +72,7 @@ namespace TravelListApp_Backend.Controllers
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ModelState.AddModelError("Password", "Password must have an Aplhanumeric value");
                 return BadRequest();

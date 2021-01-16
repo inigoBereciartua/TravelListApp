@@ -17,8 +17,8 @@ namespace TravelListApp.ViewModel
     {
         public string NewCategoryName;        
 
-        public CreateCategoryCommand CreateCategoryCommand;
-        public RemoveCategoryCommand RemoveCategoryCommand;
+        public CreateCategoryCommand CreateCategoryCommand { get; set; }
+        public RemoveCategoryCommand RemoveCategoryCommand { get; set; }
         public ObservableCollection<Category> CategoriesList { get; set; }
         private string _errormessage;
         public string ErrorMessage

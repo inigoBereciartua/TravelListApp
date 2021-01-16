@@ -16,10 +16,10 @@ namespace TravelListApp.ViewModel
 {
     class ItemsViewModel
     {
-        public CreateItemCommand CreateItemCommand;
-        public RemoveItemCommand RemoveItemCommand;
+        public CreateItemCommand CreateItemCommand { get; set; }
+        public RemoveItemCommand RemoveItemCommand { get; set; }
         public ObservableCollection<Item> ItemsList { get; set; }
-        public string NewItemName;
+        public string NewItemName { get; set; }
         private string _errormessage;
         public string ErrorMessage
         {
