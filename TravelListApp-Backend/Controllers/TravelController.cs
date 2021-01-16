@@ -75,15 +75,15 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
         //Delete an travel of the curent user 
-        [HttpDelete("{travelId}")]
-        public async Task<IActionResult> DeleteItem(int travelId)
+        [HttpDelete()]
+        public async Task<IActionResult> DeleteItem(TravelDTO travelDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
+                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelDTO.Id);
                 if (travel != null)
                 {
                     traveler.Travels.Remove(travel);

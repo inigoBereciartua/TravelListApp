@@ -14,5 +14,9 @@ namespace TravelListApp_Backend.DTO_s
         [Required]
         [NotNull]
         public string Name { get; set; }
+        [Required]
+        public DateTime Start { get; set; }
+        [Required]
+        public DateTime End { get; set; }
     }
 }
