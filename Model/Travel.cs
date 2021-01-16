@@ -26,6 +26,23 @@ namespace TravelListApp.Model
         {
             return EndDate.ToString("dd/MM/yyyy");
         }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null  
+            if (ReferenceEquals(obj, null))
+                return false;
+            // Check for same reference  
+            if (ReferenceEquals(this, obj))
+                return true;
+            var travel = (Travel)obj;
+            return this.id == travel.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return id ^ 7;
+        }
     }
 
     public class TravelsManager

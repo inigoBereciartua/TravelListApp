@@ -91,7 +91,8 @@ namespace TravelListApp.ViewModel
 
         internal void RemoveTask(Model.Task task)
         {
-            throw new NotImplementedException();
+            TasksList.Remove(task);
+            //TODO Backend implementation
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

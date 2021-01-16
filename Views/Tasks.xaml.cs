@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TravelListApp.Model;
+using TravelListApp.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,7 +29,7 @@ namespace TravelListApp.Views
         public Tasks()
         {
             this.InitializeComponent();
-            TasksList.ItemsSource = TasksCollection;
+            //TasksList.ItemsSource = TasksCollection;
         }
 
         private void CreateTask_Click(object sender, RoutedEventArgs e)
@@ -72,7 +73,8 @@ namespace TravelListApp.Views
             ContentDialogResult result = await deleteTaskDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                TasksCollection.Remove((Task)task);
+                var vm = (TasksViewModel)this.DataContext;
+                vm.RemoveTask((Task)task);
                 //TODO: Call backend to delete Task
             }
         }

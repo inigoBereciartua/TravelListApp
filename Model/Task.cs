@@ -10,6 +10,23 @@ namespace TravelListApp.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null  
+            if (ReferenceEquals(obj, null))
+                return false;
+            // Check for same reference  
+            if (ReferenceEquals(this, obj))
+                return true;
+            var task = (Task)obj;
+            return this.Id == task.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id ^ 7;
+        }
     }
 
     public class TaskManager

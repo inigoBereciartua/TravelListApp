@@ -26,7 +26,8 @@
                     <DataTemplate x:DataType="data:Item">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
-                            <AppBarButton Visibility="Visible" Icon="Delete" Command="{Binding DataContext.RemoveItemCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}" Label="Delete" />
+                            <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_ClickAsync"/>
+                            <!--<AppBarButton Visibility="Visible" Icon="Delete" Command="{Binding DataContext.RemoveItemCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}" Label="Delete" />-->
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

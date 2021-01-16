@@ -5,9 +5,14 @@
     xmlns:local="using:TravelListApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:TravelListApp.Model"
+    xmlns:data="using:TravelListApp.Model"    
+    xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewmodel:CategoryDetailsViewModel x:Name="vm"/>
+    </Page.DataContext>
 
     <Grid>
         <StackPanel>
@@ -23,8 +28,9 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="ItemsNotInCategoryComboBox" ItemsSource="{x:Bind ItemsNotInCategory}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
-                        <Button x:Name="AddItem" Content="Add Item" Margin="20, 10, 0, 10" Click="AddItem_Click"/>
+                        <ComboBox x:Name="ItemsNotInCategoryComboBox" ItemsSource="{x:Bind vm.ItemList}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
+                        <Button x:Name="AddItem" Content="Add Item" Margin="20, 10, 0, 10" Command="{x:Bind vm.AddItemToCategoryCommand}"/>
+                        <!--<Button x:Name="AddItem" Content="Add Item" Margin="20, 10, 0, 10" Click="AddItem_Click"/>-->
                     </StackPanel>
                     <TextBlock x:Name="ErrorTextItems" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
@@ -43,8 +49,9 @@
 
                 <StackPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="TasksNotInCategoryComboBox" ItemsSource="{x:Bind TasksNotInCategory}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
-                        <Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Click="AddTask_Click"/>
+                        <ComboBox x:Name="TasksNotInCategoryComboBox" ItemsSource="{x:Bind vm.TaskList}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
+                        <Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Command="{x:Bind vm.AddTaskToCategoryCommand}"/>
+                        <!--<Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Click="AddTask_Click"/>-->
                     </StackPanel>
                     <TextBlock x:Name="ErrorTextTasks" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
