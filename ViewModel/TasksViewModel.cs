@@ -50,13 +50,12 @@ namespace TravelListApp.ViewModel
                     { "description", NewTaskName}
                 };
                 var content = new FormUrlEncodedContent(values);
-                var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Task/" + NewTaskName, content);
+                var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Task/", content);
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    Model.Task newTask = new Model.Task() { Description = NewTaskName};
+                    Model.Task newTask = new Model.Task() { Description = NewTaskName };
                     TasksList.Add(newTask);
-                    TasksList = System.Threading.Tasks.Task.Run(() => GetTasks()).Result;
                 }
             }
         }
