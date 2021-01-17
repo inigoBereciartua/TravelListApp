@@ -17,53 +17,15 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Desktop">
-                    <VisualState.Setters>
-                        <Setter Target="CreateItem.(Control.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="HotPink"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="NewItemName.(Control.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="HotPink"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="deleteItemDialog.(Control.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FFDB5461"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FFDB5461"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel1.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="Black"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="textBlock.(FrameworkElement.HorizontalAlignment)" Value="Stretch"/>
-                        <Setter Target="CreateItem.(FrameworkElement.Width)" Value="1225"/>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" MinWindowHeight="0"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
         <StackPanel x:Name="stackPanel" FocusVisualPrimaryBrush="{x:Null}" Background="#FF6C2828">
             <TextBlock x:Name="textBlock" Text="Items" VerticalAlignment="Center" Height="45" FontSize="36" HorizontalAlignment="Stretch"  TextAlignment="Center" Margin="20,0,0,10" FocusVisualPrimaryBrush="White" FontFamily="Brush Script MT" Foreground="White" />
-            <StackPanel x:Name="stackPanel1" Orientation="Vertical"   Margin="20,20,20,20" Background="#00000000">
+            <StackPanel x:Name="stackPanel1" Orientation="Vertical"   Margin="20,20,20,20" Background="#FF6C2828">
                 <TextBox x:Name="NewItemName" Text="{x:Bind Mode=TwoWay, Path=vm.NewItemName}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Margin="0,10,0,10" FocusVisualPrimaryBrush="#FF0080FF" Foreground="White" FontSize="20">
                     <TextBox.Background>
                         <SolidColorBrush Color="#33000000" Opacity="1"/>
                     </TextBox.Background>
                 </TextBox>
-                <Button x:Name="CreateItem" Command="{x:Bind Path=vm.CreateItemCommand}" Content="Create Item" Margin="0,10,0,10" Foreground="#33000000" FontSize="20" Background="#33000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="40"/>
+                <Button x:Name="CreateItem" Command="{x:Bind Path=vm.CreateItemCommand}" Content="Create Item" Margin="0,10,0,10" Foreground="White" FontSize="20" Background="#30FFFFFF" HorizontalAlignment="Stretch" Height="40" Width="251"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="{x:Bind Mode=OneWay, Path=vm.ErrorMessage}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
         </StackPanel>

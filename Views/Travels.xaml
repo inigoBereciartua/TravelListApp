@@ -18,28 +18,28 @@
             <ColumnDefinition Width="151*"/>
             <ColumnDefinition Width="599*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Background="#FF6C2828" Margin="0,0,0,0" Width="307" Height="996" Grid.Column="0">
+        <GridView x:Name="TravelsGridView" ItemsSource="{x:Bind Mode=TwoWay, Path=vm.TravelList}" IsItemClickEnabled="True" ItemClick="TravelsGridView_ItemClick" FocusVisualPrimaryBrush="White" Margin="10,10,11,10" Grid.Column="1">
+            <GridView.Background>
+                <ImageBrush ImageSource="/Assets/main.jpg"/>
+            </GridView.Background>
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="data:Travel">
+                    <StackPanel Margin="20,20,20,20">
+                        <TextBlock x:Name="TravelName" FontSize="20" Text="{x:Bind Path=Name}" TextAlignment="Center"/>
+                        <TextBlock x:Name ="TravelStart" FontSize="15" Text="{x:Bind Path=GetStringStartDate()}" TextAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <StackPanel Orientation="Vertical" Background="#FF6C2828" Margin="0,0,0,0" Grid.Column="0">
             <TextBlock Text="Travels" TextAlignment="Center" Height="45" Width="145" FontSize="36" FontFamily="Brush Script MT" Foreground="White" />
             <TextBox x:Name="NewTravelName" Text="{x:Bind Mode=TwoWay, Path=vm.NewTravelName}" PlaceholderText="New travel's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Height="32" Margin="20,20,20,20"/>
             <CalendarDatePicker Header="Start Date" Date="{x:Bind Mode=TwoWay, Path=vm.NewTravelsStartDate}" Margin="20,20,20,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <CalendarDatePicker Header="End Date" Date="{x:Bind Mode=TwoWay, Path=vm.NewTravelsEndDate}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,20,20,20"/>
             <Button x:Name="CreateTravel" Command="{x:Bind Path=vm.CreateTravelCommand}" Content="Create Travel" Margin="20,20,20,20" HorizontalAlignment="Stretch" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" AllowDrop="True" FocusVisualPrimaryBrush="{x:Null}" Margin="10,10,10,10" Grid.Column="1" Padding="0,0,0,10">
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/Assets/main.jpg"/>
-            </StackPanel.Background>
+        <StackPanel Orientation="Horizontal" AllowDrop="True" FocusVisualPrimaryBrush="{x:Null}" Margin="0,0,0,0" Grid.Column="1" Padding="0,0,0,10">
             <TextBlock x:Name="ErrorText" Text="{x:Bind Mode=OneWay, Path=vm.ErrorMessage}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
-            <GridView x:Name="TravelsGridView" ItemsSource="{x:Bind Mode=TwoWay, Path=vm.TravelList}" IsItemClickEnabled="True" ItemClick="TravelsGridView_ItemClick" Margin="20,20,20,20" FocusVisualPrimaryBrush="White" Background="#4C89F9FF" HorizontalAlignment="Stretch">
-                <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Travel">
-                        <StackPanel Margin="20,20,20,20">
-                            <TextBlock x:Name="TravelName" FontSize="20" Text="{x:Bind Path=Name}" TextAlignment="Center"/>
-                            <TextBlock x:Name ="TravelStart" FontSize="15" Text="{x:Bind Path=GetStringStartDate()}" TextAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
         </StackPanel>
 
         <ContentDialog x:Name="deleteTravelDialog"

@@ -11,63 +11,26 @@
     <Page.DataContext>
         <viewmodel:RegisterViewModel x:Name="vm"></viewmodel:RegisterViewModel>
     </Page.DataContext>
-    <Grid FocusVisualPrimaryBrush="White" x:Name="grid" Background="#FF004589">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Desktop">
-                    <VisualState.Setters>
-                        <Setter Target="stackPanel.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,0,990,267</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel.(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Value="0.996"/>
-                        <Setter Target="stackPanel.(UIElement.RenderTransform).(CompositeTransform.SkewY)" Value="0.226"/>
-                        <Setter Target="stackPanel.(UIElement.UseLayoutRounding)" Value="False"/>
-                        <Setter Target="EmailTextbox.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="UsernameTextbox.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="PasswordBox.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="RepeatPasswordBox.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="RegisterButton.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="RegisterButton.(FrameworkElement.HorizontalAlignment)" Value="Stretch"/>
-                        <Setter Target="textBlock.(TextBlock.FontFamily)" Value="Brush Script MT"/>
-                        <Setter Target="textBlock.(TextBlock.FontSize)" Value="72"/>
-                        <Setter Target="EmailTextbox.(Control.FontSize)" Value="24"/>
-                        <Setter Target="UsernameTextbox.(Control.FontSize)" Value="24"/>
-                        <Setter Target="PasswordBox.(Control.FontSize)" Value="24"/>
-                        <Setter Target="RepeatPasswordBox.(Control.FontSize)" Value="24"/>
-                        <Setter Target="RegisterButton.(Control.FontSize)" Value="24"/>
-                        <Setter Target="hyperlinkButton.(Control.FontSize)" Value="36"/>
-                        <Setter Target="grid.(FrameworkElement.FocusVisualPrimaryBrush)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FFFA7171"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel.(FrameworkElement.FocusVisualPrimaryBrush)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF8AA29E"/>
-                            </Setter.Value>
-                        </Setter>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" MinWindowHeight="800"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <StackPanel x:Name="stackPanel" Background="#FFD8EBFF" RenderTransformOrigin="0.5,0.5" d:LayoutRounding="Auto" FocusVisualPrimaryBrush="White">
+    <Grid FocusVisualPrimaryBrush="White" x:Name="grid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/main.jpg"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="stackPanel" Background="#FFD8EBFF" RenderTransformOrigin="0.5,0.5" d:LayoutRounding="Auto" FocusVisualPrimaryBrush="White" Margin="0,0,990,6">
             <StackPanel.RenderTransform>
                 <CompositeTransform/>
             </StackPanel.RenderTransform>
-            <TextBlock x:Name="textBlock" Text="Travel List App" HorizontalAlignment="Center" Margin="70" FontSize="40"/>
-            <TextBox x:Name="EmailTextbox" Text="{x:Bind vm.Email,Mode=TwoWay}"  PlaceholderText="Email" Margin="0,20,0,10"  Width="150" Foreground="Black" />
-            <TextBox x:Name="UsernameTextbox" Text="{x:Bind vm.Username,Mode=TwoWay}"  PlaceholderText="Username" Margin="0,20,0,10"  Width="150" Foreground="Black" />
-            <PasswordBox x:Name="PasswordBox" Password="{x:Bind vm.Password,Mode=TwoWay}" PlaceholderText="Password" Margin="0,10,0,10"  Width="150" Foreground="Black" />
-            <PasswordBox x:Name="RepeatPasswordBox" Password="{x:Bind vm.RepeatPassword,Mode=TwoWay}" PlaceholderText="Confirm Password" Margin="0,10,0,15"  Width="150" Foreground="Black" />
-            <Button x:Name="RegisterButton" Content="Register" Command="{x:Bind vm.RegisterCommand}" HorizontalAlignment="Center" Width="90" Margin="0,0,0,10" Foreground="Black"/>
-            <HyperlinkButton x:Name="hyperlinkButton" Content="Alredy have an account?" HorizontalAlignment="Center"/>
-            <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage,Mode=OneWay}" FontSize="12" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="30,5,0,10"/>
-            <TextBlock x:Name="SuccessText" Text="{x:Bind vm.SuccesMessage,Mode=OneWay}" FontSize="12" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Green" Margin="30,5,0,10"/>
+            <TextBlock x:Name="textBlock" Text="Travel List App" HorizontalAlignment="Center" Margin="30,70,30,70" FontSize="72" FontFamily="Brush Script MT"/>
+            <TextBox x:Name="EmailTextbox" Text="{x:Bind Mode=TwoWay, Path=vm.Email}"  PlaceholderText="Email" Margin="30,20,30,10" Foreground="Black" />
+            <TextBox x:Name="UsernameTextbox" Text="{x:Bind Mode=TwoWay, Path=vm.Username}"  PlaceholderText="Username" Margin="30,20,30,10" Foreground="Black" />
+            <PasswordBox x:Name="PasswordBox" Password="{x:Bind Mode=TwoWay, Path=vm.Password}" PlaceholderText="Password" Margin="30,10,30,10" Foreground="Black" />
+            <PasswordBox x:Name="RepeatPasswordBox" Password="{x:Bind Mode=TwoWay, Path=vm.RepeatPassword}" PlaceholderText="Confirm Password" Margin="30,10,30,15" Foreground="Black" />
+            <Button x:Name="RegisterButton" Content="Register" Command="{x:Bind Path=vm.RegisterCommand}" HorizontalAlignment="Stretch" Margin="30,0,30,10" Foreground="Black"/>
+            <HyperlinkButton x:Name="hyperlinkButton" Content="Alredy have an account?" HorizontalAlignment="Center" Margin="30,0,30,0"/>
+            <TextBlock x:Name="ErrorText" Text="{x:Bind Mode=OneWay, Path=vm.ErrorMessage}" FontSize="12" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="30,5,0,10"/>
+            <TextBlock x:Name="SuccessText" Text="{x:Bind Mode=OneWay, Path=vm.SuccesMessage}" FontSize="12" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Green" Margin="30,5,0,10"/>
         </StackPanel>
     </Grid>
 </Page>
