@@ -15,10 +15,10 @@ namespace TravelListApp.Model
         
         public override bool Equals(object obj)
         {
-            // Check for null  
+            // Checked for null  
             if (ReferenceEquals(obj, null))
                 return false;
-            // Check for same reference  
+            // Checked for same reference  
             if (ReferenceEquals(this, obj))
                 return true;
             var task = (Task)obj;

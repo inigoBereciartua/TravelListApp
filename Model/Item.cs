@@ -10,15 +10,15 @@ namespace TravelListApp.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int AmountOfItem { get; set; }
-        public bool Check { get; set; }
+        public int Count { get; set; }
+        public bool Checked { get; set; }
 
         public override bool Equals(object obj)
         {
-            // Check for null  
+            // Checked for null  
             if (ReferenceEquals(obj, null))
                 return false;
-            // Check for same reference  
+            // Checked for same reference  
             if (ReferenceEquals(this, obj))
                 return true;
             var item = (Item)obj;

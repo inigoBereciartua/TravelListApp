@@ -29,10 +29,10 @@ namespace TravelListApp.Model
 
         public override bool Equals(object obj)
         {
-            // Check for null  
+            // Checked for null  
             if (ReferenceEquals(obj, null))
                 return false;
-            // Check for same reference  
+            // Checked for same reference  
             if (ReferenceEquals(this, obj))
                 return true;
             var travel = (Travel)obj;
@@ -52,8 +52,8 @@ namespace TravelListApp.Model
             List<Item> items = new List<Item>();
 
             items.ForEach(delegate(Item item){
-                item.AmountOfItem = 1;
-                item.Check = false;
+                item.Count = 1;
+                item.Checked = false;
             });
                         
             List<Travel> travelList = new List<Travel>();            

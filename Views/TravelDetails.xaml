@@ -59,8 +59,8 @@
                                     <DataTemplate x:DataType="data:Item">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,10,0" ></TextBlock>
-                                            <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind AmountOfItem}" Margin="0,0,15,0" ></TextBlock>
-                                            <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Check}" Click="CheckItem_Click"/>
+                                            <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind Count}" Margin="0,0,15,0" ></TextBlock>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Checked}" Click="CheckItem_Click"/>
                                             <AppBarButton x:Name="DeleteItem" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteItem_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
@@ -75,7 +75,7 @@
                                     <DataTemplate x:DataType="data:Task">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Description}" Margin="0,0,10,0" />
-                                            <AppBarButton Visibility="Visible" Icon="Accept" Label="Check" Click="CheckTask_Click"/>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Checked}" Click="CheckTask_Click"/>
                                             <AppBarButton x:Name="DeleteTask" Visibility="Visible" Icon="Delete" Label="Delete"  Click="DeleteTask_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
