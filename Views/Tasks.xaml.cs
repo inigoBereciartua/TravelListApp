@@ -32,51 +32,11 @@ namespace TravelListApp.Views
             //TasksList.ItemsSource = TasksCollection;
         }
 
-        private void CreateTask_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorText.Text = "";
-            if (NewTaskName.Text == "")
-            {
-                ErrorText.Text = "Task's name can't be empty";
-            }
-            else if (NameOfTaskIsInUse(NewTaskName.Text))
-            {
-                ErrorText.Text = "That task name is already in use";
-            }
-            else
-            {
-                TasksCollection.Add(new Task { Description = NewTaskName.Text });
-                //TODO: Call backend to create Item
-            }
-        }
-
-        private bool NameOfTaskIsInUse(string text)
-        {
-            foreach(var task in TasksCollection)
-            {
-                if(task.Description == text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void TasksList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             var task = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteTaskDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                var vm = (TasksViewModel)this.DataContext;
-                vm.RemoveTaskAsync((Task)task);
-                //TODO: Call backend to delete Task
-            }
+            var vm = (TasksViewModel)this.DataContext;
+            vm.RemoveTaskAsync((Task)task);
         }
     }
 }

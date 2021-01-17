@@ -72,7 +72,7 @@ namespace TravelListApp.ViewModel
             {
                 var values = new Dictionary<string, string>
                 {
-                    { "Description", NewItemName}                    
+                    { "Name", NewItemName}                    
                 };
                 var content = new FormUrlEncodedContent(values);                
                 var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Item", content);
