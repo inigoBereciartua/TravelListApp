@@ -13,7 +13,7 @@
     <Page.DataContext>
         <viewmodel:AddCategoriesToTravelViewModel x:Name="vm"/>
     </Page.DataContext>
-    
+
     <Grid>
         <StackPanel>
             <StackPanel>
@@ -34,14 +34,13 @@
                         <DataTemplate x:DataType="data:Item">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
-                                <TextBox Header="Amount" Text="{x:Bind Count, Mode=TwoWay}"/>
                                 <AppBarButton Visibility="Visible" Icon="Save" Label="Save" Click="AppBarButton_ClickAsync"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
-            
+
             <ContentDialog x:Name="saveItemDialog"
                        PrimaryButtonText="Save"
                        CloseButtonText="Cancel" Background="#FF004589" d:IsHidden="True">
@@ -50,9 +49,7 @@
                         <TextBlock Text="Save item"/>
                     </DataTemplate>
                 </ContentDialog.TitleTemplate>
-                <TextBlock>
-                Are you sure you want to store the item?
-                </TextBlock>
+                <TextBox Header="Add Amount" Text="{x:Bind vm.Amount, Mode=TwoWay}"/>
             </ContentDialog>
             
         </StackPanel>

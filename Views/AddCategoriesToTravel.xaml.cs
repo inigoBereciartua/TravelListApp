@@ -44,11 +44,15 @@ namespace TravelListApp.Views
             this.Frame.Navigate(typeof(TravelDetails), this.Travel);
         }
 
-        private void AppBarButton_ClickAsync(object sender, RoutedEventArgs e)
+        private async void AppBarButton_ClickAsync(object sender, RoutedEventArgs e)
         {
-            var item = (sender as AppBarButton).DataContext;
-            var vm = (AddCategoriesToTravelViewModel)this.DataContext;
-            //vm.RemoveItem((Item)item);
+            ContentDialogResult result = await saveItemDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var item = (sender as AppBarButton).DataContext;
+                var vm = (AddCategoriesToTravelViewModel)this.DataContext;
+                await vm.saveItemAsync((Item)item);
+            }
         }
     }
 }
