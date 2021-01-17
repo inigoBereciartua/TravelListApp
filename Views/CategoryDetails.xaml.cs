@@ -51,14 +51,14 @@ namespace TravelListApp.Views
 
             var item = (sender as AppBarButton).DataContext;
             var vm = (CategoryDetailsViewModel)this.DataContext;
-            vm.RemoveItem(item);
+            vm.RemoveItem((Item)item);
         }
 
         private async void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
             var task = (sender as AppBarButton).DataContext;
             var vm = (CategoryDetailsViewModel)this.DataContext;
-            vm.RemoveTask(task);
+            vm.RemoveTask((Model.Task)task);
         }
 
         private void BackArrowButton_Click(object sender, RoutedEventArgs e)

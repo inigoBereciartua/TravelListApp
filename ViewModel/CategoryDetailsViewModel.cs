@@ -54,13 +54,13 @@ namespace TravelListApp.ViewModel
 
         private async Task<ObservableCollection<Item>> GetCategoryItems()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/"+Category.id+"/Items");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + Category.id + "/Items");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));
         }
         private async Task<ObservableCollection<Model.Task>> GetCategoryTasks()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/"+ Category.id + "/Tasks");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + Category.id + "/Tasks");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
@@ -96,27 +96,51 @@ namespace TravelListApp.ViewModel
 
         }
 
-        internal void AddTaskToCategory()
+        internal async void AddTaskToCategory()
         {
             //Add task to CategoryTasks, Remove the task from TaskList and add Task to Category.Task on the backend
             var task = SelectedTask;
-            CategoryTasks.Add(task);
-            TaskList.Remove(task);            
             //TODO: Call to the backend so that the task is added to category
 
+            var values = new Dictionary<string, string>
+                {
+                    { "CategorylId", Category.id.ToString()},
+                    { "TaskId", task.Id.ToString()}
+                };
+            var content = new System.Net.Http.FormUrlEncodedContent(values);
+            var result = await Client.HttpClient.PutAsync("http://localhost:65177/api/Category/Task", content);
+
+            if (result.StatusCode == HttpStatusCode.OK)
+            {
+                CategoryTasks.Add(task);
+                TaskList.Remove(task);
+            }
+
         }
 
-        internal void RemoveItem(object item)
+        internal async void RemoveItem(Item item)
         {
             //Add item to ItemList, remove item from CategoryItem and remove item from Category.Item on the backend
-            ItemList.Add((Item)item);
-            CategoryItems.Remove((Item)item);
+            
+
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/" + Category.id.ToString() + "/Item/" + item.Id.ToString());
+            if (result.IsSuccessStatusCode)
+            {
+                ItemList.Add((Item)item);
+                CategoryItems.Remove((Item)item);
+            }
+
         }
-        internal void RemoveTask(object task)
+        internal async void RemoveTask(Model.Task task)
         {
             //Add task to TaskList, remove task from CategoryTask and remove task from Category.Task on the backend
-            TaskList.Add((Model.Task)task);
+            
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/" + Category.id.ToString() + "/Task/" + task.Id.ToString());
+            if (result.IsSuccessStatusCode)
+            {
+                TaskList.Add((Model.Task)task);
             CategoryTasks.Remove((Model.Task)task);
+            }
         }
 
         public void LoadData()
