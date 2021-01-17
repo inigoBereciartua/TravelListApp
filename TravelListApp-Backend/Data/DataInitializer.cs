@@ -49,6 +49,7 @@ namespace TravelListApp_Backend.Data
                 travel.Iternary.Add(activity);
                 travel.Categories.Add(testCategory1);
                 travel.Categories.Add(testCategory2);
+                this._context.SaveChanges();
 
                 TravelItem travelItem1 = new TravelItem(travel, pet, 2);
                 TravelItem travelItem2 = new TravelItem(travel, shoes, 3);
