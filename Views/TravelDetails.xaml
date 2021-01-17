@@ -13,136 +13,99 @@
         <viewmodel:TravelDetailsViewModel x:Name="vm"/>
     </Page.DataContext>
     <ScrollViewer HorizontalScrollMode="Disabled">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Laptop">
-                    <VisualState.Setters>
-                        <Setter Target="stackPanel.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF9F4B4B"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel1.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF6C2828"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel2.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF6C2828"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel3.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF6C2828"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel4.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF6C2828"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="grid.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FFD8EBFF"/>
-                            </Setter.Value>
-                        </Setter>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1920" MinWindowHeight="1080"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="Tablet">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1280" MinWindowHeight="800"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid x:Name="grid" Margin="5,5,5,30" Background="Black">
+        <Grid Margin="5,5,5,30">
+            <StackPanel>
+                <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
+                <TextBlock Text="{x:Bind Travel.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30"  HorizontalAlignment="Left"  Margin="20,0,0,10" />
 
-            <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
-            <TextBlock Text="{x:Bind Path=Travel.Name}" VerticalAlignment="Top" Height="45" FontSize="30"  HorizontalAlignment="Left"  Margin="50,0,0,0" />
-            <StackPanel x:Name="stackPanel1" Orientation="Horizontal" Background="Black" Grid.Row="0" Margin="0,98,0,28">
-                <TextBlock Text="Start date:" Margin="20,0,20,0"/>
-                <TextBlock Text="{x:Bind Path=Travel.GetStringStartDate()}" Margin="20,0,20,0" />
-                <TextBlock Text="End date:" Margin="20,0,20,0"/>
-                <TextBlock Text="{x:Bind Path=Travel.GetStringEndDate()}" Margin="20,0,20,0" />
-            </StackPanel>
-            <StackPanel x:Name="stackPanel2" VerticalAlignment="Center" Background="Black" Grid.Row="1">
-                <TextBlock Text="Categories" Margin="0,20,0,19" HorizontalAlignment="Center"/>
-                <ListView x:Name="CategoriesList" Margin="10, 0, 0, 0" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Category">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind Path=Name}" HorizontalAlignment="Left" Margin="0,0,150, 0"/>
-                                <AppBarButton x:Name="DeleteCategory" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteCategory_Click" />
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="20,0,0,10" >
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Text="Start date:" Margin="0,0,5,0"/>
+                                <TextBlock Text="{x:Bind Travel.GetStringStartDate()}" />
                             </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                
-                <Button x:Name="AddCategories" Content="Add Category" HorizontalAlignment="Stretch" Click="AddCategories_Click" Margin="0,20,0,20"/>
-            </StackPanel>
-            <Grid Grid.Row="2" Margin="0,20,0,20" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="End date:" Margin="0,0,5,0"/>
+                                <TextBlock Text="{x:Bind Travel.GetStringEndDate()}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel  HorizontalAlignment="Center" Width="300" Margin="0,0,0,20" >
+                        <TextBlock Text="Categories" Margin="20,0,0,0"/>
+                        <ListView x:Name="CategoriesList" Margin="10, 0, 0, 0" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="data:Category">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind Name}" HorizontalAlignment="Left" Margin="0,0,150, 0"></TextBlock>
+                                        <AppBarButton x:Name="DeleteCategory" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteCategory_Click" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button x:Name="AddCategories" Content="Add Category" HorizontalAlignment="Left" Click="AddCategories_Click" Margin="20, 10, 0, 0"/>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="0" >
-                    <TextBlock Text="Items" Margin="0,0,0,0" HorizontalAlignment="Center"/>
-                    <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind Path=vm.ItemsInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" >
+                            <TextBlock Text="Items" Margin="20,0,0,0"/>
+                            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.ItemsInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="data:Item">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,10,0" ></TextBlock>
+                                            <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind Count}" Margin="0,0,15,0" ></TextBlock>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Checked}" Click="CheckItem_Click"/>
+                                            <AppBarButton x:Name="DeleteItem" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteItem_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button x:Name="AddItems" Content="Add Items" HorizontalAlignment="Left" Click="AddItems_Click" Margin="20, 10, 0, 0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" >
+                            <TextBlock Text="Tasks" Margin="20,0,0,0"/>
+                            <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.TasksInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="data:Task">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Description}" Margin="0,0,10,0" />
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Checked}" Click="CheckTask_Click"/>
+                                            <AppBarButton x:Name="DeleteTask" Visibility="Visible" Icon="Delete" Label="Delete"  Click="DeleteTask_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Left" Click="AddTasks_Click" Margin="20, 10, 0, 0"/>
+                        </StackPanel>
+                    </Grid>
+                    <ListView Header="Itinerary" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.ActivitiesList}" x:DefaultBindMode="OneWay" HorizontalAlignment="Center">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Item">
+                            <DataTemplate x:DataType="data:Activity">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Path=Name}" Margin="0,0,10,0" />
-                                    <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind Path=Count}" Margin="0,0,15,0" />
-                                    <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Path=Checked}" Click="CheckItem_Click"/>
-                                    <AppBarButton x:Name="DeleteItem" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteItem_Click"/>
+                                    <TextBlock Text="{x:Bind Description}" Width="300" Margin="10" VerticalAlignment="Center" />
+                                    <TextBlock Text="{x:Bind Start.Day}" VerticalAlignment="Center" />
+                                    <TextBlock Text="/" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Start.Month}" VerticalAlignment="Center" />
+                                    <TextBlock Text="/" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Start.Year}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <AppBarButton x:Name="DeleteActivity" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteActivity_Click"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button x:Name="AddItems" Content="Add Items" HorizontalAlignment="Stretch" Click="AddItems_Click" Margin="0,20,0,20"/>
+                    <Button x:Name="AddActivity" Content="Add Activity" HorizontalAlignment="Center" Click="AddActivity_Click" Margin="20, 10, 0, 0"/>
+
                 </StackPanel>
-                <StackPanel Grid.Column="1" >
-                    <TextBlock Text="Tasks" Margin="0,0,0,0" HorizontalAlignment="Center"/>
-                    <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind Path=vm.TasksInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Task">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Path=Description}" Margin="0,0,10,0" />
-                                    <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Path=Checked}" Click="CheckTask_Click"/>
-                                    <AppBarButton x:Name="DeleteTask" Visibility="Visible" Icon="Delete" Label="Delete"  Click="DeleteTask_Click"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Button x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Stretch" Click="AddTasks_Click" Margin="-7,20,0,20"/>
-                </StackPanel>
-            </Grid>
-            <StackPanel x:Name="stackPanel4"  Background="Black" Grid.Row="3" Margin="0,20,0,0">
-                <ListView Header="Itinerary" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.ActivitiesList}" x:DefaultBindMode="OneWay" HorizontalAlignment="Center">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="data:Activity">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{x:Bind Description}" Width="300" Margin="10" VerticalAlignment="Center" />
-                                <TextBlock Text="{x:Bind Start.Day}" VerticalAlignment="Center" />
-                                <TextBlock Text="/" VerticalAlignment="Center"/>
-                                <TextBlock Text="{x:Bind Start.Month}" VerticalAlignment="Center" />
-                                <TextBlock Text="/" VerticalAlignment="Center"/>
-                                <TextBlock Text="{x:Bind Start.Year}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                <AppBarButton x:Name="DeleteActivity" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteActivity_Click"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button x:Name="AddActivity" Content="Add Activity" HorizontalAlignment="Center" Click="AddActivity_Click" Margin="20, 10, 0, 0"/>
             </StackPanel>
             <ContentDialog x:Name="deleteItemDialog"
                            PrimaryButtonText="Delete"
-                           CloseButtonText="Cancel" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5">
+                           CloseButtonText="Cancel">
                 <ContentDialog.TitleTemplate>
                     <DataTemplate>
                         <TextBlock Text="Delete item"/>
@@ -155,7 +118,7 @@
 
             <ContentDialog x:Name="deleteCategoryDialog"
                            PrimaryButtonText="Delete"
-                           CloseButtonText="Cancel" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5">
+                           CloseButtonText="Cancel">
                 <ContentDialog.TitleTemplate>
                     <DataTemplate>
                         <TextBlock Text="Delete category"/>
@@ -168,7 +131,7 @@
 
             <ContentDialog x:Name="deleteActivityDialog"
                            PrimaryButtonText="Delete"
-                           CloseButtonText="Cancel" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5">
+                           CloseButtonText="Cancel">
                 <ContentDialog.TitleTemplate>
                     <DataTemplate>
                         <TextBlock Text="Delete activity"/>
@@ -181,7 +144,7 @@
 
             <ContentDialog x:Name="addItemDialog"
                            PrimaryButtonText="Add"
-                           CloseButtonText="Cancel" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5">
+                           CloseButtonText="Cancel">
                 <StackPanel>
                     <TextBlock Text="Select the item you want to add and input the amount" Margin="0,0,0,10"/>
                     <ComboBox x:Name="itemToAdd" ItemsSource="{x:Bind vm.ItemsNotInTravelList}" SelectedItem="{x:Bind vm.ItemToAdd, Mode=TwoWay}" DisplayMemberPath="Name"/>
@@ -191,7 +154,7 @@
 
             <ContentDialog x:Name="addTaskDialog"
                            PrimaryButtonText="Add"
-                           CloseButtonText="Cancel" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5">
+                           CloseButtonText="Cancel">
                 <StackPanel>
                     <TextBlock Text="Select the task you want to add and input the amount" Margin="0,0,0,10"/>
                     <ComboBox x:Name="taskToAdd" ItemsSource="{x:Bind vm.TasksNotInTravelList}" SelectedItem="{x:Bind vm.TaskToAdd, Mode=TwoWay}" DisplayMemberPath="Description"/>
@@ -199,7 +162,7 @@
             </ContentDialog>
             <ContentDialog x:Name="addActivityDialog"
                            PrimaryButtonText="Add"
-                           CloseButtonText="Cancel" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5">
+                           CloseButtonText="Cancel">
                 <StackPanel>
                     <TextBlock Text="Introduce the description and the date of the activity you want to add"/>
                     <TextBox Text="{x:Bind vm.NewActivityDescription, Mode=TwoWay}"/>
@@ -207,7 +170,7 @@
                 </StackPanel>
             </ContentDialog>
             <ContentDialog x:Name="errorsDialog"
-                           PrimaryButtonText="Accept" d:IsHidden="True" Margin="0,0,0,131" Grid.RowSpan="5"
+                           PrimaryButtonText="Accept"
                 >
                 <TextBlock x:Name="errorMessage" VerticalAlignment="Center" TextAlignment="Center"/>
             </ContentDialog>
