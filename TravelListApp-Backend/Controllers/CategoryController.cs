@@ -8,6 +8,7 @@ using TravelListApp_Backend.Models.DAO;
 using TravelListApp_Backend.DTO_s;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Task = TravelListApp_Backend.Models.Task;
 
 namespace TravelListApp_Backend.Controllers
 {
@@ -17,10 +18,12 @@ namespace TravelListApp_Backend.Controllers
         private readonly ITravelerRepository _userRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IItemRepository _itemRepository;
+        private readonly ITaskRepository _taskRepository;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public CategoryController(ICategoryRepository categoryRepository, ITravelerRepository userRepository, IItemRepository itemRepository, UserManager<ApplicationUser> userManager)
+        public CategoryController(ITaskRepository taskRepository,ICategoryRepository categoryRepository, ITravelerRepository userRepository, IItemRepository itemRepository, UserManager<ApplicationUser> userManager)
         {
+            this._taskRepository = taskRepository;
             this._categoryRepository = categoryRepository;
             this._userRepository = userRepository;
             this._itemRepository = itemRepository;
@@ -101,6 +104,40 @@ namespace TravelListApp_Backend.Controllers
             return null;
         }
 
+        //Get the items for the category for the current user
+        [HttpGet("{id}/Tasks")]
+        public async Task<List<TaskDTO>> GetCategoryTask(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                //Get user account 
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Category category = this._categoryRepository.getItem(id);
+
+                //Check if this user has the specified category     
+                if (category != null && this._userRepository.getTraveler(useraccount).Categories.Contains(category))
+                {
+                    List<Task> tasks = this._categoryRepository.getItem(id).Task.ToList();
+
+                    if (tasks != null)
+                    {
+                        List<TaskDTO> dto = new List<TaskDTO>();
+                        foreach (var item in tasks)
+                        {
+                            dto.Add(new TaskDTO() { Id = item.Id, Description = item.Description, Checked = item.Checked });
+                        }
+                        Response.StatusCode = 200;
+                        return dto;
+                    }
+                }
+                Response.StatusCode = 204;
+                return null;
+            }
+
+            Response.StatusCode = 401;
+            return null;
+        }
+
         //Add the item for the category for the connected user
         [HttpPut("Item")]
         public async Task<IActionResult> AddItem(CategoryItemDTO categoryItemDTO)
@@ -117,6 +154,31 @@ namespace TravelListApp_Backend.Controllers
                     if (item != null)
                     {
                         category.Items.Add(item);
+                        this._categoryRepository.SaveChanges();
+                        return Ok();
+                    }
+                }
+                return NotFound();
+            }
+            return Unauthorized();
+        }
+
+        //Add the item for the category for the connected user
+        [HttpPut("Task")]
+        public async Task<IActionResult> AddTask(CategoryTaskDTO categoryTaskDTO)
+        {
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
+            {
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == categoryTaskDTO.CategorylId);
+                if (category != null)
+                {
+                    Task item = this._taskRepository.GetTask(categoryTaskDTO.TaskId);
+                    if (item != null)
+                    {
+                        category.Task.Add(item);
                         this._categoryRepository.SaveChanges();
                         return Ok();
                     }
