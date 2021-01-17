@@ -9,6 +9,7 @@
     xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
     <Page.DataContext>
         <viewmodel:ItemsViewModel x:Name="vm"/>
     </Page.DataContext>
@@ -25,7 +26,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Item">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
+                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name, Mode=OneWay}" Margin="0,0,30,0" ></TextBlock>
                             <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_ClickAsync"/>
                             <!--<AppBarButton Visibility="Visible" Icon="Delete" Command="{Binding DataContext.RemoveItemCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}" Label="Delete" />-->
                         </StackPanel>

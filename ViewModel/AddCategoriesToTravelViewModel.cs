@@ -14,8 +14,13 @@ namespace TravelListApp.ViewModel
     class AddCategoriesToTravelViewModel
     {
         // This might need to get the selected travel so that we can call it later to add the categories
+        public Category SelectedCategory { get; set; }
+        public Travel Travel;
         public AddCategoriesToTravelCommand AddCategoriesToTravelCommand { get; set; }
         public ObservableCollection<Category> CategoryList { get; set; }
+        public ObservableCollection<Category> TravelCategories { get; set; }
+        public ObservableCollection<Item> ItemsList { get; set; }
+        public ObservableCollection<Item> TravelItems { get; set; }
         public string _errormessage;
         public string ErrorMessage
         {
@@ -32,9 +37,29 @@ namespace TravelListApp.ViewModel
 
         private async Task<ObservableCollection<Category>> GetCategorys()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Category>(JsonConvert.DeserializeObject<List<Category>>(await result.Content.ReadAsStringAsync()));
+        }
+
+        private async Task<ObservableCollection<Category>> GetTravelCategorys()
+        {
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel/" + Travel.id.ToString() + "/Categories");
+            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+            return new ObservableCollection<Category>(JsonConvert.DeserializeObject<List<Category>>(await result.Content.ReadAsStringAsync()));
+        }
+
+        private async Task<ObservableCollection<Item>> GetCategoryItems()
+        {
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + SelectedCategory.id + "/Items");
+            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+            return new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));
+        }
+        private async Task<ObservableCollection<Item>> GetTravelItems()
+        {
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel/" + Travel.id.ToString() + "/Items");
+            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+            return new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));
         }
 
 
@@ -47,7 +72,22 @@ namespace TravelListApp.ViewModel
 
         internal void AddCategories()
         {
-            throw new NotImplementedException();
+            if(SelectedCategory != null)
+            {
+                ItemsList = System.Threading.Tasks.Task.Run(() => GetCategoryItems()).Result;
+                TravelItems = System.Threading.Tasks.Task.Run(() => GetTravelItems()).Result;
+                ItemsList = new ObservableCollection<Item>(ItemsList.Where(e => !TravelItems.Contains(e)).ToList());
+                Console.WriteLine("");
+            }
+        }
+
+        public void LoadData()
+        {
+            CategoryList = System.Threading.Tasks.Task.Run(() => GetCategorys()).Result;
+            TravelCategories = System.Threading.Tasks.Task.Run(() => GetTravelCategorys()).Result;
+            TravelCategories = new ObservableCollection<Category>(TravelCategories.Where(e => !CategoryList.Contains(e)).ToList());
+            ItemsList = new ObservableCollection<Item>();
+            Console.WriteLine("");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

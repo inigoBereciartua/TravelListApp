@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TravelListApp.Model;
+using TravelListApp.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -32,32 +33,22 @@ namespace TravelListApp.Views
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: Call to backend to get all the items
-            this.Travel = (Travel)e.Parameter;
-            List<Category> categoryList = CategoriesManager.GetCategories();
-            categoryList.ForEach(delegate (Category category)
-            {
-                if (!Travel.Categories.Contains(category))
-                {
-                    CategoriesOfTravel.Add(category);
-                }
-            });
-            CategoryList.ItemsSource = CategoriesOfTravel;
+            var vm = (AddCategoriesToTravelViewModel)this.DataContext;
+            vm.Travel = (Travel)e.Parameter;
+            vm.LoadData();
             base.OnNavigatedTo(e);
-        }
-
-        private void AddCategories_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (Category category in CategoryList.SelectedItems.ToArray())
-            {
-                CategoriesOfTravel.Remove(category);
-                //TODO: Add call to the backend to add category to a travel
-            }
         }
 
         private void BackArrowButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(TravelDetails), this.Travel);
+        }
+
+        private void AppBarButton_ClickAsync(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as AppBarButton).DataContext;
+            var vm = (ItemsViewModel)this.DataContext;
+            vm.RemoveItem((Item)item);
         }
     }
 }
