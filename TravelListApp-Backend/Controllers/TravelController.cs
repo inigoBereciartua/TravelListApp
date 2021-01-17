@@ -45,7 +45,7 @@ namespace TravelListApp_Backend.Controllers
                 List<TravelDTO> dto = new List<TravelDTO>();
                 foreach (var item in travels)
                 {
-                    dto.Add(new TravelDTO() { Id = item.Id, Name = item.Name });
+                    dto.Add(new TravelDTO() { Id = item.Id, Name = item.Name , Start = item.Start, End = item.End});
                 }
                 Response.StatusCode = 200;
                 return dto;

@@ -15,6 +15,9 @@
     </Page.DataContext>
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/main.jpg"/>
+        </Grid.Background>
         <StackPanel>
             <StackPanel>
 

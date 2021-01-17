@@ -188,7 +188,7 @@ namespace TravelListApp.ViewModel
             }else if (NewActivityStart == null)
             {
                 return "Activity's daycan't be empty";
-            }else if (NewActivityStart < Travel.StartDate || NewActivityStart > Travel.EndDate)
+            }else if (NewActivityStart < Travel.Start || NewActivityStart > Travel.End)
             {
                 return "The activity day has to be one day between the end date and the start date of the travel";
             }
