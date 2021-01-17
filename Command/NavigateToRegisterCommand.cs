@@ -10,14 +10,14 @@ using Windows.UI.Xaml.Controls;
 
 namespace TravelListApp.Command
 {
-    public class LoginCommand : ICommand
+    public class NavigateToRegisterCommand : ICommand
     {
-        private LoginViewModel _viewModel;
-
-        public LoginCommand(LoginViewModel viewModel)
+        public NavigateToRegisterCommand(LoginViewModel viewmodel)
         {
-            _viewModel = viewModel;
+            _viewModel = viewmodel;
         }
+
+        private LoginViewModel _viewModel { get; }
 
         public event EventHandler CanExecuteChanged;
 
@@ -29,12 +29,7 @@ namespace TravelListApp.Command
         public async void Execute(object parameter)
         {
             Frame frame = (Frame)parameter;
-         
-            var logged = await _viewModel.Login();
-            if (logged)
-            {
-                frame.Navigate(typeof(NavView));
-            }
+            frame.Navigate(typeof(Register));
         }
     }
 }

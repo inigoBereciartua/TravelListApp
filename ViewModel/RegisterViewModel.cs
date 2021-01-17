@@ -16,6 +16,7 @@ namespace TravelListApp.ViewModel
    public class RegisterViewModel: INotifyPropertyChanged
     {        
         public  RegisterCommand RegisterCommand { get; set; }
+        public NavigateToLoginCommand NavigateToLoginCommand { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -53,6 +54,8 @@ namespace TravelListApp.ViewModel
             ErrorMessage = "";
             SuccesMessage = "";
             RegisterCommand = new RegisterCommand(this);
+            NavigateToLoginCommand = new NavigateToLoginCommand(this);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -101,7 +104,7 @@ namespace TravelListApp.ViewModel
                 }
                 else
                 {
-                    ErrorMessage = "404";
+                    ErrorMessage = "An error has occurred";
                 }
             }
         }

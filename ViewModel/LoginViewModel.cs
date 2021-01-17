@@ -13,11 +13,12 @@ using Windows.UI.Xaml;
 
 namespace TravelListApp.ViewModel
 {
-    class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : INotifyPropertyChanged
     {
         public string Username { get; set; }
         public string Password { get; set; }
         public LoginCommand LoginCommand { get; set; }
+        public NavigateToRegisterCommand NavigateCommand { get; set; }
 
         private string _errormessage;
         public string ErrorMessage {
@@ -46,6 +47,7 @@ namespace TravelListApp.ViewModel
             this.Password = "P@ssword1";
             this.ErrorMessage = "";            
             LoginCommand = new LoginCommand(this);
+            NavigateCommand = new NavigateToRegisterCommand(this);
         }
 
         internal async Task<bool> Login()

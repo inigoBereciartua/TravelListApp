@@ -14,7 +14,7 @@ namespace TravelListApp.ViewModel
 {
     class TravelDetailsViewModel
     {
-        public DateTimeOffset NewActivityStart;        
+        public DateTimeOffset NewActivityStart;
         public string NewActivityDescription;
 
         public Travel Travel { get; set; }
@@ -26,6 +26,9 @@ namespace TravelListApp.ViewModel
         public ObservableCollection<Model.Task> TasksNotInTravelList { get; set; }
         public ObservableCollection<Model.Task> TasksInTravelList { get; set; }
         public string Amount;
+        
+
+
         internal async void RemoveActivityAsync(Activity activity)
         {
             var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Travel/" + Travel.id.ToString() + "/Activity/" + activity.Id);
@@ -118,7 +121,7 @@ namespace TravelListApp.ViewModel
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
         
-        internal async System.Threading.Tasks.Task<string> AddItemAsync()
+        internal async Task<string> AddItemAsync()
         {
             if (ItemToAdd == null)
             {
@@ -158,7 +161,7 @@ namespace TravelListApp.ViewModel
                 return "The amount of the item must be a number higher than 0";  
             }
         }
-        internal async System.Threading.Tasks.Task<string> AddTaskAsync()
+        internal async Task<string> AddTaskAsync()
         { 
             if(TaskToAdd != null)
             {
@@ -180,7 +183,7 @@ namespace TravelListApp.ViewModel
             }            
             return "An error has occurred while adding the task to the travel";           
         }        
-        internal async System.Threading.Tasks.Task<string> AddActivity()
+        internal async Task<string> AddActivity()
         {
             if (NewActivityDescription == "")
             {
@@ -222,7 +225,9 @@ namespace TravelListApp.ViewModel
 
             TasksInTravelList = System.Threading.Tasks.Task.Run(() => GetTravelTasks()).Result;
             TasksNotInTravelList = System.Threading.Tasks.Task.Run(() => GetTasks()).Result;
-            TasksNotInTravelList = new ObservableCollection<Model.Task>(TasksNotInTravelList.Where(e => !TasksInTravelList.Contains(e)).ToList());            
+            TasksNotInTravelList = new ObservableCollection<Model.Task>(TasksNotInTravelList.Where(e => !TasksInTravelList.Contains(e)).ToList());
+
+            NewActivityStart = Travel.Start;
         }        
     }
 }
