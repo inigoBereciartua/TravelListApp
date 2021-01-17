@@ -15,7 +15,13 @@
     </Page.DataContext>
     
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/main.jpg"/>
+        </Grid.Background>
         <StackPanel>
+            <StackPanel.Background>
+                <ImageBrush/>
+            </StackPanel.Background>
             <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
             <!--Should I get the Travel from the vm?-->
             <TextBlock Text="{x:Bind Travel.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30"  HorizontalAlignment="Left"  Margin="20,0,0,10" />
