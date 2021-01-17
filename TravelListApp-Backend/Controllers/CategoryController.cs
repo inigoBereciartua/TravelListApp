@@ -31,7 +31,7 @@ namespace TravelListApp_Backend.Controllers
         }
 
         //Create category for the connected user
-        [HttpPost("{categoryName}")]
+        [HttpPost()]
         public async Task<IActionResult> CreateCategory(CategoryDTO categoryDTO)
         {
             //Check if the user is authenticated

@@ -63,15 +63,16 @@ namespace TravelListApp.ViewModel
             {
                 var values = new Dictionary<string, string>
                 {
-                    { "categoryName", NewCategoryName}
+                    { "Name", NewCategoryName}
                 };
                 var content = new FormUrlEncodedContent(values);
                 var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Category", content);
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    CategoriesList.Add(new Category() { Name = NewCategoryName});
+                    CategoriesList.Add(new Category() { Name = NewCategoryName, Id = CategoriesList.Count + 1});
                     CategoriesList = System.Threading.Tasks.Task.Run(() => GetCategories()).Result;
+
                 }
             }
         }
@@ -90,7 +91,7 @@ namespace TravelListApp.ViewModel
 
         internal async System.Threading.Tasks.Task RemoveCategoryAsync(Category category)
         {
-            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/"+category.id);
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/"+category.Id);
             if (result.IsSuccessStatusCode)
             {
                 CategoriesList.Remove(category);

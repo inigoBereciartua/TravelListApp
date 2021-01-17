@@ -54,7 +54,7 @@ namespace TravelListApp.ViewModel
         }
         private async Task<ObservableCollection<Item>> GetCategoryItems()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + SelectedCategory.id + "/Items");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + SelectedCategory.Id + "/Items");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));
         }
@@ -72,7 +72,7 @@ namespace TravelListApp.ViewModel
         }
         private async Task<ObservableCollection<Model.Task>> GetCategoryTasks()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + SelectedCategory.id.ToString() + "/Tasks");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + SelectedCategory.Id.ToString() + "/Tasks");
             var callRes = JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
@@ -145,7 +145,7 @@ namespace TravelListApp.ViewModel
             var values = new Dictionary<string, string>
             {
                 { "TravelId", Travel.id.ToString() },
-                { "CategoryId", SelectedCategory.id.ToString() },
+                { "CategoryId", SelectedCategory.Id.ToString() },
             };
 
             var content = new FormUrlEncodedContent(values);
