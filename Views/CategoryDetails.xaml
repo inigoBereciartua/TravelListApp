@@ -19,7 +19,7 @@
             <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Category:" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
-                <TextBlock Text="{x:Bind category.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" />
+                <TextBlock Text="{x:Bind vm.Category.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" />
             </StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -49,7 +49,7 @@
 
                 <StackPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="TasksNotInCategoryComboBox" ItemsSource="{x:Bind vm.TaskList}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
+                        <ComboBox x:Name="TasksNotInCategoryComboBox" ItemsSource="{x:Bind vm.TaskList}" DisplayMemberPath="Description" Width="150" Margin="30, 10, 0, 0" />
                         <Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Command="{x:Bind vm.AddTaskToCategoryCommand}"/>
                         <!--<Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Click="AddTask_Click"/>-->
                     </StackPanel>
