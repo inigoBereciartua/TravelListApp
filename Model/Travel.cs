@@ -10,8 +10,8 @@ namespace TravelListApp.Model
     {
         public int id { get; set; }
         public string Name { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public List<Category> Categories { get; set; } = new List<Category>();
         public Activity Itinerary { get; set; }
@@ -19,12 +19,12 @@ namespace TravelListApp.Model
 
         public String GetStringStartDate()
         {
-            return StartDate.ToString("dd/MM/yyyy");
+            return Start.ToString("dd/MM/yyyy");
         }
 
         public String GetStringEndDate()
         {
-            return EndDate.ToString("dd/MM/yyyy");
+            return End.ToString("dd/MM/yyyy");
         }
 
         public override bool Equals(object obj)
@@ -57,14 +57,14 @@ namespace TravelListApp.Model
             });
                         
             List<Travel> travelList = new List<Travel>();            
-            travelList.Add(new Travel() { Name = "travel1" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel2" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel3" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel4" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel5" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel6" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel7" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
-            travelList.Add(new Travel() { Name = "travel8" ,StartDate = new DateTime(), EndDate = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel1" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel2" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel3" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel4" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel5" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel6" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel7" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
+            travelList.Add(new Travel() { Name = "travel8" ,Start = new DateTime(), End = new DateTime(), Items = items, Categories = CategoriesManager.GetCategories()});
             return travelList;
         }
     }

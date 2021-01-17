@@ -91,7 +91,7 @@ namespace TravelListApp.ViewModel
             }
             else
             {
-                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = NewTravelsStartDate.Date, EndDate = NewTravelsEndDate.Date };
+                Travel newTravel = new Travel() { Name = NewTravelName, Start = NewTravelsStartDate.Date, End = NewTravelsEndDate.Date };
                 var values = new Dictionary<string, string>
                 {
                     { "Name", NewTravelName},

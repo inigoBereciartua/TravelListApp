@@ -13,12 +13,15 @@
         <viewmodel:TasksViewModel x:Name="vm"/>
     </Page.DataContext>
     
-    <Grid>
+    <Grid Background="#FFE2E2E2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <GridView x:Name="TasksList" ItemsSource="{x:Bind Path=vm.TasksList}" Margin="20,193,20,807" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Grid.Column="1">
+        <GridView x:Name="TasksList" ItemsSource="{x:Bind Path=vm.TasksList}" Margin="10,10,11,11" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" Grid.Column="1">
+            <GridView.Background>
+                <ImageBrush ImageSource="/Assets/main.jpg"/>
+            </GridView.Background>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Task">
                     <StackPanel Orientation="Horizontal">
