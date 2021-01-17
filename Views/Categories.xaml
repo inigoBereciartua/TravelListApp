@@ -42,9 +42,9 @@
         </VisualStateManager.VisualStateGroups>
         <StackPanel FocusVisualPrimaryBrush="{x:Null}" Background="#FF6C2828">
             <TextBlock Text="Categories" VerticalAlignment="Top" Height="45" Width="145" FontSize="36" HorizontalAlignment="Center" Margin="20,0,0,10" FontFamily="Brush Script MT" Foreground="White" />
-            <StackPanel x:Name="stackPanel" Orientation="Vertical" Margin="20,20,20,20" HorizontalAlignment="Stretch" Background="#FF6C2828">
-                <TextBox x:Name="NewCategoryName" Text="{x:Bind vm.NewCategoryName, Mode=TwoWay}" PlaceholderText="New category's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Height="30" Margin="10,10,10,10" FocusVisualPrimaryBrush="{x:Null}" Background="#66000000"/>
-                <Button x:Name="CreateCategory" Command="{x:Bind vm.CreateCategoryCommand}" Content="Create Category" Margin="10,10,10,10" Click="CreateCategory_Click" Background="#33FFFFFF" HorizontalAlignment="Stretch"/>
+            <StackPanel x:Name="stackPanel" Orientation="Vertical" Margin="20,20,20,20" HorizontalAlignment="Stretch" Background="#00000000">
+                <TextBox x:Name="NewCategoryName" Text="{x:Bind vm.NewCategoryName, Mode=TwoWay}" PlaceholderText="New category's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Height="30" Margin="0,10,0,10" FocusVisualPrimaryBrush="{x:Null}" Background="#66000000"/>
+                <Button x:Name="CreateCategory" Command="{x:Bind vm.CreateCategoryCommand}" Content="Create Category" Margin="0,10,0,10" Click="CreateCategory_Click" Background="#33FFFFFF" HorizontalAlignment="Stretch"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 

@@ -18,9 +18,9 @@
             <ColumnDefinition Width="151*"/>
             <ColumnDefinition Width="599*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Vertical" Background="#FF6C2828" Margin="0,0,0,0">
-            <TextBlock Text="Travels" Height="45" Width="145" FontSize="36" FontFamily="Brush Script MT" Foreground="White" />
-            <TextBox x:Name="NewTravelName" Text="{x:Bind Mode=TwoWay, Path=vm.NewTravelName}" PlaceholderText="New travel's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Height="32" Margin="20,20,20,20" Width="315"/>
+        <StackPanel Orientation="Vertical" Background="#FF6C2828" Margin="0,0,0,0" Width="307" Height="996" Grid.Column="0">
+            <TextBlock Text="Travels" TextAlignment="Center" Height="45" Width="145" FontSize="36" FontFamily="Brush Script MT" Foreground="White" />
+            <TextBox x:Name="NewTravelName" Text="{x:Bind Mode=TwoWay, Path=vm.NewTravelName}" PlaceholderText="New travel's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Height="32" Margin="20,20,20,20"/>
             <CalendarDatePicker Header="Start Date" Date="{x:Bind Mode=TwoWay, Path=vm.NewTravelsStartDate}" Margin="20,20,20,20" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
             <CalendarDatePicker Header="End Date" Date="{x:Bind Mode=TwoWay, Path=vm.NewTravelsEndDate}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="20,20,20,20"/>
             <Button x:Name="CreateTravel" Command="{x:Bind Path=vm.CreateTravelCommand}" Content="Create Travel" Margin="20,20,20,20" HorizontalAlignment="Stretch" />
