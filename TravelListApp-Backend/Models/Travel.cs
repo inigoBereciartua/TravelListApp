@@ -45,6 +45,18 @@ namespace TravelListApp_Backend.Models
         }
 
 
+        public DateTime Start
+        {
+            get;
+            set;
+        }
+
+        public DateTime End
+        {
+            get;
+            set;
+        }
+
         #endregion Properties
 
         #region Constructor
@@ -53,12 +65,16 @@ namespace TravelListApp_Backend.Models
             Name = name;
             Iternary = new List<Activity>();
             Categories = new List<Category>();
+            Start = DateTime.Now;
+            End = DateTime.Today.AddDays(10);
         }
 
         public Travel()
         {
             Iternary = new List<Activity>();
             Categories = new List<Category>();
+            Start = DateTime.Now;
+            End = DateTime.Today.AddDays(10);
         }
 
         #endregion Constructor

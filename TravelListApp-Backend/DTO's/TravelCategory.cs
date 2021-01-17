@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.DTO_s
 {
-    public class TravelDTO
+    public class TravelCategory
     {
-        public int Id { get; set; }
         [Required]
         [NotNull]
-        public string Name { get; set; }
+        public int TravelId { get; set; }
         [Required]
-        public DateTime Start { get; set; }
-        [Required]
-        public DateTime End { get; set; }
+        [NotNull]
+        public int CategoryId { get; set; }
     }
 }

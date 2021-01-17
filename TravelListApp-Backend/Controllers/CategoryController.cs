@@ -30,7 +30,7 @@ namespace TravelListApp_Backend.Controllers
 
         //Create category for the connected user
         [HttpPost("{categoryName}")]
-        public async Task<IActionResult> CreateCategory(string categoryName)
+        public async Task<IActionResult> CreateCategory(CategoryDTO categoryDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
@@ -38,7 +38,7 @@ namespace TravelListApp_Backend.Controllers
                 //Add categeory to current traveler
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._userRepository.getTraveler(useraccount);
-                Category category = new Category(categoryName);
+                Category category = new Category(categoryDTO.Name);
                 traveler.Categories.Add(category);
                 this._userRepository.SaveChanges();
                 return Ok();
@@ -68,40 +68,53 @@ namespace TravelListApp_Backend.Controllers
             return null; ;
         }
 
-        //Remove the category for the connected user
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveCategory(int id)
+        //Get the items for the category for the current user
+        [HttpGet("{id}/Items")]
+        public async Task<List<ItemDTO>> GetCategoryItems(int id)
         {
-            //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
+                //Get user account 
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
-                Traveler traveler = this._userRepository.getTraveler(useraccount);
-                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
-                if(category != null)
+                Category category = this._categoryRepository.getItem(id);
+
+                //Check if this user has the specified category     
+                if (category != null && this._userRepository.getTraveler(useraccount).Categories.Contains(category))
                 {
-                    traveler.Categories.Remove(category);
-                    this._categoryRepository.removeItem(category);
-                    return Ok();
+                    List<Item> items = this._categoryRepository.getItem(id).Items;
+
+                    if (items != null)
+                    {
+                        List<ItemDTO> dto = new List<ItemDTO>();
+                        foreach (var item in items)
+                        {
+                            dto.Add(new ItemDTO() { Id = item.Id, Name = item.Name });
+                        }
+                        Response.StatusCode = 200;
+                        return dto;
+                    }
                 }
-                return NotFound();
+                Response.StatusCode = 204;
+                return null;
             }
-            return Unauthorized() ;
+
+            Response.StatusCode = 401;
+            return null;
         }
 
         //Add the item for the category for the connected user
-        [HttpPut("{id}/item/{itemId}")]
-        public async Task<IActionResult> AddItem(int id, int itemId)
+        [HttpPut("Item")]
+        public async Task<IActionResult> AddItem(CategoryItem categoryItem)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._userRepository.getTraveler(useraccount);
-                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == categoryItem.CategorylId);
                 if (category != null)
                 {
-                    Item item = this._itemRepository.GetItem(itemId);
+                    Item item = this._itemRepository.GetItem(categoryItem.ItemId);
                     if(item != null)
                     {
                         category.Items.Add(item);
@@ -139,39 +152,28 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
 
-        //Get the items for the category for the current user
-        [HttpGet("{id}/item")]
-        public async Task<List<ItemDTO>> GetCategoryItems(int id)
+        //Remove the category for the connected user
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveCategory(int id)
         {
+            //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
-                //Get user account 
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
-                Category category = this._categoryRepository.getItem(id);        
-              
-                    //Check if this user has the specified category     
-                    if (category != null && this._userRepository.getTraveler(useraccount).Categories.Contains(category))
-                    {
-                        List<Item> items = this._categoryRepository.getItem(id).Items;
-
-                        if (items != null)
-                        {
-                            List<ItemDTO> dto = new List<ItemDTO>();
-                            foreach (var item in items)
-                            {
-                                dto.Add(new ItemDTO() { Id = item.Id, Name = item.Name });
-                            }
-                            Response.StatusCode = 200;
-                            return dto;
-                        }
-                   }
-                Response.StatusCode = 204;
-                return null;
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
+                if (category != null)
+                {
+                    traveler.Categories.Remove(category);
+                    this._categoryRepository.removeItem(category);
+                    return Ok();
+                }
+                return NotFound();
             }
-            
-            Response.StatusCode = 401;
-            return null;
+            return Unauthorized();
         }
+
+       
 
     }
 }
