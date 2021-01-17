@@ -70,9 +70,7 @@ namespace TravelListApp.ViewModel
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    CategoriesList.Add(new Category() { Name = NewCategoryName, Id = CategoriesList.Count + 1});
-                    CategoriesList = System.Threading.Tasks.Task.Run(() => GetCategories()).Result;
-
+                    CategoriesList.Add(System.Threading.Tasks.Task.Run(() => GetCategories()).Result.Last());
                 }
             }
         }
