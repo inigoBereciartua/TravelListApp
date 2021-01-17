@@ -58,11 +58,10 @@ namespace TravelListApp.Views
             base.OnNavigatedTo(e);
         }
 
-          private void BackArrowButton_Click(object sender, RoutedEventArgs e)
+        private void BackArrowButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Travels));
         }
-
         private async void AddItems_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AddItemsToTravel), this.Travel);

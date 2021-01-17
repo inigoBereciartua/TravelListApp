@@ -9,6 +9,9 @@ namespace TravelListApp_Backend.DTO_s
 {
     public class ActivityDTO
     {
+        [Required]
+        [NotNull]
+        public int TravelId { get; set; }
         public int Id { get; set; }
         [Required]
         [NotNull]

@@ -89,9 +89,13 @@ namespace TravelListApp.ViewModel
             return false;
         }
 
-        internal void RemoveTask(Model.Task task)
+        internal async System.Threading.Tasks.Task RemoveTaskAsync(Model.Task task)
         {
-            TasksList.Remove(task);
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Task/" + task.Id);
+            if (result.IsSuccessStatusCode)
+            {
+                TasksList.Remove(task);
+            }
             //TODO Backend implementation
         }
 

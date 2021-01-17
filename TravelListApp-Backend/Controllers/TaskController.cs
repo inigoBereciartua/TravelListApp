@@ -45,8 +45,8 @@ namespace TravelListApp_Backend.Controllers
             return null;
         }
         //Create a task for the curent user
-        [HttpPost("{description}")]
-        public async Task<IActionResult> CreateTask(string description)
+        [HttpPost()]
+        public async Task<IActionResult> CreateTask(TaskDTO taskDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
@@ -54,7 +54,7 @@ namespace TravelListApp_Backend.Controllers
                 //Add item with current traveler
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Models.Task task = new Models.Task(description);
+                Models.Task task = new Models.Task(taskDTO.Description);
                 traveler.Tasks.Add(task);
                 this._travelerRepository.updateTraveler(traveler);
                 this._travelerRepository.SaveChanges();

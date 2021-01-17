@@ -74,7 +74,7 @@ namespace TravelListApp.Views
             if (result == ContentDialogResult.Primary)
             {
                 var vm = (TasksViewModel)this.DataContext;
-                vm.RemoveTask((Task)task);
+                vm.RemoveTaskAsync((Task)task);
                 //TODO: Call backend to delete Task
             }
         }

@@ -27,7 +27,7 @@ namespace TravelListApp.Command
         public void Execute(object parameter)
         {
             Category category = (Category)parameter;
-            _viewmodel.RemoveCategory(category);
+            _viewmodel.RemoveCategoryAsync(category);
         }
     }
 }

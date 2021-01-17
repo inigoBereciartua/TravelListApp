@@ -84,16 +84,6 @@ namespace TravelListApp.ViewModel
                 }
             }            
         }
-        internal async void DeleteItem(Item item)
-        {                        
-            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Item/" + item.Id.ToString());
-            if(result.StatusCode == HttpStatusCode.OK)
-            {
-                ItemsList.Remove(item);
-                //TODO Call Backend
-            }
-
-        }
 
         private bool ItemNameIsInUse()
         {
@@ -107,23 +97,14 @@ namespace TravelListApp.ViewModel
             return false;
         }
 
-        internal void RemoveItem(Item selectedItem)
+        internal async void RemoveItem(Item selectedItem)
         {
-            /*
-            if(selectedItem != null)
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Item/" + selectedItem.Id.ToString());
+            if (result.IsSuccessStatusCode)
             {
-                Cookie cookie = JsonConvert.DeserializeObject<Cookie>(Windows.Storage.ApplicationData.Current.LocalSettings.Values["Cookie"].ToString());
-                CookieContainer cookies = new CookieContainer();
-                cookies.Add(cookie);
-                HttpClientHandler handler = new HttpClientHandler();
-                handler.CookieContainer = cookies;
-                HttpClient client = new HttpClient(handler);
-                //var result = await client.DeleteAsync("http://localhost:65177/api/Item");
-
+                ItemsList.Remove(selectedItem);
+                //TODO Call Backend
             }
-            */
-            ItemsList.Remove(selectedItem);
-            //TODO: Backend call to remove the item
         }
     }
 }

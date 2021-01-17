@@ -66,7 +66,7 @@ namespace TravelListApp.ViewModel
                     { "categoryName", NewCategoryName}
                 };
                 var content = new FormUrlEncodedContent(values);
-                var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Category/" + NewCategoryName , content);
+                var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Category", content);
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
@@ -88,9 +88,13 @@ namespace TravelListApp.ViewModel
             return false;
         }
 
-        internal void RemoveCategory(Category category)
+        internal async System.Threading.Tasks.Task RemoveCategoryAsync(Category category)
         {
-            CategoriesList.Remove(category);
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/"+category.id);
+            if (result.IsSuccessStatusCode)
+            {
+                CategoriesList.Remove(category);
+            }
             //TODO: Call backend to delete Item
         }
 

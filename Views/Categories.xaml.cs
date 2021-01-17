@@ -30,11 +30,6 @@ namespace TravelListApp.Views
         {
             this.InitializeComponent();
             //TODO: Call to backend to get categories
-            foreach (var category in CategoriesManager.GetCategories())
-            {
-                categoriesList.Add(category);
-            }
-            CategoriesGridView.ItemsSource = categoriesList;
         }
 
         private void CreateCategory_Click(object sender, RoutedEventArgs e)
@@ -74,7 +69,7 @@ namespace TravelListApp.Views
             if (result == ContentDialogResult.Primary)
             {
                 var vm = (CategoriesViewModel)this.DataContext;
-                vm.RemoveCategory((Category)category);
+                vm.RemoveCategoryAsync((Category)category);
             }
         }
 

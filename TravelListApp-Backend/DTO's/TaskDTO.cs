@@ -9,11 +9,12 @@ namespace TravelListApp_Backend.DTO_s
 {
     public class TaskDTO
     {
-        [Required]
         public int Id { get; set; }
         [Required]
         [NotNull]
         public string Description { get; set; }
+        [Required]
+        [NotNull]
         public bool Checked { get; set; }
      }
 }

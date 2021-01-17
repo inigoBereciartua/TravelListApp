@@ -27,7 +27,7 @@ namespace TravelListApp.Command
         public void Execute(object parameter)
         {
             Model.Task task = (Model.Task)parameter;
-            _viewmodel.RemoveTask(task);
+            _viewmodel.RemoveTaskAsync(task);
         }
     }
 }
