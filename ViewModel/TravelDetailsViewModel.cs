@@ -25,6 +25,7 @@ namespace TravelListApp.ViewModel
         public ObservableCollection<Item> ItemsInTravelList { get; set; }
         public ObservableCollection<Model.Task> TasksNotInTravelList { get; set; }
         public ObservableCollection<Model.Task> TasksInTravelList { get; set; }
+        public ObservableCollection<Category> CategoriesInTravelList { get; set; }
         public string Amount;
         
 
@@ -120,7 +121,14 @@ namespace TravelListApp.ViewModel
             var callRes = JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
-        
+
+        private async Task<ObservableCollection<Category>> GetTravelCategoriess()
+        {
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Travel/" + Travel.id.ToString() + "/Categories");
+            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+            return new ObservableCollection<Category>(JsonConvert.DeserializeObject<List<Category>>(await result.Content.ReadAsStringAsync()));
+        }
+
         internal async Task<string> AddItemAsync()
         {
             if (ItemToAdd == null)
@@ -225,6 +233,8 @@ namespace TravelListApp.ViewModel
             TasksInTravelList = System.Threading.Tasks.Task.Run(() => GetTravelTasks()).Result;
             TasksNotInTravelList = System.Threading.Tasks.Task.Run(() => GetTasks()).Result;
             TasksNotInTravelList = new ObservableCollection<Model.Task>(TasksNotInTravelList.Where(e => !TasksInTravelList.Contains(e)).ToList());
+
+            CategoriesInTravelList = System.Threading.Tasks.Task.Run(() => GetTravelCategoriess()).Result;
 
             NewActivityStart = Travel.Start;
         }        
