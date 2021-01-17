@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 namespace TravelListApp_Backend.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
     public class CategoryController : Controller
     {
         private readonly ITravelerRepository _userRepository;
@@ -104,18 +103,18 @@ namespace TravelListApp_Backend.Controllers
 
         //Add the item for the category for the connected user
         [HttpPut("Item")]
-        public async Task<IActionResult> AddItem(CategoryItem categoryItem)
+        public async Task<IActionResult> AddItem(CategoryItemDTO categoryItemDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._userRepository.getTraveler(useraccount);
-                Category category = traveler.Categories.FirstOrDefault(e => e.Id == categoryItem.CategorylId);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == categoryItemDTO.CategorylId);
                 if (category != null)
                 {
-                    Item item = this._itemRepository.GetItem(categoryItem.ItemId);
-                    if(item != null)
+                    Item item = this._itemRepository.GetItem(categoryItemDTO.ItemId);
+                    if (item != null)
                     {
                         category.Items.Add(item);
                         this._categoryRepository.SaveChanges();

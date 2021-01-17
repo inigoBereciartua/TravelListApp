@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.DTO_s
 {
-    public class CategoryItem
+    public class CategoryItemDTO
     {
         [Required]
         [NotNull]
