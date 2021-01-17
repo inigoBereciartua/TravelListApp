@@ -207,8 +207,7 @@ namespace TravelListApp.ViewModel
                 var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Travel/Activity", content);
                 if(result.StatusCode == HttpStatusCode.OK)
                 {
-                    Activity newActivity = new Activity() { Description = NewActivityDescription, Start = NewActivityStart.Date };
-                    ActivitiesList.Add(newActivity);
+                    ActivitiesList.Add(System.Threading.Tasks.Task.Run(() => GetActivities()).Result.Last());
                     return "";
                 }
                 return "An error occurred when adding the activity to the itinerary";

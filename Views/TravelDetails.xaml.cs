@@ -136,7 +136,7 @@ namespace TravelListApp.Views
             if (result == ContentDialogResult.Primary)
             {
                 var vm = (TravelDetailsViewModel)this.DataContext;
-                vm.RemoveActivityAsync(activity);                
+                vm.RemoveActivityAsync(activity);
             }
         }
         
