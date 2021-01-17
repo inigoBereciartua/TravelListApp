@@ -14,11 +14,11 @@
     </Page.DataContext>
     
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Tasks" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
+        <StackPanel Background="#FF0080FF">
+            <TextBlock Text="Tasks" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Center" Margin="20,0,0,10" />
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="NewTaskName" Text="{x:Bind vm.NewTaskName, Mode=TwoWay}" PlaceholderText="New task's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
-                <Button x:Name="CreateTask" Command="{x:Bind vm.CreateTaskCommand}" Content="Create Task" Margin="20, 10, 0, 10"/>
+                <Button x:Name="CreateTask" Command="{x:Bind vm.CreateTaskCommand}" Content="Create Task" Margin="20, 10, 0, 10" Width="1217" Height="76"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage, Mode=OneWay}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
@@ -35,7 +35,7 @@
         </StackPanel>
         <ContentDialog x:Name="deleteTaskDialog"
                        PrimaryButtonText="Delete"
-                       CloseButtonText="Cancel">
+                       CloseButtonText="Cancel" Background="#FF004589" d:IsHidden="True">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <TextBlock Text="Delete task"/>
