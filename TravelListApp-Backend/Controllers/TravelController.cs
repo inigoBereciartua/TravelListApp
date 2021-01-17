@@ -149,7 +149,7 @@ namespace TravelListApp_Backend.Controllers
                     List<ActivityDTO> dto = new List<ActivityDTO>();
                     foreach (var item in items)
                     {
-                        dto.Add(new ActivityDTO() { Id = item.Id, Description = item.Description, Start = item.Start, End = item.End, Finished = item.Finished });
+                        dto.Add(new ActivityDTO() { Id = item.Id, Description = item.Description, Start = item.Start});
                     }
                     Response.StatusCode = 200;
                     return dto;
@@ -213,7 +213,7 @@ namespace TravelListApp_Backend.Controllers
                 Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == activityDTO.TravelId);
                 if (travel != null)
                 {
-                    Activity item = new Activity(activityDTO.Description, activityDTO.Start, activityDTO.End);
+                    Activity item = new Activity(activityDTO.Description, activityDTO.Start);
                     travel.Iternary.Add(item);
                     this._travelRepository.UpdateTravel(travel);
                     this._travelRepository.SaveChanges();
@@ -438,30 +438,6 @@ namespace TravelListApp_Backend.Controllers
                 }
             }
             return Unauthorized();
-        }
-        //Check Activity
-        [HttpDelete("{travelId}/Activity/{activityId}/{completed}")]
-        public async Task<IActionResult> DeleteTravelActivity(int travelId, int activityId,bool completed)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
-                Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
-                if (travel != null)
-                {
-                    Activity activity = travel.Iternary.FirstOrDefault(e => e.Id == activityId);
-                    if (activity != null)
-                    {
-                        activity.Finished = completed;
-                        this._activityRepository.UpdateActivity(activity);
-                        this._activityRepository.SaveChanges();
-                        return Ok();
-                    }
-                    return NoContent();
-                }
-            }
-            return Unauthorized();
-        }
+        }        
     }
 }

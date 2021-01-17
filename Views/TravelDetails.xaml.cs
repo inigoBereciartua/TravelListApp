@@ -53,7 +53,11 @@ namespace TravelListApp.Views
             if (result == ContentDialogResult.Primary)
             {                
                 var vm = (TravelDetailsViewModel)this.DataContext;
-                await vm.AddItemAsync();
+                var error = await vm.AddItemAsync();
+                if(error != "")
+                {
+                    showError(error);
+                }
             }
         }
         private async void AddTasks_Click(object sender, RoutedEventArgs e)
@@ -62,7 +66,11 @@ namespace TravelListApp.Views
             if (result == ContentDialogResult.Primary)
             {
                 var vm = (TravelDetailsViewModel)this.DataContext;
-                await vm.AddTaskAsync();
+                var error = await vm.AddTaskAsync();
+                if(error != "")
+                {
+                    showError(error);
+                }
             }
         }
         private void AddCategories_Click(object sender, RoutedEventArgs e)
@@ -118,6 +126,37 @@ namespace TravelListApp.Views
             Item t = (Item)item;
             var vm = (TravelDetailsViewModel)this.DataContext;
             vm.CheckItemAsync(t);
+        }
+
+        private async void DeleteActivity_Click(object sender, RoutedEventArgs e)
+        {
+            Activity activity = (Activity)(sender as AppBarButton).DataContext;
+            ContentDialogResult result = await deleteActivityDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var vm = (TravelDetailsViewModel)this.DataContext;
+                vm.RemoveActivityAsync(activity);                
+            }
+        }
+        
+        private async void showError(string text)
+        {
+            errorMessage.Text = text;
+            await errorsDialog.ShowAsync();
+        }
+
+        private async void AddActivity_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialogResult result = await addActivityDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var vm = (TravelDetailsViewModel)this.DataContext;
+                var error = await vm.AddActivity();
+                if(error != "")
+                {
+                    showError(error);
+                }
+            }
         }
     }
 }

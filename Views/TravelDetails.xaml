@@ -70,7 +70,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1" >
                             <TextBlock Text="Tasks" Margin="20,0,0,0"/>
-                            <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.TasksInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
+                            <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.TasksInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350" >
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="data:Task">
                                         <StackPanel Orientation="Horizontal">
@@ -84,6 +84,23 @@
                             <Button x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Left" Click="AddTasks_Click" Margin="20, 10, 0, 0"/>
                         </StackPanel>
                     </Grid>
+                    <ListView Header="Itinerary" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.ActivitiesList}" x:DefaultBindMode="OneWay" HorizontalAlignment="Center">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:Activity">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{x:Bind Description}" Width="300" Margin="10" VerticalAlignment="Center" />
+                                    <TextBlock Text="{x:Bind Start.Day}" VerticalAlignment="Center" />
+                                    <TextBlock Text="/" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Start.Month}" VerticalAlignment="Center" />
+                                    <TextBlock Text="/" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{x:Bind Start.Year}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <AppBarButton x:Name="DeleteActivity" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteActivity_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="AddActivity" Content="Add Activity" HorizontalAlignment="Center" Click="AddActivity_Click" Margin="20, 10, 0, 0"/>
+                    
                 </StackPanel>
             </StackPanel>
             <ContentDialog x:Name="deleteItemDialog"
@@ -95,7 +112,7 @@
                     </DataTemplate>
                 </ContentDialog.TitleTemplate>
                 <TextBlock>
-                    Are you sure you want to delete the item? this action can't be undone
+                    Are you sure you want to delete the item? This action can't be undone
                 </TextBlock>
             </ContentDialog>
 
@@ -108,7 +125,20 @@
                     </DataTemplate>
                 </ContentDialog.TitleTemplate>
                 <TextBlock>
-                    Are you sure you want to delete the category? this action can't be undone
+                    Are you sure you want to delete the category? This action can't be undone
+                </TextBlock>
+            </ContentDialog>
+
+            <ContentDialog x:Name="deleteActivityDialog"
+                           PrimaryButtonText="Delete"
+                           CloseButtonText="Cancel">
+                <ContentDialog.TitleTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="Delete activity"/>
+                    </DataTemplate>
+                </ContentDialog.TitleTemplate>
+                <TextBlock>
+                    Are you sure you want to delete the activity? This action can't be undone
                 </TextBlock>
             </ContentDialog>
 
@@ -130,7 +160,20 @@
                     <ComboBox x:Name="taskToAdd" ItemsSource="{x:Bind vm.TasksNotInTravelList}" SelectedItem="{x:Bind vm.TaskToAdd, Mode=TwoWay}" DisplayMemberPath="Description"/>
                 </StackPanel>
             </ContentDialog>
-
+            <ContentDialog x:Name="addActivityDialog"
+                           PrimaryButtonText="Add"
+                           CloseButtonText="Cancel">
+                <StackPanel>
+                    <TextBlock Text="Introduce the description and the date of the activity you want to add"/>
+                    <TextBox Text="{x:Bind vm.NewActivityDescription, Mode=TwoWay}"/>
+                    <DatePicker Date="{x:Bind vm.NewActivityStart, Mode=TwoWay}"/>
+                </StackPanel>
+            </ContentDialog>
+            <ContentDialog x:Name="errorsDialog"
+                           PrimaryButtonText="Accept"
+                >
+                <TextBlock x:Name="errorMessage" VerticalAlignment="Center" TextAlignment="Center"/>
+            </ContentDialog>
         </Grid>
     </ScrollViewer>
 </Page>

@@ -18,9 +18,6 @@ namespace TravelListApp_Backend.DTO_s
         public string Description{get;set;}
         [Required]
         public DateTime Start { get; set; }
-        [Required]
-        public DateTime End { get; set; }
-        [Required]
-        public bool Finished { get; set; }
+                
     }
 }

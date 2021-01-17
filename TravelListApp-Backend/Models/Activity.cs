@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TravelListApp_Backend.Models
 {
     public class Activity
     {
-        private string _description;
-        private bool _finished;
+        private string _description;        
 
 
         public int Id { get; set; }
@@ -21,16 +17,14 @@ namespace TravelListApp_Backend.Models
 
 
         public Activity()
-        {
-            Finished = false;
+        {            
         }
 
 
-        public Activity(string description, DateTime start, DateTime end)
+        public Activity(string description, DateTime start)
         {
             Description = description;
-            Start = start;
-            End = end;
+            Start = start;            
         }
 
         private DateTime _dateTime;
@@ -39,14 +33,6 @@ namespace TravelListApp_Backend.Models
         {
             get { return _dateTime; }
             set { _dateTime = value; }
-        }
-
-        public DateTime End
-        {
-            get { return _dateTime; }
-            set { _dateTime = value; }
-        }
-
-        public bool Finished { get => _finished; set => _finished = value; }
+        }                
     }
 }
