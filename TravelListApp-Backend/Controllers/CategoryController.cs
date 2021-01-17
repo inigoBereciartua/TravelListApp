@@ -213,6 +213,31 @@ namespace TravelListApp_Backend.Controllers
             return Unauthorized();
         }
 
+        //Remove item from the category for the connected user
+        [HttpDelete("{id}/task/{taskId}")]
+        public async Task<IActionResult> RemoveTask(int id, int taskId)
+        {
+            //Check if the user is authenticated
+            if (User.Identity.IsAuthenticated)
+            {
+                var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
+                Traveler traveler = this._userRepository.getTraveler(useraccount);
+                Category category = traveler.Categories.FirstOrDefault(e => e.Id == id);
+                if (category != null)
+                {
+                    Task item = category.Task.FirstOrDefault(e => e.Id == taskId);
+                    if (item != null)
+                    {
+                        category.Task.Remove(item);
+                        this._categoryRepository.SaveChanges();
+                        return Ok();
+                    }
+                }
+                return NotFound();
+            }
+            return Unauthorized();
+        }
+
         //Remove the category for the connected user
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveCategory(int id)
