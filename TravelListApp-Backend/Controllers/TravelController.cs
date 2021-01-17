@@ -305,7 +305,7 @@ namespace TravelListApp_Backend.Controllers
                 Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == checkItem.TravelId);
                 if (travel != null)
                 {
-                    TravelItem travelItem = this._travelItemRepository.getTravelItemOnTravelId(checkItem.TravelId).FirstOrDefault(e => e.Id == checkItem.ItemId);
+                    TravelItem travelItem = this._travelItemRepository.getTravelItemOnTravelId(checkItem.TravelId).FirstOrDefault(e => e.Item.Id == checkItem.ItemId);
                     if(travelItem != null)
                     {
                         travelItem.Checked = checkItem.Completed;
