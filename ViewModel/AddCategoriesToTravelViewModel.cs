@@ -208,7 +208,7 @@ namespace TravelListApp.ViewModel
         {
             CategoryList = System.Threading.Tasks.Task.Run(() => GetCategorys()).Result;
             TravelCategories = System.Threading.Tasks.Task.Run(() => GetTravelCategorys()).Result;
-            TravelCategories = new ObservableCollection<Category>(TravelCategories.Where(e => !CategoryList.Contains(e)).ToList());
+            CategoryList = new ObservableCollection<Category>(CategoryList.Where(e => !TravelCategories.Contains(e)).ToList());
             ItemsList = new ObservableCollection<Item>();
             Console.WriteLine("");
         }
