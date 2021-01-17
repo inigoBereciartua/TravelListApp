@@ -20,7 +20,8 @@ namespace TravelListApp.ViewModel
         public ObservableCollection<Model.Task> TaskList { get; set; }
         public ObservableCollection<Item> CategoryItems { get; set; }
         public ObservableCollection<Model.Task> CategoryTasks { get; set; }
-
+        public Item SelectedItem;
+        public Model.Task SelectedTask;
         public Category Category { get; set; }
 
         public string _errormessage;
@@ -60,11 +61,33 @@ namespace TravelListApp.ViewModel
 
         internal void AddItemToCategory()
         {
-            throw new NotImplementedException();
+            //Remove the item from ItemList, Add item to CategoryItems and add Item to Category.Item on the backend
+            var item = SelectedItem;
+            CategoryItems.Add(item);
+            ItemList.Remove(item);
+            //TODO: Call to the backend so that the item is added to category
+
+            //var values = new Dictionary<string, string>
+            //    {
+            //        { "categoryName", NewCategoryName}
+            //    };
+            //var content = new FormUrlEncodedContent(values);
+            //var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Category", content);
+
+            //if (result.StatusCode == HttpStatusCode.OK)
+            //{
+            //    CategoriesList.Add(new Category() { Name = NewCategoryName });
+            //    CategoriesList = System.Threading.Tasks.Task.Run(() => GetCategories()).Result;
+            //}
+
         }
         internal void AddTaskToCategory()
         {
-            throw new NotImplementedException();
+            //Remove the task from TaskList, Add task to CategoryTasks and add Task to Category.Task on the backend
+            CategoryTasks.Add(SelectedTask);
+            TaskList.Remove(SelectedTask);            
+            //TODO: Call to the backend so that the task is added to category
+
         }
 
         public void LoadData()
