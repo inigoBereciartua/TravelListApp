@@ -77,21 +77,23 @@ namespace TravelListApp.ViewModel
         internal async void AddItemToCategory()
         {
             //Remove the item from ItemList, Add item to CategoryItems and add Item to Category.Item on the backend
-            //TODO: Call to the backend so that the item is added to category
-            var item = SelectedItem;
-
-            var values = new Dictionary<string, string>
-                {
-                    { "CategorylId", Category.id.ToString()},
-                    { "ItemId", item.Id.ToString()}
-                };
-            var content = new System.Net.Http.FormUrlEncodedContent(values);
-            var result = await Client.HttpClient.PutAsync("http://localhost:65177/api/Category/Item", content);
-
-            if (result.StatusCode == HttpStatusCode.OK)
+            if(SelectedItem != null)
             {
-                CategoryItems.Add(item);
-                ItemList.Remove(item);
+                var item = SelectedItem;
+
+                var values = new Dictionary<string, string>
+                    {
+                        { "CategorylId", Category.id.ToString()},
+                        { "ItemId", item.Id.ToString()}
+                    };
+                var content = new System.Net.Http.FormUrlEncodedContent(values);
+                var result = await Client.HttpClient.PutAsync("http://localhost:65177/api/Category/Item", content);
+
+                if (result.StatusCode == HttpStatusCode.OK)
+                {
+                    CategoryItems.Add(item);
+                    ItemList.Remove(item);
+                }
             }
 
         }
@@ -99,23 +101,24 @@ namespace TravelListApp.ViewModel
         internal async void AddTaskToCategory()
         {
             //Add task to CategoryTasks, Remove the task from TaskList and add Task to Category.Task on the backend
-            var task = SelectedTask;
-            //TODO: Call to the backend so that the task is added to category
-
-            var values = new Dictionary<string, string>
-                {
-                    { "CategorylId", Category.id.ToString()},
-                    { "TaskId", task.Id.ToString()}
-                };
-            var content = new System.Net.Http.FormUrlEncodedContent(values);
-            var result = await Client.HttpClient.PutAsync("http://localhost:65177/api/Category/Task", content);
-
-            if (result.StatusCode == HttpStatusCode.OK)
+            
+            if(SelectedTask != null)
             {
-                CategoryTasks.Add(task);
-                TaskList.Remove(task);
-            }
+                var task = SelectedTask;
+                var values = new Dictionary<string, string>
+                    {
+                        { "CategorylId", Category.id.ToString()},
+                        { "TaskId", task.Id.ToString()}
+                    };
+                var content = new System.Net.Http.FormUrlEncodedContent(values);
+                var result = await Client.HttpClient.PutAsync("http://localhost:65177/api/Category/Task", content);
 
+                if (result.StatusCode == HttpStatusCode.OK)
+                {
+                    CategoryTasks.Add(task);
+                    TaskList.Remove(task);
+                }
+            }
         }
 
         internal async void RemoveItem(Item item)
