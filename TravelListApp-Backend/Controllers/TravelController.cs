@@ -181,15 +181,15 @@ namespace TravelListApp_Backend.Controllers
         }
         //Add a task for a travel
         [HttpPost("Task")]
-        public async Task<IActionResult> AddTravelTask(TravelItemDTO travelItemDTO)
+        public async Task<IActionResult> AddTravelTask(TravelTaskDTO travelTaskDTO)
         {
             //Check if the user is authenticated
             if (User.Identity.IsAuthenticated)
             {
                 var useraccount = await this._userManager.FindByNameAsync(User.Identity.Name);
                 Traveler traveler = this._travelerRepository.getTraveler(useraccount);
-                Models.Task task = traveler.Tasks.FirstOrDefault(e => e.Id == travelItemDTO.ItemId);
-                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelItemDTO.ItemId);
+                Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelTaskDTO.TravelId);
+                Models.Task task = traveler.Tasks.FirstOrDefault(e => e.Id == travelTaskDTO.TaskId);
                 if (travel != null && task != null)
                 {
                     TravelTask travelTask = new TravelTask(travel,task);
