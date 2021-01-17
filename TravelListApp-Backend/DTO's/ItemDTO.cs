@@ -13,5 +13,9 @@ namespace TravelListApp_Backend.DTO_s
         [Required]
         [NotNull]
         public string Name { get; set; }
+
+        public int Count { get; set; }
+
+        public bool Checked { get; set; }
     }
 }
