@@ -29,7 +29,7 @@ namespace TravelListApp_Backend.Data
             {
                 await CreateUsers();
 
-                ApplicationUser user = this._context.Users.FirstOrDefault(e => e.UserName == "Binladen");
+                ApplicationUser user = this._context.Users.FirstOrDefault(e => e.UserName == "Clark_Kent");
 
                 Traveler traveler = new Traveler(user);
 
@@ -71,7 +71,7 @@ namespace TravelListApp_Backend.Data
 
         private async System.Threading.Tasks.Task CreateUsers()
         {
-            ApplicationUser user = new ApplicationUser() { UserName = "Binladen", Email = "osama@gmail.com" };
+            ApplicationUser user = new ApplicationUser() { UserName = "Clark_Kent", Email = "Clark_Kent@gmail.com" };
             await this._userManager.CreateAsync(user, "P@ssword1");
         }
 

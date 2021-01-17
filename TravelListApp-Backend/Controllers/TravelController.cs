@@ -123,7 +123,7 @@ namespace TravelListApp_Backend.Controllers
                     List<ItemDTO> dto = new List<ItemDTO>();
                     foreach (var item in travelItem)
                     {
-                        dto.Add(new ItemDTO() { Id = item.Item.Id, Name = item.Item.Name });
+                        dto.Add(new ItemDTO() { Id = item.Item.Id, Name = item.Item.Name , Checked = item.Checked, Count = item.Count});
                     }
                     Response.StatusCode = 200;
                     return dto;

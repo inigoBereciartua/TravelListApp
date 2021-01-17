@@ -28,11 +28,11 @@
                         <StackPanel>
                             <TextBlock Name="CategoryName" FontSize="20" Text="{x:Bind Name}" TextAlignment="Center"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Name="NumOfItems" FontSize="10" Text="{x:Bind Items.Count}" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="NumOfItems" FontSize="10" Text="{x:Bind ItemsCount}" Margin="10,0,0,0"></TextBlock>
                                 <TextBlock FontSize="10" Text=" Items" Margin="0,0,0,0"></TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Name="NumOfTasks" FontSize="10" Text="{x:Bind Tasks.Count}" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="NumOfTasks" FontSize="10" Text="{x:Bind TasksCount}" Margin="10,0,0,0"></TextBlock>
                                 <TextBlock FontSize="10" Text=" Tasks" Margin="0,0,0,0"></TextBlock>
                             </StackPanel>
                             <AppBarButton Visibility="Visible" Icon="Delete" Click="AppBarButton_Click_Async" Height="50"/>
