@@ -81,7 +81,7 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <AppBarButton x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Left" Click="AddTasks_Click" Margin="20, 10, 0, 0"/>
+                            <Button x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Left" Click="AddTasks_Click" Margin="20, 10, 0, 0"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -127,7 +127,7 @@
                            CloseButtonText="Cancel">
                 <StackPanel>
                     <TextBlock Text="Select the task you want to add and input the amount" Margin="0,0,0,10"/>
-                    <ComboBox x:Name="taskToAdd" ItemsSource="{x:Bind vm.TasksNotInTravelList}" DisplayMemberPath="Description"/>
+                    <ComboBox x:Name="taskToAdd" ItemsSource="{x:Bind vm.TasksNotInTravelList}" SelectedItem="{x:Bind vm.TaskToAdd, Mode=TwoWay}" DisplayMemberPath="Description"/>
                 </StackPanel>
             </ContentDialog>
 

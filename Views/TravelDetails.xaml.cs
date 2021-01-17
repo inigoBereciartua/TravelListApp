@@ -51,19 +51,18 @@ namespace TravelListApp.Views
         {
             ContentDialogResult result = await addItemDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
-            {
-                var vm = (TravelDetailsViewModel)this.DataContext;                                
+            {                
+                var vm = (TravelDetailsViewModel)this.DataContext;
+                await vm.AddItemAsync();
             }
         }
         private async void AddTasks_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteItemDialog.ShowAsync();
+            ContentDialogResult result = await addTaskDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
                 var vm = (TravelDetailsViewModel)this.DataContext;
-                //bool res = await vm.RemoveItem(Travel,(Item)item);
-                //TODO: Call to the backend to remove the item from a travel
+                await vm.AddTaskAsync();
             }
         }
         private void AddCategories_Click(object sender, RoutedEventArgs e)
