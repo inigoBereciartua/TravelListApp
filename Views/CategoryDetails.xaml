@@ -35,7 +35,7 @@
                     <TextBlock x:Name="ErrorTextItems" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
                     <!--<ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" x:DefaultBindMode="OneWay">-->
-                    <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.CategoryItems}" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" x:DefaultBindMode="OneWay">
+                    <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.CategoryItems}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Item">
                                 <StackPanel Orientation="Horizontal">
@@ -55,7 +55,7 @@
                     </StackPanel>
                     <TextBlock x:Name="ErrorTextTasks" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
-                    <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.CategoryTasks}" IsItemClickEnabled="True" ItemClick="TasksList_ItemClick" x:DefaultBindMode="OneWay">
+                    <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.CategoryTasks}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Task">
                                 <StackPanel Orientation="Horizontal">

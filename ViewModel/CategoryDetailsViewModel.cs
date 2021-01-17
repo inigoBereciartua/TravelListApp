@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TravelListApp.Command;
@@ -51,6 +52,7 @@ namespace TravelListApp.ViewModel
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
 
+
         public CategoryDetailsViewModel()
         {
             AddItemToCategoryCommand = new AddItemToCategoryCommand(this);
@@ -59,35 +61,49 @@ namespace TravelListApp.ViewModel
             
         }
 
-        internal void AddItemToCategory()
+        internal async void AddItemToCategory()
         {
             //Remove the item from ItemList, Add item to CategoryItems and add Item to Category.Item on the backend
-            var item = SelectedItem;
-            CategoryItems.Add(item);
-            ItemList.Remove(item);
             //TODO: Call to the backend so that the item is added to category
+            var item = SelectedItem;
 
-            //var values = new Dictionary<string, string>
-            //    {
-            //        { "categoryName", NewCategoryName}
-            //    };
-            //var content = new FormUrlEncodedContent(values);
-            //var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Category", content);
+            var values = new Dictionary<string, string>
+                {
+                    { "CategorylId", Category.id.ToString()},
+                    { "ItemId", item.Id.ToString()}
+                };
+            var content = new System.Net.Http.FormUrlEncodedContent(values);
+            var result = await Client.HttpClient.PutAsync("http://localhost:65177/api/Category/Item", content);
 
-            //if (result.StatusCode == HttpStatusCode.OK)
-            //{
-            //    CategoriesList.Add(new Category() { Name = NewCategoryName });
-            //    CategoriesList = System.Threading.Tasks.Task.Run(() => GetCategories()).Result;
-            //}
+            if (result.StatusCode == HttpStatusCode.OK)
+            {
+                CategoryItems.Add(item);
+                ItemList.Remove(item);
+            }
 
         }
+
         internal void AddTaskToCategory()
         {
-            //Remove the task from TaskList, Add task to CategoryTasks and add Task to Category.Task on the backend
-            CategoryTasks.Add(SelectedTask);
-            TaskList.Remove(SelectedTask);            
+            //Add task to CategoryTasks, Remove the task from TaskList and add Task to Category.Task on the backend
+            var task = SelectedTask;
+            CategoryTasks.Add(task);
+            TaskList.Remove(task);            
             //TODO: Call to the backend so that the task is added to category
 
+        }
+
+        internal void RemoveItem(object item)
+        {
+            //Add item to ItemList, remove item from CategoryItem and remove item from Category.Item on the backend
+            ItemList.Add((Item)item);
+            CategoryItems.Remove((Item)item);
+        }
+        internal void RemoveTask(object task)
+        {
+            //Add task to TaskList, remove task from CategoryTask and remove task from Category.Task on the backend
+            TaskList.Add((Model.Task)task);
+            CategoryTasks.Remove((Model.Task)task);
         }
 
         public void LoadData()

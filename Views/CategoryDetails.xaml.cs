@@ -46,40 +46,19 @@ namespace TravelListApp.Views
             base.OnNavigatedTo(e);
         }
 
-        private void ItemsList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-        
-        private void TasksList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
         private async void DeleteItem_Click(object sender, RoutedEventArgs e)
         {
+
             var item = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteItemDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                Item removedItem = (Item)item;
-                ItemsOfCategory.Remove(removedItem);
-                ItemsNotInCategory.Add(removedItem);
-                //TODO: Call backend to delete Item
-            }
+            var vm = (CategoryDetailsViewModel)this.DataContext;
+            vm.RemoveItem(item);
         }
 
         private async void DeleteTask_Click(object sender, RoutedEventArgs e)
         {
             var task = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteItemDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                Task removedTask = (Task)task;
-                TasksOfCategory.Remove(removedTask);
-                TasksNotInCategory.Add(removedTask);
-                //TODO: Call backend to delete Item
-            }
+            var vm = (CategoryDetailsViewModel)this.DataContext;
+            vm.RemoveTask(task);
         }
 
         private void BackArrowButton_Click(object sender, RoutedEventArgs e)
