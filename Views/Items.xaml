@@ -12,7 +12,11 @@
     <Page.DataContext>
         <viewmodel:ItemsViewModel x:Name="vm"/>
     </Page.DataContext>
-    <Grid>
+    <Grid FocusVisualPrimaryBrush="#FFE2E2E2" Background="#FFE2E2E2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="Desktop">
@@ -51,25 +55,13 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <StackPanel x:Name="stackPanel" Background="#FF004589">
-            <TextBlock x:Name="textBlock" Text="Items" VerticalAlignment="Top" Height="45" Width="145" FontSize="36" HorizontalAlignment="Left" Margin="20,0,0,10" />
-            <StackPanel x:Name="stackPanel1" Orientation="Horizontal" Background="#FF89C4FF">
-                <TextBox x:Name="NewItemName" Text="{x:Bind vm.NewItemName,Mode=TwoWay}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10" Background="#FFD8EBFF" FocusVisualPrimaryBrush="#FF0080FF" Foreground="Black" FontSize="20"/>
-                <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10" Background="#FFD8EBFF" Height="95" FocusVisualPrimaryBrush="#FF0080FF" Foreground="Black" FontSize="20"/>
+        <StackPanel x:Name="stackPanel" FocusVisualPrimaryBrush="{x:Null}" Background="#FF6C2828">
+            <TextBlock x:Name="textBlock" Text="Items" VerticalAlignment="Center" Height="45" FontSize="36" HorizontalAlignment="Center" Margin="20,0,0,10" FocusVisualPrimaryBrush="White" />
+            <StackPanel x:Name="stackPanel1" Orientation="Vertical" Background="#FF6C2828" FocusVisualPrimaryBrush="Black" Margin="20,20,20,20">
+                <TextBox x:Name="NewItemName" Text="{x:Bind Mode=TwoWay, Path=vm.NewItemName}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Stretch" Margin="0,10,0,10" Background="#7FFFFFFF" FocusVisualPrimaryBrush="#FF0080FF" Foreground="White" FontSize="20" Height="38"/>
+                <Button x:Name="CreateItem" Command="{x:Bind Path=vm.CreateItemCommand}" Content="Create Item" Margin="0,10,0,10" Foreground="White" FontSize="20" HorizontalAlignment="Stretch" Width="252" Background="#33FFFFFF"/>
             </StackPanel>
-            <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage, Mode=OneWay}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
-
-            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemsSource="{x:Bind vm.ItemsList, Mode=OneWay}" x:DefaultBindMode="OneWay">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="data:Item">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,30,0" ></TextBlock>
-                            <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_ClickAsync"/>
-                            <!--<AppBarButton Visibility="Visible" Icon="Delete" Command="{Binding DataContext.RemoveItemCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}" Label="Delete" />-->
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <TextBlock x:Name="ErrorText" Text="{x:Bind Mode=OneWay, Path=vm.ErrorMessage}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
         </StackPanel>
         <ContentDialog x:Name="deleteItemDialog"
                        PrimaryButtonText="Delete"
@@ -79,9 +71,21 @@
                     <TextBlock Text="Delete item"/>
                 </DataTemplate>
             </ContentDialog.TitleTemplate>
-            <TextBlock>
-                Are you sure you want to delete the item? this action can't be undone
-            </TextBlock>
+            <TextBlock><Run Text="Are you sure you want to delete the item? this action can't be undone"/></TextBlock>
         </ContentDialog>
+        <ListView x:Name="ItemsList" Margin="10,10,10,11" IsItemClickEnabled="True" ItemsSource="{x:Bind Mode=OneWay, Path=vm.ItemsList}" x:DefaultBindMode="OneWay" Grid.Column="1" Foreground="Black">
+            <ListView.Background>
+                <ImageBrush ImageSource="/Assets/main.jpg"/>
+            </ListView.Background>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:Item">
+                    <StackPanel Orientation="Horizontal" Background="#CC3C8283" Margin="10,10,10,10">
+                        <TextBlock  VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Path=Name}" Margin="0,0,30,0" Foreground="Black" />
+                        <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_ClickAsync"/>
+                        <!--<AppBarButton Visibility="Visible" Icon="Delete" Command="{Binding DataContext.RemoveItemCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}" Label="Delete" />-->
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

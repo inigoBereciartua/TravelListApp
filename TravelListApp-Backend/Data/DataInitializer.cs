@@ -60,7 +60,7 @@ namespace TravelListApp_Backend.Data
                 Category randomitems = new Category("Randome stuff") { Items = new List<Item> { Wap } };
 
 
-                Activity activity = new Activity("Go to Airport", DateTime.Now);
+                Activity activity = new Activity("Go to Airport", DateTime.Today.AddDays(1));
                 Models.Task task1 = new Models.Task("Pack my bag");
                 traveler.Tasks.Add(task1);
 
