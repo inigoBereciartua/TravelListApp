@@ -9,14 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
 
-        <NavigationView x:Name="NavigationView" ItemInvoked="NavigationView_ItemInvoked" IsBackButtonVisible="Collapsed" >
+        <NavigationView x:Name="NavigationView" ItemInvoked="NavigationView_ItemInvoked" IsBackButtonVisible="Collapsed" IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Content="Travel App"/>
                 <NavigationViewItem Content="Travels" Icon="World" Tag="Travels"/>
                 <NavigationViewItem Content="Items" Icon="Library" Tag="Items"/>
                 <NavigationViewItem Content="Categories" Icon="Tag" Tag="Categories"/>
                 <NavigationViewItem Content="Tasks" Icon="Edit" Tag="Tasks"/>
-                <NavigationViewItem Content="Calendar" Icon="Calendar" Tag="Calendar"/>
+                <NavigationViewItem Content="Logout" Icon="Back" Tag="Logout"/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame"/>
         </NavigationView>
