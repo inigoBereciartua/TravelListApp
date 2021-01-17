@@ -10,5 +10,10 @@ namespace TravelListApp_Backend.DTO_s
         [Required]
         [NotNull]
         public string Name { get; set; }
+
+        public int ItemsCount { get; set; }
+
+        public int TasksCount { get; set; }
     }
+
 }
