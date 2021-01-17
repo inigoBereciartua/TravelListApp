@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TravelListApp_Backend.Models
+namespace TravelListApp_Backend.DTO_s
 {
     public class CategoryItem
     {
