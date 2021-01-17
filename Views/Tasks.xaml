@@ -24,7 +24,7 @@
             </GridView.Background>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Task">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" Background="#FF004589">
                         <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Path=Description}" Margin="0,0,30,0" />
                         <AppBarButton Visibility="Visible" Icon="Delete" Label="Delete" Click="AppBarButton_Click"/>
                     </StackPanel>
