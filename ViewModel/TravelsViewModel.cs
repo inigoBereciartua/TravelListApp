@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using TravelListApp.Command;
 using TravelListApp.Model;
 using Task = TravelListApp.Model.Task;
+using System.Net.Http;
 
 namespace TravelListApp.ViewModel
 {
@@ -21,8 +22,8 @@ namespace TravelListApp.ViewModel
         public RemoveTravelCommand NavigateToTravelDetailCommand { get; set; }
         public ObservableCollection<Travel> TravelList { get; set; }
         public string NewTravelName { get; set; }
-        public string NewTravelsStartDate { get; set; }
-        public string NewTravelsEndDate { get; set; }
+        public DateTimeOffset NewTravelsStartDate { get; set; }
+        public DateTimeOffset NewTravelsEndDate { get; set; }
         private string _errormessage;
         public string ErrorMessage
         {
@@ -68,36 +69,43 @@ namespace TravelListApp.ViewModel
             return new ObservableCollection<Travel>(tmp);
         }
 
-        internal void CreateTravel()
+        internal async void CreateTravel()
         {
-            DateTime startDate;
-            DateTime endDate;
 
             ErrorMessage = "";
             if (NewTravelName == "")
             {
                 ErrorMessage  = "Travel's name can't be empty";
             }
+            else if (NewTravelsStartDate.Date == null || NewTravelsEndDate.Date == null)
+            {
+                ErrorMessage = "Please select a start date and an end date";
+            }
             else if (NameOfTravelIsInUse())
             {
                 ErrorMessage = "That travel name is already in use";
-            }
-            else if (!DateTime.TryParseExact(NewTravelsStartDate, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
-            {
-                ErrorMessage = "Start date format is not correct, it should be dd/MM/yyyy";
-            }
-            else if (!DateTime.TryParseExact(NewTravelsEndDate, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
-            {
-                ErrorMessage= "End date format is not correct, it should be a valid dd/MM/yyyy";
-            }
-            else if (startDate > endDate)
+            }            
+            else if ( NewTravelsStartDate.Date > NewTravelsEndDate.Date)
             {
                 ErrorMessage = "Start date can't be greater than end date";
             }
             else
             {
-                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = startDate, EndDate = endDate };
-            }
+                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = NewTravelsStartDate.Date, EndDate = NewTravelsEndDate.Date };
+                var values = new Dictionary<string, string>
+                {
+                    { "Name", NewTravelName},
+                    { "Start", NewTravelsStartDate.Date.ToString() },
+                    { "End", NewTravelsEndDate.Date.ToString() }                    
+                };
+                var content = new FormUrlEncodedContent(values);
+                var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Travel", content);
+
+                if (result.StatusCode == HttpStatusCode.OK)
+                {
+                    TravelList.Add(newTravel);
+                }
+            }            
 
         }
 
