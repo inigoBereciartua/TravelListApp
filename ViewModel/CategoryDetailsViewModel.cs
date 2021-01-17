@@ -52,6 +52,19 @@ namespace TravelListApp.ViewModel
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
 
+        private async Task<ObservableCollection<Item>> GetCategoryItems()
+        {
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/"+Category.id+"/Items");
+            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+            return new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));
+        }
+        private async Task<ObservableCollection<Model.Task>> GetCategoryTasks()
+        {
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/"+ Category.id + "/Tasks");
+            var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
+            return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
+        }
+
 
         public CategoryDetailsViewModel()
         {
@@ -108,12 +121,12 @@ namespace TravelListApp.ViewModel
 
         public void LoadData()
         {
-            CategoryItems = new ObservableCollection<Item>(Category.Items); 
-            CategoryTasks = new ObservableCollection<Model.Task>(Category.Tasks);
+            CategoryItems = System.Threading.Tasks.Task.Run(() => GetCategoryItems()).Result;
+            CategoryTasks = System.Threading.Tasks.Task.Run(() => GetCategoryTasks()).Result;
             ItemList = System.Threading.Tasks.Task.Run(() => GetItems()).Result;
-            ItemList = new ObservableCollection<Item>(ItemList.Where(e => !Category.Items.Contains(e)).ToList());
+            ItemList = new ObservableCollection<Item>(ItemList.Where(e => !CategoryItems.Contains(e)).ToList());
             TaskList = System.Threading.Tasks.Task.Run(() => GetTasks()).Result;
-            TaskList = new ObservableCollection<Model.Task>(TaskList.Where(e => !Category.Tasks.Contains(e)).ToList());
+            TaskList = new ObservableCollection<Model.Task>(TaskList.Where(e => !CategoryTasks.Contains(e)).ToList());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
