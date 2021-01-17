@@ -47,8 +47,8 @@ namespace TravelListApp.Views
         private void AppBarButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             var item = (sender as AppBarButton).DataContext;
-            var vm = (ItemsViewModel)this.DataContext;
-            vm.RemoveItem((Item)item);
+            var vm = (AddCategoriesToTravelViewModel)this.DataContext;
+            //vm.RemoveItem((Item)item);
         }
     }
 }

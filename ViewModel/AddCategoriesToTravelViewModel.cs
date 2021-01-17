@@ -16,6 +16,7 @@ namespace TravelListApp.ViewModel
         // This might need to get the selected travel so that we can call it later to add the categories
         public Category SelectedCategory { get; set; }
         public Travel Travel;
+        public string amount;
         public AddCategoriesToTravelCommand AddCategoriesToTravelCommand { get; set; }
         public ObservableCollection<Category> CategoryList { get; set; }
         public ObservableCollection<Category> TravelCategories { get; set; }
@@ -74,9 +75,13 @@ namespace TravelListApp.ViewModel
         {
             if(SelectedCategory != null)
             {
-                ItemsList = System.Threading.Tasks.Task.Run(() => GetCategoryItems()).Result;
+                var list = System.Threading.Tasks.Task.Run(() => GetCategoryItems()).Result;
                 TravelItems = System.Threading.Tasks.Task.Run(() => GetTravelItems()).Result;
-                ItemsList = new ObservableCollection<Item>(ItemsList.Where(e => !TravelItems.Contains(e)).ToList());
+                list = new ObservableCollection<Item>(list.Where(e => !TravelItems.Contains(e)).ToList());
+                foreach(Item i in list)
+                {
+                    ItemsList.Add(i);
+                }
                 Console.WriteLine("");
             }
         }
