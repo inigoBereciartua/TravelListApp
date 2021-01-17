@@ -42,7 +42,7 @@ namespace TravelListApp.ViewModel
         }
 
         public LoginViewModel(){
-            this.Username = "Binladen";
+            this.Username = "Clark_Kent";
             this.Password = "P@ssword1";
             this.ErrorMessage = "";            
             LoginCommand = new LoginCommand(this);

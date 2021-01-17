@@ -12,7 +12,44 @@
         <viewmodel:RegisterViewModel x:Name="vm"></viewmodel:RegisterViewModel>
     </Page.DataContext>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Phone">
+                    <VisualState.Setters>
+                        <Setter Target="stackPanel.(FrameworkElement.Height)" Value="838"/>
+                        <Setter Target="stackPanel.(FrameworkElement.VerticalAlignment)">
+                            <Setter.Value>
+                                <VerticalAlignment>Center</VerticalAlignment>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel.(FrameworkElement.HorizontalAlignment)">
+                            <Setter.Value>
+                                <HorizontalAlignment>Center</HorizontalAlignment>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="EmailTextbox.(FrameworkElement.Width)" Value="NaN"/>
+                        <Setter Target="UsernameTextbox.(FrameworkElement.Width)" Value="NaN"/>
+                        <Setter Target="PasswordBox.(FrameworkElement.Width)" Value="NaN"/>
+                        <Setter Target="RepeatPasswordBox.(FrameworkElement.Width)" Value="NaN"/>
+                        <Setter Target="RegisterButton.(FrameworkElement.Width)" Value="NaN"/>
+                        <Setter Target="stackPanel.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FF5E661E"/>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" MinWindowHeight="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" MinWindowHeight="800"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <StackPanel x:Name="stackPanel" Background="Black">
             <TextBlock Text="Travel List App" HorizontalAlignment="Center" Margin="70" FontSize="40"/>
             <TextBox x:Name="EmailTextbox" Text="{x:Bind vm.Email,Mode=TwoWay}"  PlaceholderText="Email" Margin="0,20,0,10"  Width="150" />
             <TextBox x:Name="UsernameTextbox" Text="{x:Bind vm.Username,Mode=TwoWay}"  PlaceholderText="Username" Margin="0,20,0,10"  Width="150" />
