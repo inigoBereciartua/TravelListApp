@@ -166,6 +166,7 @@ namespace TravelListApp_Backend.Controllers
                 {
                     traveler.Categories.Remove(category);
                     this._categoryRepository.removeItem(category);
+                    this._categoryRepository.SaveChanges();
                     return Ok();
                 }
                 return NotFound();
