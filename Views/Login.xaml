@@ -14,72 +14,29 @@
     <Grid FocusVisualPrimaryBrush="White" x:Name="grid" Background="Black">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Phone">
-                    <VisualState.Setters>
-                        <Setter Target="stackPanel.(FrameworkElement.Height)" Value="781"/>
-                        <Setter Target="stackPanel.(FrameworkElement.VerticalAlignment)">
-                            <Setter.Value>
-                                <VerticalAlignment>Top</VerticalAlignment>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel.(FrameworkElement.HorizontalAlignment)">
-                            <Setter.Value>
-                                <HorizontalAlignment>Center</HorizontalAlignment>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel.(FrameworkElement.Margin)">
-                            <Setter.Value>
-                                <Thickness>0,124,0,0</Thickness>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="UsernameTextbox.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="PasswordBox.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="LoginButton.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="hyperlinkButton.(FrameworkElement.Width)" Value="NaN"/>
-                        <Setter Target="hyperlinkButton.(FrameworkElement.Height)" Value="167"/>
-                        <Setter Target="stackPanel.(FrameworkElement.FocusVisualPrimaryBrush)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FFB13D3D"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="textBlock.(FrameworkElement.FocusVisualPrimaryBrush)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF481717"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Target="stackPanel.(Panel.Background)">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF5E661E"/>
-                            </Setter.Value>
-                        </Setter>
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" MinWindowHeight="0"/>
-                    </VisualState.StateTriggers>
-                </VisualState>
                 <VisualState x:Name="Desktop">
                     <VisualState.Setters>
                         <Setter Target="textBlock.(FrameworkElement.HorizontalAlignment)" Value="Left"/>
                         <Setter Target="textBlock.(TextBlock.FontSize)" Value="72"/>
-                        <Setter Target="UsernameTextbox.(FrameworkElement.HorizontalAlignment)" Value="Left"/>
-                        <Setter Target="PasswordBox.(FrameworkElement.HorizontalAlignment)" Value="Left"/>
-                        <Setter Target="LoginButton.(FrameworkElement.HorizontalAlignment)" Value="Left"/>
+                        <Setter Target="UsernameTextbox.(FrameworkElement.HorizontalAlignment)" Value="Stretch"/>
+                        <Setter Target="PasswordBox.(FrameworkElement.HorizontalAlignment)" Value="Stretch"/>
+                        <Setter Target="LoginButton.(FrameworkElement.HorizontalAlignment)" Value="Stretch"/>
                         <Setter Target="hyperlinkButton.(FrameworkElement.VerticalAlignment)" Value="Center"/>
                         <Setter Target="hyperlinkButton.(FrameworkElement.HorizontalAlignment)" Value="Left"/>
                         <Setter Target="UsernameTextbox.(FrameworkElement.Margin)">
                             <Setter.Value>
-                                <Thickness>70,20,0,20</Thickness>
+                                <Thickness>0,20,0,20</Thickness>
                             </Setter.Value>
                         </Setter>
                         <Setter Target="PasswordBox.(FrameworkElement.Margin)">
                             <Setter.Value>
-                                <Thickness>70,20,0,20</Thickness>
+                                <Thickness>-1,20,0,20</Thickness>
                             </Setter.Value>
                         </Setter>
-                        <Setter Target="LoginButton.(FrameworkElement.Width)" Value="500"/>
+                        <Setter Target="LoginButton.(FrameworkElement.Width)" Value="NaN"/>
                         <Setter Target="LoginButton.(FrameworkElement.Margin)">
                             <Setter.Value>
-                                <Thickness>70,0,0,10</Thickness>
+                                <Thickness>0,0,0,10</Thickness>
                             </Setter.Value>
                         </Setter>
                         <Setter Target="hyperlinkButton.(FrameworkElement.Margin)">
@@ -87,15 +44,15 @@
                                 <Thickness>70,0,0,0</Thickness>
                             </Setter.Value>
                         </Setter>
-                        <Setter Target="textBlock.(FrameworkElement.Width)" Value="501"/>
+                        <Setter Target="textBlock.(FrameworkElement.Width)" Value="460"/>
                         <Setter Target="textBlock.(FrameworkElement.Height)" Value="90"/>
-                        <Setter Target="UsernameTextbox.(FrameworkElement.Width)" Value="500"/>
-                        <Setter Target="PasswordBox.(FrameworkElement.Width)" Value="500"/>
+                        <Setter Target="UsernameTextbox.(FrameworkElement.Width)" Value="NaN"/>
+                        <Setter Target="PasswordBox.(FrameworkElement.Width)" Value="NaN"/>
                         <Setter Target="hyperlinkButton.(FrameworkElement.Width)" Value="500"/>
-                        <Setter Target="hyperlinkButton.(Control.FontSize)" Value="24"/>
+                        <Setter Target="hyperlinkButton.(Control.FontSize)" Value="36"/>
                         <Setter Target="LoginButton.(Control.FontSize)" Value="20"/>
-                        <Setter Target="PasswordBox.(Control.FontSize)" Value="20"/>
-                        <Setter Target="UsernameTextbox.(Control.FontSize)" Value="20"/>
+                        <Setter Target="PasswordBox.(Control.FontSize)" Value="24"/>
+                        <Setter Target="UsernameTextbox.(Control.FontSize)" Value="24"/>
                         <Setter Target="stackPanel.(FrameworkElement.FocusVisualPrimaryBrush)">
                             <Setter.Value>
                                 <ImageBrush/>
@@ -108,7 +65,7 @@
                         </Setter>
                         <Setter Target="stackPanel.(Panel.Background)">
                             <Setter.Value>
-                                <SolidColorBrush Color="#FFC85D5D"/>
+                                <SolidColorBrush Color="#FF8AA29E"/>
                             </Setter.Value>
                         </Setter>
                         <Setter Target="stackPanel.(StackPanel.BorderBrush)">
@@ -121,7 +78,7 @@
                         </Setter>
                         <Setter Target="stackPanel.(FrameworkElement.Margin)">
                             <Setter.Value>
-                                <Thickness>0,0,826,0</Thickness>
+                                <Thickness>0,0,983,0</Thickness>
                             </Setter.Value>
                         </Setter>
                         <Setter Target="grid.(FrameworkElement.FocusVisualPrimaryBrush)">
@@ -136,7 +93,7 @@
                         </Setter>
                         <Setter Target="grid.(Panel.Background)">
                             <Setter.Value>
-                                <SolidColorBrush Color="#FFD68585"/>
+                                <SolidColorBrush Color="#FFDB5461"/>
                             </Setter.Value>
                         </Setter>
                         <Setter Target="textBlock.(FrameworkElement.VerticalAlignment)" Value="Stretch"/>
@@ -146,15 +103,22 @@
                                 <Thickness>70,70,0,70</Thickness>
                             </Setter.Value>
                         </Setter>
-                        <Setter Target="textBlock.(TextBlock.FontFamily)" Value="Cooper Black"/>
+                        <Setter Target="textBlock.(TextBlock.FontFamily)" Value="Brush Script MT"/>
+                        <Setter Target="textBlock.(TextBlock.FontWeight)" Value="Bold"/>
+                        <Setter Target="textBlock.(TextBlock.FontStyle)" Value="Italic"/>
+                        <Setter Target="hyperlinkButton.(Control.Foreground)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="Black"/>
+                            </Setter.Value>
+                        </Setter>
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" MinWindowHeight="800"/>
+                        <AdaptiveTrigger MinWindowWidth="0" MinWindowHeight="0"/>
                     </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <StackPanel x:Name="stackPanel" FocusVisualPrimaryBrush="White" Background="Black">
+        <StackPanel x:Name="stackPanel" FocusVisualPrimaryBrush="Black" Background="Black" Margin="0,0,984,0">
             <StackPanel.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -163,11 +127,11 @@
                     <GradientStop Color="#FFEAEAEA" Offset="0.385"/>
                 </LinearGradientBrush>
             </StackPanel.BorderBrush>
-            <TextBlock x:Name="textBlock" Text="Travel List App" HorizontalAlignment="Center" Margin="70" FontSize="40" FocusVisualPrimaryBrush="White"/>
+            <TextBlock x:Name="textBlock" Text="Travel List App" HorizontalAlignment="Stretch" Margin="70" FontSize="40" FocusVisualPrimaryBrush="White"/>
             <TextBox x:Name="UsernameTextbox" Text="{x:Bind Mode=TwoWay, Path=vm.Username}" PlaceholderText="Username" Margin="0,20,0,20"  Width="150" />
-            <PasswordBox x:Name="PasswordBox" Password="{x:Bind Mode=TwoWay, Path=vm.Password}" PlaceholderText="Password" Margin="0,20,0,20"  Width="150" />
-            <Button x:Name="LoginButton" Content="Login" Command="{x:Bind Path=vm.LoginCommand}" CommandParameter="{x:Bind Path=Frame}"  HorizontalAlignment="Center" Width="90" Margin="0,0,0,10"/>
-            <HyperlinkButton x:Name="hyperlinkButton" Content="Not registered yet?" NavigateUri="Register" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+            <PasswordBox x:Name="PasswordBox" Password="{x:Bind Mode=TwoWay, Path=vm.Password}" PlaceholderText="Password" Margin="0,20,0,20" />
+            <Button x:Name="LoginButton" Content="Login" Command="{x:Bind Path=vm.LoginCommand}" CommandParameter="{x:Bind Path=Frame}"  HorizontalAlignment="Center" Width="90" Margin="0,0,0,10" FontSize="22"/>
+            <HyperlinkButton x:Name="hyperlinkButton" Content="Not registered yet?" NavigateUri="Register" HorizontalAlignment="Center" Margin="0,0,0,0" Foreground="#FF409EFE"/>
             <TextBlock x:Name="ErrorText" Text="{x:Bind Mode=OneWay, Path=vm.ErrorMessage}" FontSize="12" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Margin="30,5,0,10"/>
         </StackPanel>
     </Grid>

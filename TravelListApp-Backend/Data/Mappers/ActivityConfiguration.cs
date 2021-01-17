@@ -10,8 +10,7 @@ namespace TravelListApp_Backend.Data.Mappers
         {
             builder.ToTable("Activity");
             builder.Property(e => e.Description);
-            builder.Property(e => e.Start);
-            builder.Property(e => e.End);
+            builder.Property(e => e.Start);            
         }
     }
 }

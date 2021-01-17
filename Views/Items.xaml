@@ -14,14 +14,52 @@
         <viewmodel:ItemsViewModel x:Name="vm"/>
     </Page.DataContext>
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Items" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="NewItemName" Text="{x:Bind vm.NewItemName,Mode=TwoWay}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
-                <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10"/>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Desktop">
+                    <VisualState.Setters>
+                        <Setter Target="CreateItem.(Control.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="HotPink"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="NewItemName.(Control.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="HotPink"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="deleteItemDialog.(Control.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FFDB5461"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FFDB5461"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel1.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="Black"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="textBlock.(FrameworkElement.HorizontalAlignment)" Value="Stretch"/>
+                        <Setter Target="CreateItem.(FrameworkElement.Width)" Value="1225"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" MinWindowHeight="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <StackPanel x:Name="stackPanel" Background="#FF004589">
+            <TextBlock x:Name="textBlock" Text="Items" VerticalAlignment="Top" Height="45" Width="145" FontSize="36" HorizontalAlignment="Left" Margin="20,0,0,10" />
+            <StackPanel x:Name="stackPanel1" Orientation="Horizontal" Background="#FF89C4FF">
+                <TextBox x:Name="NewItemName" Text="{x:Bind vm.NewItemName,Mode=TwoWay}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10" Background="#FFD8EBFF" FocusVisualPrimaryBrush="#FF0080FF" Foreground="Black" FontSize="20"/>
+                <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10" Background="#FFD8EBFF" Height="95" FocusVisualPrimaryBrush="#FF0080FF" Foreground="Black" FontSize="20"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage, Mode=OneWay}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
-            
+
             <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemsSource="{x:Bind vm.ItemsList, Mode=OneWay}" x:DefaultBindMode="OneWay">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Item">
@@ -36,11 +74,11 @@
         </StackPanel>
         <ContentDialog x:Name="deleteItemDialog"
                        PrimaryButtonText="Delete"
-                       CloseButtonText="Cancel">
+                       CloseButtonText="Cancel" Background="#FF004589" d:IsHidden="True">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <TextBlock Text="Delete item"/>
-                </DataTemplate>               
+                </DataTemplate>
             </ContentDialog.TitleTemplate>
             <TextBlock>
                 Are you sure you want to delete the item? this action can't be undone

@@ -14,7 +14,7 @@ namespace TravelListApp.Model
         public DateTime EndDate { get; set; }
         public List<Item> Items { get; set; } = new List<Item>();
         public List<Category> Categories { get; set; } = new List<Category>();
-        public Itinerary Itinerary { get; set; }
+        public Activity Itinerary { get; set; }
         public List<Task> Tasks { get; set; } = new List<Task>();
 
         public String GetStringStartDate()

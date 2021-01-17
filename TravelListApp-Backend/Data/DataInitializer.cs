@@ -41,7 +41,7 @@ namespace TravelListApp_Backend.Data
                 Category testCategory2 = new Category("testCategory2") { Items = new List<Item> { teddybear } };
 
 
-                Activity activity = new Activity("Go to where osama binladen died", DateTime.Now, DateTime.Now.AddDays(1.0));
+                Activity activity = new Activity("Go to where osama binladen died", DateTime.Now);
                 Models.Task task1 = new Models.Task("Pack my bag");
                 traveler.Tasks.Add(task1);
 
