@@ -28,5 +28,6 @@ namespace TravelListApp.Views
             this.InitializeComponent();
             frame = this.Frame;            
         }
+        
     }
 }

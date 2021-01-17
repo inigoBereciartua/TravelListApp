@@ -39,9 +39,8 @@ namespace TravelListApp.Views
                     case "Tasks":
                         ContentFrame.Navigate(typeof(Tasks));
                         break;
-                    case "Calendar":
-                        Debug.WriteLine("sdfghjgfds");
-                        ContentFrame.Navigate(typeof(Calendar));
+                    case "Logout":                                
+                        Frame.Navigate(typeof(Login));
                         break;
 
                 }

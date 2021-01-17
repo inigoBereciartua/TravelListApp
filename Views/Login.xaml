@@ -18,7 +18,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="stackPanel" FocusVisualPrimaryBrush="{x:Null}" Background="#FF6C2828" HorizontalAlignment="Left" Width="642" >
+        <StackPanel x:Name="stackPanel" FocusVisualPrimaryBrush="{x:Null}" Background="#FF6C2828" HorizontalAlignment="Left" Width="642">
             <StackPanel.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -28,10 +28,10 @@
                 </LinearGradientBrush>
             </StackPanel.BorderBrush>
             <TextBlock x:Name="textBlock" Text="Travel List App" HorizontalAlignment="Center" Margin="70" FontSize="72" FocusVisualPrimaryBrush="White" FontFamily="Brush Script MT"/>
-            <TextBox x:Name="UsernameTextbox" Text="{x:Bind Mode=TwoWay, Path=vm.Username}" PlaceholderText="Username" Margin="0,20,0,20" />
-            <PasswordBox x:Name="PasswordBox" Password="{x:Bind Mode=TwoWay, Path=vm.Password}" PlaceholderText="Password" Margin="0,20,0,20" />
-            <Button x:Name="LoginButton" Content="Login" Command="{x:Bind Path=vm.LoginCommand}" CommandParameter="{x:Bind Path=Frame}"  HorizontalAlignment="Stretch" Margin="0,0,0,10" FontSize="22"/>
-            <HyperlinkButton x:Name="hyperlinkButton" Content="Not registered yet?" NavigateUri="Register" HorizontalAlignment="Center" Margin="0,0,0,0" Foreground="#FFF7D5CA" Width="417" FontSize="24">
+            <TextBox x:Name="UsernameTextbox" Text="{x:Bind Mode=TwoWay, Path=vm.Username}" PlaceholderText="Username" Margin="80,20,80,20" />
+            <PasswordBox x:Name="PasswordBox" Password="{x:Bind Mode=TwoWay, Path=vm.Password}" PlaceholderText="Password" Margin="80,20,80,20" />
+            <Button x:Name="LoginButton" Content="Login" Command="{x:Bind Path=vm.LoginCommand}" CommandParameter="{x:Bind Path=Frame}"  HorizontalAlignment="Stretch" Margin="100,0,100,10" FontSize="22"/>
+            <HyperlinkButton x:Name="hyperlinkButton" Content="Not registered yet?" Command="{x:Bind vm.NavigateCommand}" CommandParameter="{x:Bind Path=Frame}" HorizontalAlignment="Center" Margin="0,0,0,0" Foreground="#FFF7D5CA" Width="417" FontSize="24">
                 <HyperlinkButton.FocusVisualPrimaryBrush>
                     <ImageBrush ImageSource="/Assets/main.jpg"/>
                 </HyperlinkButton.FocusVisualPrimaryBrush>

@@ -33,7 +33,7 @@ namespace TravelListApp.ViewModel
                 if (value != _errormessage)
                 {
                     _errormessage = value;
-                    NotifyPropertyChanged("ErrorMessage");
+                    OnPropertyChanged("ErrorMessage");
                 }
             }
         }
@@ -43,8 +43,10 @@ namespace TravelListApp.ViewModel
             CreateTravelCommand = new CreateTravelCommand(this);
             RemoveTravelCommand = new RemoveTravelCommand(this);
             NavigateToTravelDetailCommand = new RemoveTravelCommand(this);
-            ErrorMessage = "";
+            ErrorMessage = "a";
             NewTravelName = "";
+            NewTravelsStartDate = DateTime.Today;
+            NewTravelsEndDate = DateTime.Today.AddDays(1);
             TravelList = System.Threading.Tasks.Task.Run(()=> GetTravels()).Result;
         }
 
@@ -126,13 +128,19 @@ namespace TravelListApp.ViewModel
             throw new NotImplementedException();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName)
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler(this, e);
         }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;        
     }
 }

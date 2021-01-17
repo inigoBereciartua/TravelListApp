@@ -129,6 +129,8 @@
     <Compile Include="Command\CreateTravelCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\NavigateToCategoryCommand.cs" />
+    <Compile Include="Command\NavigateToLoginCommand.cs" />
+    <Compile Include="Command\NavigateToRegisterCommand.cs" />
     <Compile Include="Command\RegisterCommand.cs" />
     <Compile Include="Command\RemoveCategoryCommand.cs" />
     <Compile Include="Command\RemoveItemCommand.cs" />
@@ -144,7 +146,6 @@
     <Compile Include="ViewModel\AddCategoriesToTravelViewModel.cs" />
     <Compile Include="ViewModel\AddItemsToTravelViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\CalendarViewModel.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\CategoryDetailsViewModel.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
@@ -168,9 +169,6 @@
     </Compile>
     <Compile Include="Views\AddItemsToTravel.xaml.cs">
       <DependentUpon>AddItemsToTravel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Calendar.xaml.cs">
-      <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Categories.xaml.cs">
       <DependentUpon>Categories.xaml</DependentUpon>
@@ -237,10 +235,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddItemsToTravel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

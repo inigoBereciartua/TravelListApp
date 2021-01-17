@@ -21,9 +21,11 @@ namespace TravelListApp.Views {
     /// </summary>
     public sealed partial class Register : Page
     {
+        Frame frame;
         public Register()
         {
             this.InitializeComponent();
+            frame = this.Frame;
         }        
     }
 }
