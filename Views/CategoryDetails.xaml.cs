@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TravelListApp.Model;
 using System.Collections.ObjectModel;
+using TravelListApp.ViewModel;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,7 +25,6 @@ namespace TravelListApp.Views
     /// </summary>
     public sealed partial class CategoryDetails : Page
     {
-        public Category category;
         public ObservableCollection<Item> ItemsNotInCategory { get; set; } = new ObservableCollection<Item>();
 
         public ObservableCollection<Item> ItemsOfCategory { get; set; } = new ObservableCollection<Item>();
@@ -40,34 +40,9 @@ namespace TravelListApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             //TODO: Call to backend to get items
-            var itemsList = ItemsManager.GetItems();
-            this.category = (Category)e.Parameter;
-            foreach (var item in category.Items)
-            {                
-                itemsList.Remove(item);
-
-                this.ItemsOfCategory.Add(item);
-            }
-            ItemsList.ItemsSource = this.ItemsOfCategory;
-
-            foreach(var item in itemsList)
-            {
-                ItemsNotInCategory.Add(item);
-            }
-
-            //TODO: Call to backend to get tasks
-            var tasksList = TaskManager.GetTasks();            
-            foreach(var task in category.Tasks)
-            {
-                tasksList.Remove((Task)task);
-                this.TasksOfCategory.Add((Task)task);
-            }
-            TasksList.ItemsSource = TasksOfCategory;
-
-            foreach(var task in tasksList)
-            {
-                TasksNotInCategory.Add(task);
-            }
+            var vm = (CategoryDetailsViewModel)this.DataContext;
+            vm.Category = (Category)e.Parameter;
+            vm.LoadData();
             base.OnNavigatedTo(e);
         }
 
@@ -76,41 +51,6 @@ namespace TravelListApp.Views
 
         }
         
-
-        private void AddItem_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorTextItems.Text = "";
-            ErrorTextTasks.Text = "";
-            if (ItemsNotInCategoryComboBox.SelectedIndex < 0)
-            {
-                ErrorTextItems.Text = "No item selected";
-            }
-            else
-            {
-                Item selectedItem = (Item)ItemsNotInCategoryComboBox.SelectedItem;                
-                ItemsNotInCategory.Remove(selectedItem);
-                ItemsOfCategory.Add(selectedItem);
-                //TODO: Call backend to add item to category
-            }
-        }
-
-        private void AddTask_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorTextItems.Text = "";
-            ErrorTextTasks.Text = "";
-            if (TasksNotInCategoryComboBox.SelectedIndex < 0)
-            {
-                ErrorTextTasks.Text = "No task selected";
-            }
-            else
-            {
-                Task selectedTask = (Task)TasksNotInCategoryComboBox.SelectedItem;
-                TasksNotInCategory.Remove(selectedTask);
-                TasksOfCategory.Add(selectedTask);
-                //TODO: Call backend to add task to category
-            }
-        }
-
         private void TasksList_ItemClick(object sender, ItemClickEventArgs e)
         {
 
