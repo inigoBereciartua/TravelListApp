@@ -30,61 +30,13 @@ namespace TravelListApp.Views
         public Items()
         {
             this.InitializeComponent();
-            //TODO: Call to backend to get items
-            foreach (var item in ItemsManager.GetItems())
-            {
-                itemsList.Add(item);
-            }
-            ItemsList.ItemsSource = itemsList;
         }
 
-        private void ItemsList_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var item = (Item)e.ClickedItem;
-        }
-
-        private async void AppBarButton_ClickAsync(object sender, RoutedEventArgs e)
+        private void AppBarButton_ClickAsync(object sender, RoutedEventArgs e)
         {
             var item = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteItemDialog.ShowAsync();
-            if(result == ContentDialogResult.Primary)
-            {
-                var vm = (ItemsViewModel)this.DataContext;
-                vm.RemoveItem((Item)item);
-            }
-        }
-        private void CreateItem_Click(object sender, RoutedEventArgs e)
-        {
-            ErrorText.Text = "";
-            if (NewItemName.Text == "")
-            {
-                ErrorText.Text = "Item's name can't be empty";
-            }else if (NameOfItemIsInUse(NewItemName.Text))
-            {
-                ErrorText.Text = "That item name is already in use";
-            }
-            else
-            {
-                itemsList.Add(new Item { Name = NewItemName.Text });
-                //TODO: Call backend to create Item
-            }
-        }
-
-        private bool NameOfItemIsInUse(string text)
-        {
-            foreach(var item in itemsList)
-            {
-                if (item.Name == text)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void deleteItemDialog_Opened(ContentDialog sender, ContentDialogOpenedEventArgs args)
-        {
-
+            var vm = (ItemsViewModel)this.DataContext;
+            vm.RemoveItem((Item)item);
         }
     }
 }
