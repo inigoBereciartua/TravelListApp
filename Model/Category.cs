@@ -10,6 +10,8 @@ namespace TravelListApp.Model
     {
         public int id { get; set; }
         public string Name { get; set; }
+        public int ItemsCount { get; set; }
+        public int TasksCount { get; set; }
         public List<Item> Items { get; set; }
 
         public List<Task> Tasks { get; set; }
