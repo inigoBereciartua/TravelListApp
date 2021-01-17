@@ -28,14 +28,14 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="ItemsNotInCategoryComboBox" ItemsSource="{x:Bind vm.ItemList}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
+                        <ComboBox x:Name="ItemsNotInCategoryComboBox" SelectedItem="{x:Bind vm.SelectedItem, Mode=TwoWay}" ItemsSource="{x:Bind vm.ItemList}" DisplayMemberPath="Name" Width="150" Margin="30, 10, 0, 0" />
                         <Button x:Name="AddItem" Content="Add Item" Margin="20, 10, 0, 10" Command="{x:Bind vm.AddItemToCategoryCommand}"/>
                         <!--<Button x:Name="AddItem" Content="Add Item" Margin="20, 10, 0, 10" Click="AddItem_Click"/>-->
                     </StackPanel>
                     <TextBlock x:Name="ErrorTextItems" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
-
-                    <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" x:DefaultBindMode="OneWay">
+                    <!--<ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemClick="ItemsList_ItemClick" x:DefaultBindMode="OneWay">-->
+                    <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.CategoryItems}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Item">
                                 <StackPanel Orientation="Horizontal">
@@ -49,13 +49,13 @@
 
                 <StackPanel Grid.Column="1">
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="TasksNotInCategoryComboBox" ItemsSource="{x:Bind vm.TaskList}" DisplayMemberPath="Description" Width="150" Margin="30, 10, 0, 0" />
+                        <ComboBox x:Name="TasksNotInCategoryComboBox" SelectedItem="{x:Bind vm.SelectedTask, Mode=TwoWay}" ItemsSource="{x:Bind vm.TaskList}" DisplayMemberPath="Description" Width="150" Margin="30, 10, 0, 0" />
                         <Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Command="{x:Bind vm.AddTaskToCategoryCommand}"/>
                         <!--<Button x:Name="AddTask" Content="Add Task" Margin="20, 10, 0, 10" Click="AddTask_Click"/>-->
                     </StackPanel>
                     <TextBlock x:Name="ErrorTextTasks" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
 
-                    <ListView x:Name="TasksList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemClick="TasksList_ItemClick" x:DefaultBindMode="OneWay">
+                    <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.CategoryTasks}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Task">
                                 <StackPanel Orientation="Horizontal">

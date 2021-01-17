@@ -39,8 +39,8 @@ namespace TravelListApp.ViewModel
         {
             CreateCategoryCommand = new CreateCategoryCommand(this);
             RemoveCategoryCommand = new RemoveCategoryCommand(this);
-            ErrorMessage = "";
             CategoriesList = System.Threading.Tasks.Task.Run(() => GetCategories()).Result;
+            ErrorMessage = "";
         }
         private async Task<ObservableCollection<Category>> GetCategories()
         {

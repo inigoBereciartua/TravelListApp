@@ -103,7 +103,6 @@ namespace TravelListApp.ViewModel
             if (result.IsSuccessStatusCode)
             {
                 ItemsList.Remove(selectedItem);
-                //TODO Call Backend
             }
         }
     }
