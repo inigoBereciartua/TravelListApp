@@ -21,8 +21,8 @@ namespace TravelListApp.ViewModel
         public RemoveTravelCommand NavigateToTravelDetailCommand { get; set; }
         public ObservableCollection<Travel> TravelList { get; set; }
         public string NewTravelName { get; set; }
-        public string NewTravelsStartDate { get; set; }
-        public string NewTravelsEndDate { get; set; }
+        public DateTimeOffset NewTravelsStartDate { get; set; }
+        public DateTimeOffset NewTravelsEndDate { get; set; }
         private string _errormessage;
         public string ErrorMessage
         {
@@ -70,8 +70,6 @@ namespace TravelListApp.ViewModel
 
         internal void CreateTravel()
         {
-            DateTime startDate;
-            DateTime endDate;
 
             ErrorMessage = "";
             if (NewTravelName == "")
@@ -81,22 +79,15 @@ namespace TravelListApp.ViewModel
             else if (NameOfTravelIsInUse())
             {
                 ErrorMessage = "That travel name is already in use";
-            }
-            else if (!DateTime.TryParseExact(NewTravelsStartDate, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
-            {
-                ErrorMessage = "Start date format is not correct, it should be dd/MM/yyyy";
-            }
-            else if (!DateTime.TryParseExact(NewTravelsEndDate, "d/M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out endDate))
-            {
-                ErrorMessage= "End date format is not correct, it should be a valid dd/MM/yyyy";
-            }
-            else if (startDate > endDate)
+            }            
+            else if ( NewTravelsStartDate > NewTravelsEndDate)
             {
                 ErrorMessage = "Start date can't be greater than end date";
             }
             else
             {
-                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = startDate, EndDate = endDate };
+                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = NewTravelsStartDate, EndDate = NewTravelsEndDate };
+
             }
 
         }
