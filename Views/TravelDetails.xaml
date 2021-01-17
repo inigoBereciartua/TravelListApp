@@ -13,11 +13,57 @@
         <viewmodel:TravelDetailsViewModel x:Name="vm"/>
     </Page.DataContext>
     <ScrollViewer HorizontalScrollMode="Disabled">
-        <Grid Margin="5,5,5,30">
-            <StackPanel>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Laptop">
+                    <VisualState.Setters>
+                        <Setter Target="stackPanel.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FF9F4B4B"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel1.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FF6C2828"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel2.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FF6C2828"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel3.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FF6C2828"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="stackPanel4.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FF6C2828"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="grid.(Panel.Background)">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#FFD8EBFF"/>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1920" MinWindowHeight="1080"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Tablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1280" MinWindowHeight="800"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid x:Name="grid" Margin="5,5,5,30" Background="Black">
+            <StackPanel x:Name="stackPanel" Background="Black" Orientation="Horizontal">
                 <AppBarButton x:Name="BackArrowButton" Icon="Back" Height="44" Width="60" Click="BackArrowButton_Click"/>
                 <TextBlock Text="{x:Bind Path=Travel.Name}" VerticalAlignment="Top" Height="45" Width="145" FontSize="30"  HorizontalAlignment="Left"  Margin="20,0,0,10" />
-                <StackPanel Height="100" Orientation="Horizontal">
+                <StackPanel x:Name="stackPanel1" Height="100" Orientation="Horizontal" Background="Black">
                     <StackPanel Orientation="Horizontal" Margin="20,0,20,0">
                         <TextBlock Text="End date:" Margin="20,0,20,0"/>
                         <TextBlock Text="{x:Bind Path=Travel.GetStringEndDate()}" Margin="20,0,20,0" />
@@ -30,7 +76,7 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="20,0,0,10" />
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                <StackPanel x:Name="stackPanel2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Black" >
                     <TextBlock Text="Categories" Margin="0,20,0,19" HorizontalAlignment="Center"/>
                     <ListView x:Name="CategoriesList" Margin="10, 0, 0, 0" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
                         <ListView.ItemTemplate>
@@ -44,7 +90,7 @@
                     </ListView>
                     <Button x:Name="AddCategories" Content="Add Category" HorizontalAlignment="Stretch" Click="AddCategories_Click" Margin="0,20,0,20"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel x:Name="stackPanel3" Background="Black">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -86,7 +132,7 @@
                     </Grid>
 
                 </StackPanel>
-                <StackPanel Height="100" Width="1490">
+                <StackPanel x:Name="stackPanel4" Height="100" Width="1490" Background="Black">
                     <ListView x:DefaultBindMode="OneWay" HorizontalAlignment="Stretch">
                         <x:String>Add Activity</x:String>
                         <Button Content="Itinerary" x:Name="AddActivity" Click="AddActivity_Click" Margin="0,20,0,20" Width="1466"/>
