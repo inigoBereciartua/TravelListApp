@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using TravelListApp.Command;
 using TravelListApp.Model;
 using Task = TravelListApp.Model.Task;
+using System.Net.Http;
 
 namespace TravelListApp.ViewModel
 {
@@ -68,7 +69,7 @@ namespace TravelListApp.ViewModel
             return new ObservableCollection<Travel>(tmp);
         }
 
-        internal void CreateTravel()
+        internal async void CreateTravel()
         {
 
             ErrorMessage = "";
@@ -76,19 +77,35 @@ namespace TravelListApp.ViewModel
             {
                 ErrorMessage  = "Travel's name can't be empty";
             }
+            else if (NewTravelsStartDate.Date == null || NewTravelsEndDate.Date == null)
+            {
+                ErrorMessage = "Please select a start date and an end date";
+            }
             else if (NameOfTravelIsInUse())
             {
                 ErrorMessage = "That travel name is already in use";
             }            
-            else if ( NewTravelsStartDate > NewTravelsEndDate)
+            else if ( NewTravelsStartDate.Date > NewTravelsEndDate.Date)
             {
                 ErrorMessage = "Start date can't be greater than end date";
             }
             else
             {
-                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = NewTravelsStartDate, EndDate = NewTravelsEndDate };
+                Travel newTravel = new Travel() { Name = NewTravelName, StartDate = NewTravelsStartDate.Date, EndDate = NewTravelsEndDate.Date };
+                var values = new Dictionary<string, string>
+                {
+                    { "Name", NewTravelName},
+                    { "Start", NewTravelsStartDate.Date.ToString() },
+                    { "End", NewTravelsEndDate.Date.ToString() }                    
+                };
+                var content = new FormUrlEncodedContent(values);
+                var result = await Client.HttpClient.PostAsync("http://localhost:65177/api/Travel", content);
 
-            }
+                if (result.StatusCode == HttpStatusCode.OK)
+                {
+                    TravelList.Add(newTravel);
+                }
+            }            
 
         }
 

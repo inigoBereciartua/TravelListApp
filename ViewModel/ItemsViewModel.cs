@@ -79,8 +79,7 @@ namespace TravelListApp.ViewModel
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    ItemsList.Add(new Item() { Name = NewItemName });
-                    ItemsList = System.Threading.Tasks.Task.Run(()=> GetItems()).Result;
+                    ItemsList.Add(new Item() { Name = NewItemName });                    
                 }
             }            
         }

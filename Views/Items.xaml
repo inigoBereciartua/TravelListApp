@@ -19,7 +19,7 @@
                 <TextBox x:Name="NewItemName" Text="{x:Bind vm.NewItemName,Mode=TwoWay}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
                 <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10" Click="CreateItem_Click"/>
             </StackPanel>
-            <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
+            <TextBlock x:Name="ErrorText" Text="{x:Bind vm.ErrorMessage, Mode=OneWay}" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
             
             <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" ItemsSource="{x:Bind vm.ItemsList, Mode=OneWay}" x:DefaultBindMode="OneWay">
                 <ListView.ItemTemplate>

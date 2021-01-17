@@ -54,13 +54,13 @@
 
                         <StackPanel Grid.Column="0" >
                             <TextBlock Text="Items" Margin="20,0,0,0"/>
-                            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
+                            <ListView x:Name="ItemsList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.ItemsInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="data:Item">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock VerticalAlignment="Center" Width="100" FontSize="15" Text="{x:Bind Name}" Margin="0,0,10,0" ></TextBlock>
                                             <TextBlock VerticalAlignment="Center" FontSize="15" Text="{x:Bind AmountOfItem}" Margin="0,0,15,0" ></TextBlock>
-                                            <AppBarButton Visibility="Visible" Icon="Accept" Label="Check" Click="CheckItem_Click"/>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{x:Bind Check}" Click="CheckItem_Click"/>
                                             <AppBarButton x:Name="DeleteItem" Visibility="Visible" Icon="Delete" Label="Delete" Click="DeleteItem_Click"/>
                                         </StackPanel>
                                     </DataTemplate>
@@ -70,7 +70,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1" >
                             <TextBlock Text="Tasks" Margin="20,0,0,0"/>
-                            <ListView x:Name="TasksList" Margin="20, 10, 20, 20" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
+                            <ListView x:Name="TasksList" Margin="20, 10, 20, 20" ItemsSource="{x:Bind vm.TasksInTravelList}" IsItemClickEnabled="True" x:DefaultBindMode="OneWay" MaxHeight="350">
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="data:Task">
                                         <StackPanel Orientation="Horizontal">
@@ -81,7 +81,7 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                            <Button x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Left" Click="AddTasks_Click" Margin="20, 10, 0, 0"/>
+                            <AppBarButton x:Name="AddTasks" Content="Add Tasks" HorizontalAlignment="Left" Click="AddTasks_Click" Margin="20, 10, 0, 0"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -111,6 +111,26 @@
                     Are you sure you want to delete the category? this action can't be undone
                 </TextBlock>
             </ContentDialog>
+
+            <ContentDialog x:Name="addItemDialog"
+                           PrimaryButtonText="Add"
+                           CloseButtonText="Cancel">
+                <StackPanel>
+                    <TextBlock Text="Select the item you want to add and input the amount" Margin="0,0,0,10"/>
+                    <ComboBox x:Name="itemToAdd" ItemsSource="{x:Bind vm.ItemsNotInTravelList}" SelectedItem="{x:Bind vm.ItemToAdd, Mode=TwoWay}" DisplayMemberPath="Name"/>
+                    <TextBox Header="Amount" Text="{x:Bind vm.Amount, Mode=TwoWay}"/>
+                </StackPanel>
+            </ContentDialog>
+
+            <ContentDialog x:Name="addTaskDialog"
+                           PrimaryButtonText="Add"
+                           CloseButtonText="Cancel">
+                <StackPanel>
+                    <TextBlock Text="Select the task you want to add and input the amount" Margin="0,0,0,10"/>
+                    <ComboBox x:Name="taskToAdd" ItemsSource="{x:Bind vm.TasksNotInTravelList}" DisplayMemberPath="Description"/>
+                </StackPanel>
+            </ContentDialog>
+
         </Grid>
     </ScrollViewer>
 </Page>

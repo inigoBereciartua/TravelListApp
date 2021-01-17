@@ -38,33 +38,20 @@ namespace TravelListApp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //TODO: Call to backend to get items, to get categories and tasks
             this.Travel = (Travel)e.Parameter;
-            foreach (var item in Travel.Items)
-            {
-                ItemsCollection.Add(item);
-            }
-            ItemsList.ItemsSource = ItemsCollection;
-            foreach(var category in Travel.Categories)
-            {
-                CategoriesCollection.Add(category);
-            }
-            CategoriesList.ItemsSource = CategoriesCollection;
-            foreach (var task in Travel.Tasks)
-            {
-                TasksCollection.Add(task);
-            }
-            TasksList.ItemsSource = TasksCollection;
+            //TODO: Call to backend to get items, to get categories and tasks
+            var vm = (TravelDetailsViewModel)this.DataContext;
+            vm.Travel = (Travel)e.Parameter;
+            vm.LoadData();
             base.OnNavigatedTo(e);
         }
-
         private void BackArrowButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Travels));
         }
         private async void AddItems_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddItemsToTravel), this.Travel);
+            var result = await addItemDialog.ShowAsync();            
         }
         private async void AddTasks_Click(object sender, RoutedEventArgs e)
         {
@@ -111,21 +98,12 @@ namespace TravelListApp.Views
                 }
             }
         }
-        private async void DeleteItem_Click(object sender, RoutedEventArgs e)
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
         {
             var item = (sender as AppBarButton).DataContext;
-            ContentDialogResult result = await deleteItemDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                var vm = (TravelDetailsViewModel)this.DataContext;
-                bool res =  await vm.RemoveItemAsync(Travel,(Item)item);
-                if (res)
-                {
-                    Travel.Items.Remove((Item)item);
-                    ItemsCollection.Remove((Item)item);
-                }
-                //TODO: Call to the backend to remove the item from a travel
-            }
+            var vm = (TravelDetailsViewModel)this.DataContext;
+            vm.RemoveItemAsync((Item)item);            
+            
         }
         private async void CheckTask_Click(object sender, RoutedEventArgs e)
         {
@@ -155,7 +133,7 @@ namespace TravelListApp.Views
         }
         private async void CheckItem_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as AppBarButton).DataContext;
+            var item = (sender as CheckBox).DataContext;
             ContentDialogResult result = await deleteItemDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -164,20 +142,9 @@ namespace TravelListApp.Views
                 bool res = await vm.CheckItemAsync(Travel, t);
                 if (res)
                 {
-                    if (t.Check)
-                    {
-                        AppBarButton bt = (AppBarButton)sender;
-                        bt.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 0));
-                    }
-                    else
-                    {
-                        AppBarButton bt = (AppBarButton)sender;
-                        bt.Background = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
-                    }
-                }
-                //TODO: Call to the backend to remove the item from a travel
+                    ((Item)item).Check = !((Item)item).Check;
+                }                
             }
-        }
-
+        }       
     }
 }

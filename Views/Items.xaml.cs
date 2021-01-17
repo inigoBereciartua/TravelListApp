@@ -64,8 +64,7 @@ namespace TravelListApp.Views
                 ErrorText.Text = "That item name is already in use";
             }
             else
-            {
-                itemsList.Add(new Item { Name = NewItemName.Text });
+            {                
                 //TODO: Call backend to create Item
             }
         }
