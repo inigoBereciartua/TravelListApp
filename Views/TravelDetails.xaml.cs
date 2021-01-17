@@ -29,6 +29,7 @@ namespace TravelListApp.Views
     {
         public ObservableCollection<Category> CategoriesCollection { get; set; } = new ObservableCollection<Category>();
         Travel Travel { get; set; }
+        Category SelectedCategory { get; set; }
         public TravelDetails()
         {
             this.InitializeComponent();

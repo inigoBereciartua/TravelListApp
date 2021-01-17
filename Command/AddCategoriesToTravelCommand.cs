@@ -17,14 +17,16 @@ namespace TravelListApp.Command
         }
 
         public event EventHandler CanExecuteChanged;
+        public bool execute = true;
 
         public bool CanExecute(object parameter)
-        {
-            return true;
+        { 
+            return execute;
         }
 
         public void Execute(object parameter)
         {
+            execute = false;
             _viewmodel.AddCategories();
         }
 

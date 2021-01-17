@@ -8,7 +8,7 @@ namespace TravelListApp.Model
 {
     public class Category
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public int ItemsCount { get; set; }
         public int TasksCount { get; set; }
@@ -31,12 +31,12 @@ namespace TravelListApp.Model
             if (ReferenceEquals(this, obj))
                 return true;
             var category = (Category)obj;
-            return this.id == category.id;
+            return this.Id == category.Id;
         }
 
         public override int GetHashCode()
         {
-            return id ^ 7;
+            return Id ^ 7;
         }
 
     }

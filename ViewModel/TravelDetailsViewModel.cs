@@ -59,7 +59,7 @@ namespace TravelListApp.ViewModel
         }
         internal async Task<bool> RemoveCategoryAsync(Travel travel,Category category)
         {
-            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Travel/" + travel.id.ToString() + "/Category/" + category.id);
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Travel/" + travel.id.ToString() + "/Category/" + category.Id);
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return true;

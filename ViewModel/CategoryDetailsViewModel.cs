@@ -54,13 +54,13 @@ namespace TravelListApp.ViewModel
 
         private async Task<ObservableCollection<Item>> GetCategoryItems()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + Category.id + "/Items");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + Category.Id + "/Items");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Item>(JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync()));
         }
         private async Task<ObservableCollection<Model.Task>> GetCategoryTasks()
         {
-            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + Category.id + "/Tasks");
+            var result = await Client.HttpClient.GetAsync("http://localhost:65177/api/Category/" + Category.Id + "/Tasks");
             var callRes = JsonConvert.DeserializeObject<List<Item>>(await result.Content.ReadAsStringAsync());
             return new ObservableCollection<Model.Task>(JsonConvert.DeserializeObject<List<Model.Task>>(await result.Content.ReadAsStringAsync()));
         }
@@ -83,7 +83,7 @@ namespace TravelListApp.ViewModel
 
                 var values = new Dictionary<string, string>
                     {
-                        { "CategorylId", Category.id.ToString()},
+                        { "CategorylId", Category.Id.ToString()},
                         { "ItemId", item.Id.ToString()}
                     };
                 var content = new System.Net.Http.FormUrlEncodedContent(values);
@@ -107,7 +107,7 @@ namespace TravelListApp.ViewModel
                 var task = SelectedTask;
                 var values = new Dictionary<string, string>
                     {
-                        { "CategorylId", Category.id.ToString()},
+                        { "CategorylId", Category.Id.ToString()},
                         { "TaskId", task.Id.ToString()}
                     };
                 var content = new System.Net.Http.FormUrlEncodedContent(values);
@@ -126,7 +126,7 @@ namespace TravelListApp.ViewModel
             //Add item to ItemList, remove item from CategoryItem and remove item from Category.Item on the backend
             
 
-            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/" + Category.id.ToString() + "/Item/" + item.Id.ToString());
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/" + Category.Id.ToString() + "/Item/" + item.Id.ToString());
             if (result.IsSuccessStatusCode)
             {
                 ItemList.Add((Item)item);
@@ -138,7 +138,7 @@ namespace TravelListApp.ViewModel
         {
             //Add task to TaskList, remove task from CategoryTask and remove task from Category.Task on the backend
             
-            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/" + Category.id.ToString() + "/Task/" + task.Id.ToString());
+            var result = await Client.HttpClient.DeleteAsync("http://localhost:65177/api/Category/" + Category.Id.ToString() + "/Task/" + task.Id.ToString());
             if (result.IsSuccessStatusCode)
             {
                 TaskList.Add((Model.Task)task);

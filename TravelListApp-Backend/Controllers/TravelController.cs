@@ -65,7 +65,7 @@ namespace TravelListApp_Backend.Controllers
                 Travel travel = traveler.Travels.FirstOrDefault(e => e.Id == travelId);
                 if (travel != null)
                 {
-                    Category[] categories = travel.Categories.ToArray();
+                    Category[] categories = this._travelRepository.GetTravel(travel.Id).Categories.ToArray();
                     List<CategoryDTO> dto = new List<CategoryDTO>();
                     foreach (var item in categories)
                     {

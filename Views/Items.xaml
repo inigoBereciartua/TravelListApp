@@ -9,6 +9,7 @@
     xmlns:viewmodel="using:TravelListApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
     <Page.DataContext>
         <viewmodel:ItemsViewModel x:Name="vm"/>
     </Page.DataContext>

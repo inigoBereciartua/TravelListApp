@@ -48,8 +48,8 @@ namespace TravelListApp.ViewModel
         {
             CreateItemCommand = new CreateItemCommand(this);
             RemoveItemCommand = new RemoveItemCommand(this);
-            NewItemName = "";
             ItemsList = System.Threading.Tasks.Task.Run( ()=> GetItems()).Result;
+            NewItemName = "";
         }
 
         private async Task<ObservableCollection<Item>> GetItems()
