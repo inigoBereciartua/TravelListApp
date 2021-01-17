@@ -54,8 +54,7 @@ namespace TravelListApp.ViewModel
 
                 if (result.StatusCode == HttpStatusCode.OK)
                 {
-                    Model.Task newTask = new Model.Task() { Description = NewTaskName };
-                    TasksList.Add(newTask);
+                    TasksList.Add(new Model.Task() { Description = NewTaskName });
                 }
             }
         }

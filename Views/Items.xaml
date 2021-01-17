@@ -17,7 +17,7 @@
             <TextBlock Text="Items" VerticalAlignment="Top" Height="45" Width="145" FontSize="30" HorizontalAlignment="Left" Margin="20,0,0,10" />
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="NewItemName" Text="{x:Bind vm.NewItemName,Mode=TwoWay}" PlaceholderText="New item's name"  InputScope="AlphanumericFullWidth" HorizontalAlignment="Left"  Width="200" Height="30" Margin="30, 10, 0, 10"/>
-                <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10" Click="CreateItem_Click"/>
+                <Button x:Name="CreateItem" Command="{x:Bind vm.CreateItemCommand}" Content="Create Item" Margin="20, 10, 0, 10"/>
             </StackPanel>
             <TextBlock x:Name="ErrorText" Text="" FontSize="12" Foreground="Red" Margin="30,5,0,10"/>
             
