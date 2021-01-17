@@ -47,7 +47,7 @@
             </GridView.Shadow>
             <GridView.ItemTemplate >
                 <DataTemplate x:DataType="data:Category">
-                    <StackPanel>
+                    <StackPanel Background="#FF004589">
                         <TextBlock x:Name="CategoryName" FontSize="20" Text="{x:Bind Path=Name}" TextAlignment="Center"/>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="NumOfItems" FontSize="10" Text="{x:Bind Path=ItemsCount}" Margin="10,0,0,0"/>

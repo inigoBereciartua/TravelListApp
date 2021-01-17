@@ -24,7 +24,7 @@
             </GridView.Background>
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="data:Travel">
-                    <StackPanel Margin="20,20,20,20">
+                    <StackPanel Margin="20,20,20,20" Background="#FF004589">
                         <TextBlock x:Name="TravelName" FontSize="20" Text="{x:Bind Path=Name}" TextAlignment="Center"/>
                         <TextBlock x:Name ="TravelStart" FontSize="15" Text="{x:Bind Path=GetStringStartDate()}" TextAlignment="Center"/>
                     </StackPanel>
